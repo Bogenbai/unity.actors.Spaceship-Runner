@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97145131104354a4199fe21bebd603cd, type: 3}
+  m_Name: Asteroid Decor Spawn Data
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 5744776870327136637, guid: ee4bcce596a72324c992ee092ea67517, type: 3}
+  spawnDelay: 1.96
+  spawnPositions:
+  - {x: -18, y: -10, z: 115}
+  - {x: -15, y: 10, z: 115}
+  - {x: 23, y: -3, z: 115}
+  - {x: 10, y: 14, z: 115}
+  - {x: -14, y: 17, z: 115}
+  - {x: -10, y: 12, z: 115}
+  - {x: -20, y: -5, z: 115}
+  - {x: 9, y: 20, z: 115}
+  destroyData: {fileID: 11400000, guid: dd3030af49788264ea65b7fc9c6d2609, type: 2}

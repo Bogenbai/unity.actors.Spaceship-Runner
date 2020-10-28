@@ -6,6 +6,6 @@ In this project I use [Odin Inspector](https://assetstore.unity.com/packages/too
 
 ## Screenshots
 
-[1 screenshot](https://cdn.discordapp.com/attachments/428973249502642208/770997380379836416/unknown.png)
-[2 screenshot](https://cdn.discordapp.com/attachments/428973249502642208/770997633963130880/unknown.png)
+![1 screenshot](https://cdn.discordapp.com/attachments/428973249502642208/770997380379836416/unknown.png)
+![2 screenshot](https://cdn.discordapp.com/attachments/428973249502642208/770997633963130880/unknown.png)
 

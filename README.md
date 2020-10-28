@@ -1,4 +1,4 @@
-# Unity-Spaceship-Runner
+# unity.actors.Spaceship-Runner
 This project was created with [Actors Framework](https://github.com/PixeyeHQ/actors.unity). Actors favors simplicity and doesn't try to "abstract away" Unity workflows bringing first-class support for combining ECS with classic Unity component system.
 ## Recommended to run on Unity version 2020.1.10f1 or older.
 

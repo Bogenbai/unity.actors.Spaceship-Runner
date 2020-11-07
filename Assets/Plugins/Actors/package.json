@@ -1,0 +1,22 @@
+{
+    "name": "com.pixeye.ecs",
+    "author": "Pixeye",
+    "displayName": "Actors",
+    "description": "🚀 Actors is a framework empowering developers to make better games faster on Unity.",
+    "unity": "2019.4",
+    "version": "2020.6.4",
+    "keywords": [
+        "ecs",
+        "pixeye",
+        "performance",
+        "unity",
+        "integration",
+	"actors",
+	"workflow"
+    ],
+    "dependencies": {},
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/dimmpixeye/actors.unity.git"
+    }
+}

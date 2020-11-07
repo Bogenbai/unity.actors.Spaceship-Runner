@@ -1,12 +1,5 @@
 {
   "dependencies": {
-    "com.pixeye.ecs": {
-      "version": "https://github.com/PixeyeHQ/actors.unity.git",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "eb31542b5ce85c7a6bf466354424cd5a0a96f9db"
-    },
     "com.unity.collab-proxy": {
       "version": "1.3.9",
       "depth": 0,

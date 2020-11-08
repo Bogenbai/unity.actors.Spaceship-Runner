@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97145131104354a4199fe21bebd603cd, type: 3}
   m_Name: Asteroid Decor Spawn Data
   m_EditorClassIdentifier: 
-  prefab: {fileID: 5744776870327136637, guid: ee4bcce596a72324c992ee092ea67517, type: 3}
+  prefab: {fileID: 5744776870327136637, guid: b41ee96974e621e499957b2b8ec7e8fc, type: 3}
   spawnDelay: 1.96
   spawnPositions:
   - {x: -18, y: -10, z: 115}

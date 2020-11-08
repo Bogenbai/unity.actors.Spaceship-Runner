@@ -3,6 +3,7 @@ using Runtime.Source.Components;
 using Runtime.Source.Components.Events;
 using Runtime.Source.Components.Tags;
 using Runtime.Source.Data;
+using Runtime.Source.Signals;
 using Runtime.Source.Tools;
 using Runtime.Source.Tools.CameraShaker;
 using Runtime.Source.Tools.CameraShaker.Signals;
@@ -37,7 +38,7 @@ namespace Runtime.Source.Processors
                             {
                                 var componentHealth = spaceshipEntity.ComponentHealth();
                                 var damage = asteroidEntity.ComponentDamage().value;
-                                ReduceHealth(componentHealth, damage);
+                                SendHealthChangeSignal(componentHealth, damage);
                             }
 
                             Explosion(componentCollision);
@@ -49,6 +50,14 @@ namespace Runtime.Source.Processors
                     }
                 }
             }
+        }
+
+        private void SendHealthChangeSignal(ComponentHealth cHealth, int amount)
+        {
+            SignalHealthChanged signal;
+            signal.Health = cHealth;
+            signal.Amount = amount;
+            Ecs.Send(signal);
         }
 
         private void Explosion(ComponentCollisionEvent componentCollisionEvent)
@@ -87,11 +96,6 @@ namespace Runtime.Source.Processors
             signal.ShakeData = (ShakePreset) shakeData;
 
             Ecs.Send(signal);
-        }
-
-        private void ReduceHealth(ComponentHealth health, int amount)
-        {
-            health.value -= amount;
         }
     }
 }

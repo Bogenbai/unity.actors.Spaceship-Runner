@@ -38,6 +38,7 @@ namespace Runtime.Source.Layers
             Add<ProcessorSpaceshipMoveBounds>();
             Add<ProcessorSpaceshipRespawn>();
             Add<ProcessorSpaceshipDeath>();
+            Add<ProcessorScore>();
 
             // COLLISIONS
             Add<ProcessorSpaceshipAsteroidCollision>();
@@ -46,7 +47,11 @@ namespace Runtime.Source.Layers
             Add<ProcessorCameraShake>();
 
             // COMMON
+            Add<ProcessorHealth>();
             Add<ProcessorConstantMove>();
+            
+            // Ui
+            Add<ProcessorScoreUi>();
         }
 
         // Use to clean up custom stuff before the layer gets destroyed.

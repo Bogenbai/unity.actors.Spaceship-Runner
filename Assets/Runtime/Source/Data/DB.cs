@@ -9,13 +9,13 @@ namespace Runtime.Source.Data
         {
             public const string PrefabsFolder = "Prefabs/";
 
-            public static readonly GameObject EmptyObject = new GameObject("Pooled GameObject");
+            public static readonly GameObject EmptyObject = new GameObject("Pool");
             public static readonly GameObject ActorPlayerSpaceship = Box.Load<GameObject>(PrefabsFolder + "ActorPlayerSpaceship");
-            public static readonly GameObject Asteroid = Box.Load<GameObject>(PrefabsFolder + "Asteroid");
-            public static readonly GameObject AsteroidShard = Box.Load<GameObject>(PrefabsFolder + "AsteroidShard");
-            public static readonly GameObject VfxSparks = Box.Load<GameObject>(PrefabsFolder + "VfxSparks");
-            public static readonly GameObject VfxPlasmaExplosion = Box.Load<GameObject>(PrefabsFolder + "VfxPlasmaExplosion");
-            public static readonly GameObject VfxBluePlasmaExplosion = Box.Load<GameObject>(PrefabsFolder + "VfxBluePlasmaExplosion");
+            public static readonly GameObject Asteroid = Box.Load<GameObject>(PrefabsFolder + "ActorAsteroid");
+            public static readonly GameObject AsteroidShard = Box.Load<GameObject>(PrefabsFolder + "ActorAsteroidShard");
+            public static readonly GameObject VfxSparks = Box.Load<GameObject>(PrefabsFolder + "ActorVfx Sparks");
+            public static readonly GameObject VfxPlasmaExplosion = Box.Load<GameObject>(PrefabsFolder + "ActorVfx PlasmaExplosion");
+            public static readonly GameObject VfxBluePlasmaExplosion = Box.Load<GameObject>(PrefabsFolder + "ActorVfx BluePlasmaExplosion");
         }
 
         public static class ScriptableObjects

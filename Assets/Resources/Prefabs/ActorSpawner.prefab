@@ -46,4 +46,4 @@ MonoBehaviour:
   _entity: 0
   prefabReferenceName: 
   componentSpawner:
-    spawnerData: {fileID: 11400000, guid: ffa0b85ca5d4ea04ca25827022626a52, type: 2}
+    spawnerData: {fileID: 11400000, guid: 9b95d00b9e1ba984da2439556114fe88, type: 2}

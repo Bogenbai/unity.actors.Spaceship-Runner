@@ -1,16 +1,14 @@
 ﻿using Pixeye.Actors;
-using Runtime.Source.Data.ScriptableObjects;
 using Runtime.Source.Tools;
 using Runtime.Source.Tools.CameraShaker;
-using UnityEngine;
 using Random = UnityEngine.Random;
-using System;
+using Runtime.Source.Signals;
 
 namespace Game.Source
 {
     sealed class ProcessorSpaceshipAsteroidCollision : Processor, ITick
     {
-        Group<ComponentCollision> groupCollisions = default;
+        Group<ComponentCollisionEvent> groupCollisions = default;
 
         public void Tick(float delta)
         {
@@ -19,39 +17,37 @@ namespace Game.Source
                 var componentCollision = groupCollisions[i].ComponentCollision();
                 var collisionInitiator = componentCollision.Collision.gameObject.GetEntity();
 
-                if (collisionInitiator.Has<ComponentAsteroid>() &&
-                    componentCollision.ReceiverEntity.Has<ComponentSpaceship>())
+                if (collisionInitiator.exist)
                 {
-                    var spaceshipEntity = componentCollision.ReceiverEntity;
-                    var asteroidEntity = collisionInitiator;
-                    if (spaceshipEntity.Has<ComponentHealth>() &&
-                        asteroidEntity.Has<ComponentDamage>())
+                    if (collisionInitiator.Has<ComponentAsteroid>() &&
+                        componentCollision.ReceiverEntity.Has<ComponentSpaceship>())
                     {
-                        var componentHealth = spaceshipEntity.ComponentHealth();
-                        var damage = asteroidEntity.ComponentDamage().value;
-                        ReduceHealth(componentHealth, damage);
+                        var spaceshipEntity = componentCollision.ReceiverEntity;
+                        var asteroidEntity = collisionInitiator;
+                        if (spaceshipEntity.Has<ComponentHealth>() &&
+                            asteroidEntity.Has<ComponentDamage>())
+                        {
+                            var componentHealth = spaceshipEntity.ComponentHealth();
+                            var damage = asteroidEntity.ComponentDamage().value;
+                            ReduceHealth(componentHealth, damage);
+                        }
+
+                        Explosion(componentCollision);
+                        CreateCameraShakeEvent();
+
+                        collisionInitiator.Release();
                     }
-
-                    Explosion(componentCollision);
-                    CreateCameraShakeEvent();
-
-                    collisionInitiator.Release();
                 }
 
                 groupCollisions[i].Release();
             }
         }
 
-        private void ReduceHealth(ComponentHealth health, int amount)
+        private void Explosion(ComponentCollisionEvent componentCollisionEvent)
         {
-            health.value -= amount;
-        }
-
-        private void Explosion(ComponentCollision componentCollision)
-        {
-            var collisionInitiator = componentCollision.Collision.gameObject.GetEntity();
+            var collisionInitiator = componentCollisionEvent.Collision.gameObject.GetEntity();
             var componentShatter = collisionInitiator.ComponentCanShatter();
-            var sparksPosition = componentCollision.Collision.contacts[0].point;
+            var sparksPosition = componentCollisionEvent.Collision.contacts[0].point;
             var shardsCount = Random.Range(componentShatter.MinShards, componentShatter.MaxShards + 1);
 
             for (var j = 0; j < shardsCount; j++)
@@ -67,12 +63,18 @@ namespace Game.Source
 
         private void CreateCameraShakeEvent()
         {
-            var shakeEvent = Entity.Create();
-            var componentShakeEvent = shakeEvent.Set<ComponentCameraShakeEvent>();
+            SignalCameraShake signal;
 
             var shakeData = DB.ScriptableObjects.CameraShakeOnAsteroidHit;
-            
-            componentShakeEvent.shakeData = (ShakePreset)shakeData;
+
+            signal.ShakeData = (ShakePreset) shakeData;
+
+            Ecs.Send(signal);
+        }
+
+        private void ReduceHealth(ComponentHealth health, int amount)
+        {
+            health.value -= amount;
         }
     }
 }

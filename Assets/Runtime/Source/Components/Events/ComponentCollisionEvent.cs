@@ -1,19 +1,15 @@
-﻿using System;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using Unity.IL2CPP.CompilerServices;
 using Pixeye.Actors;
-using Runtime.Source.Data.ScriptableObjects;
 using UnityEngine;
 
 
 namespace Game.Source
 {
-    [Serializable]
-    public class ComponentSpawnEvent
+    public class ComponentCollisionEvent
     {
-        public ent SpawnInitiator { get; set; }
-        public SpawnerData SpawnerData { get; set; }
-        public Vector3 SpawnPosition { get; set; }
+        public Collision Collision { get; set; }
+        public ent ReceiverEntity { get; set; }
     }
 
     #region HELPERS
@@ -23,19 +19,19 @@ namespace Game.Source
     [Il2CppSetOption(Option.DivideByZeroChecks, false)]
     static partial class Component
     {
-        public const string SpawnEvent = "Game.Source.ComponentSpawnEvent";
+        public const string PlayerAsteroidCollision = "Game.Source.ComponentPlayerAsteroidCollision";
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static ref ComponentSpawnEvent ComponentSpawnEvent(in this ent entity) =>
-            ref Storage<ComponentSpawnEvent>.components[entity.id];
+        public static ref ComponentCollisionEvent ComponentCollision(in this ent entity) =>
+            ref Storage<ComponentCollisionEvent>.components[entity.id];
     }
 
     [Il2CppSetOption(Option.NullChecks, false)]
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
     [Il2CppSetOption(Option.DivideByZeroChecks, false)]
-    sealed class StorageComponentSpawnEvent : Storage<ComponentSpawnEvent>
+    sealed class StorageComponentPlayerAsteroidCollision : Storage<ComponentCollisionEvent>
     {
-        public override ComponentSpawnEvent Create() => new ComponentSpawnEvent();
+        public override ComponentCollisionEvent Create() => new ComponentCollisionEvent();
 
         // Use for cleaning components that were removed at the current frame.
         public override void Dispose(indexes disposed)

@@ -19,7 +19,7 @@ namespace Game.Source
             {
                 direction = Vector3.left;
             }
-
+            
             var entityInputEvent = Entity.Create(DB.Prefabs.EmptyObject, Vector3.zero, true);
             entityInputEvent.transform.gameObject.name = "UserInput";
             var userInputEvent = entityInputEvent.Set<ComponentUserInputEvent>();

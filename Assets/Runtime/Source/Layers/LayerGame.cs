@@ -17,7 +17,7 @@ namespace Game.Source
             Add<ProcessorUserInput>();
 #endif
             // SPAWN AND DESTROY
-            Add<ProcessorCreateSpawnEvents>();
+            Add<ProcessorSpawnSignalSender>();
             Add<ProcessorSpawner>();
             Add<ProcessorDestroyDestroyable>();
 

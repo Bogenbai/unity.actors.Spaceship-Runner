@@ -1,4 +1,5 @@
 ﻿using Pixeye.Actors;
+using Runtime.Source.Signals;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -31,12 +32,16 @@ namespace Game.Source
 
         private void OnCollisionEnter(Collision other)
         {
-            var entityCollision = Entity.Create();
+           var entityCollision = Entity.Create();
             
-            entityCollision.Set<ComponentCollision>();
-            var componentOnCollision = entityCollision.ComponentCollision();
-            componentOnCollision.Collision = other;
-            componentOnCollision.ReceiverEntity = entity;
+           entityCollision.Set<ComponentCollisionEvent>();
+           var componentCollision = entityCollision.ComponentCollision();
+            componentCollision.Collision = other;
+            componentCollision.ReceiverEntity = entity;
+            // SignalCollision signal;
+            // signal.Collision = other;
+            // signal.ReceiverEntity = entity;
+            // Ecs.Send(signal);
         }
 
         private void OnDrawGizmosSelected()

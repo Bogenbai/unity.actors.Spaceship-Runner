@@ -1,36 +1,27 @@
 ﻿using Pixeye.Actors;
-using UnityEngine;
+using Runtime.Source.Signals;
 
 
 namespace Game.Source
 {
-    internal sealed class ProcessorSpawner : Processor, ITick
+    internal sealed class ProcessorSpawner : Processor<SignalSpawn>
     {
-        private Group<ComponentSpawnEvent> groupSpawnEvents = default;
-
-        public void Tick(float delta)
+        public override void ReceiveEcs(ref SignalSpawn signal, ref bool stopSignal)
         {
-            for (int i = 0; i < groupSpawnEvents.length; i++)
+            var spawnerData = signal.SpawnerData;
+
+            var spawnedActor = Layer.Actor.Create(
+                spawnerData.Prefab, signal.SpawnPosition, true);
+
+            var destroyData = spawnerData.DestroyData;
+
+            if (destroyData != null)
             {
-                var spawnEvent = groupSpawnEvents[i];
-                var componentSpawnEvent = spawnEvent.ComponentSpawnEvent();
-                var spawnerData = spawnEvent.ComponentSpawnEvent().SpawnerData;
-
-                var spawnedActor = Layer.Actor.Create(
-                    spawnerData.Prefab, componentSpawnEvent.SpawnPosition, true);
-
-                var destroyData = spawnerData.DestroyData;
-
-                if (destroyData != null)
-                {
-                    spawnedActor.entity.Get<ComponentDestroyable>();
-                    spawnedActor.entity.ComponentDestroyable().DestroyData = destroyData;
-                }
-
-                spawnedActor.entity.transform.parent = componentSpawnEvent.SpawnInitiator.transform;
-
-                spawnEvent.Release();
+                spawnedActor.entity.Get<ComponentDestroyable>();
+                spawnedActor.entity.ComponentDestroyable().DestroyData = destroyData;
             }
+
+            spawnedActor.entity.transform.parent = signal.SpawnInitiator.transform;
         }
     }
 }

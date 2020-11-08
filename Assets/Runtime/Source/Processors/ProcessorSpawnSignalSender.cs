@@ -1,13 +1,13 @@
 ﻿using Pixeye.Actors;
-using UnityEngine;
+using Runtime.Source.Signals;
 using Random = Pixeye.Actors.Random;
 
 
 namespace Game.Source
 {
-    sealed class ProcessorCreateSpawnEvents : Processor, ITick
+    sealed class ProcessorSpawnSignalSender : Processor, ITick
     {
-        Group<ComponentSpawner, ComponentCanSpawn> groupSpawners = default;
+        private readonly Group<ComponentSpawner, ComponentCanSpawn> groupSpawners = default;
 
         public void Tick(float delta)
         {
@@ -31,13 +31,11 @@ namespace Game.Source
                 
                 var spawnPosition = spawnerData.SpawnPositions[Random.Range(0, spawnerData.SpawnPositions.Count)];
 
-                var spawnEventEntity = Entity.Create(DB.Prefabs.EmptyObject, Vector3.zero, true);
-                spawnEventEntity.transform.gameObject.name = "Spawn Event";
-                var spawnEvent = new ComponentSpawnEvent
+                var signal = new SignalSpawn
                 {
                     SpawnerData = spawnerData, SpawnPosition = spawnPosition, SpawnInitiator = spawnInitiator
                 };
-                spawnEventEntity.Set(spawnEvent);
+                Ecs.Send(signal);
             }
         }
     }

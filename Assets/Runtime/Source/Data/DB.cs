@@ -7,9 +7,9 @@ public static class DB
     {
         public const string PrefabsFolder = "Prefabs/";
 
+        public static readonly GameObject EmptyObject = new GameObject("Empty GameObject");
         public static readonly GameObject ActorPlayerSpaceship = Box.Load<GameObject>(PrefabsFolder + "ActorPlayerSpaceship");
         public static readonly GameObject Asteroid = Box.Load<GameObject>(PrefabsFolder + "Asteroid");
-        public static readonly GameObject EmptyObject = Box.Load<GameObject>(PrefabsFolder + "EmptyObject");
         public static readonly GameObject AsteroidShard = Box.Load<GameObject>(PrefabsFolder + "AsteroidShard");
         public static readonly GameObject VfxSparks = Box.Load<GameObject>(PrefabsFolder + "VfxSparks");
         public static readonly GameObject VfxPlasmaExplosion = Box.Load<GameObject>(PrefabsFolder + "VfxPlasmaExplosion");

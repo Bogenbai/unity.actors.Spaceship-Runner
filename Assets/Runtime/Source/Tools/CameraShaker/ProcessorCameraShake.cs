@@ -1,29 +1,20 @@
 ﻿using System.Collections.Generic;
 using Game.Source;
 using Pixeye.Actors;
+using Runtime.Source.Signals;
 using Random = Pixeye.Actors.Random;
 
 
 namespace Runtime.Source.Tools.CameraShaker
 {
-    sealed class ProcessorCameraShake : Processor, ITick
+    sealed class ProcessorCameraShake : Processor<SignalCameraShake>, ITick
     {
-        private List<ShakeInstance> activeShakes = new List<ShakeInstance>();
-
-        private Group<ComponentMainCamera> mainCameras = default;
-        private Group<ComponentCameraShakeEvent> groupShakeEvents = default;
+        private readonly List<ShakeInstance> activeShakes = new List<ShakeInstance>();
+        private readonly Group<ComponentMainCamera> mainCameras = default;
 
         public void Tick(float delta)
         {
             CameraShakesTick();
-
-            for (int i = 0; i < groupShakeEvents.length; i++)
-            {
-                var shakeData = groupShakeEvents[i].ComponentCameraShakeEvent().shakeData;
-                var shakeInstance = new ShakeInstance(shakeData, Random.Range(0, 100));
-                AddShake(shakeInstance);
-                groupShakeEvents[i].Release();
-            }
         }
 
         private void CameraShakesTick()
@@ -45,10 +36,17 @@ namespace Runtime.Source.Tools.CameraShaker
             mainCameras[0].transform.localPosition = shake.PositionShake;
             mainCameras[0].transform.localEulerAngles = shake.RotationShake;
         }
-        
+
         private void AddShake(ShakeInstance shakeInstance)
         {
             activeShakes.Add(shakeInstance);
+        }
+
+        public override void ReceiveEcs(ref SignalCameraShake signal, ref bool stopSignal)
+        {
+            var shakeData = signal.ShakeData;
+            var shakeInstance = new ShakeInstance(shakeData, Random.Range(0, 100));
+            AddShake(shakeInstance);
         }
     }
 }

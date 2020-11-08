@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.mybox": {
+      "version": "https://github.com/Deadcows/MyBox.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "900922be56cf6d547df65650037da21ef3ba54d1"
+    },
     "com.pixeye.ecs": {
       "version": "https://github.com/PixeyeHQ/actors.unity.git",
       "depth": 0,

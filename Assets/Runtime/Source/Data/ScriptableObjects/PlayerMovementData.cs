@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Runtime.Source.Data.ScriptableObjects
 {
-    [CreateAssetMenu(fileName = "New PlayerMovement Data", menuName = "My SciptableObjects/PlayerMovement Data", order = 58)]
+    [CreateAssetMenu(fileName = "New PlayerMovement Data", menuName = "SciptableObjects/PlayerMovement Data", order = 58)]
     [InlineEditor]
     public class PlayerMovementData : ScriptableObject
     {

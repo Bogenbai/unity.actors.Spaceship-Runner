@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Runtime.Source.Data.ScriptableObjects
 {
-    [CreateAssetMenu(fileName = "New DestroyParameters Data", menuName = "My SciptableObjects/DestroyParameters", order = 58)]
+    [CreateAssetMenu(fileName = "New DestroyParameters Data", menuName = "SciptableObjects/DestroyParameters", order = 58)]
     [InlineEditor]
     public class DestroyData : ScriptableObject
     {

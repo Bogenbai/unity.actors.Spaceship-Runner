@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Runtime.Source.Data.ScriptableObjects
 {
-    [CreateAssetMenu(fileName = "New Spawn Data", menuName = "My SciptableObjects/Spawn Data", order = 58)]
+    [CreateAssetMenu(fileName = "New Spawn Data", menuName = "SciptableObjects/Spawn Data", order = 58)]
     [InlineEditor]
     public class SpawnerData : ScriptableObject
     {

@@ -11,7 +11,7 @@ namespace Runtime.Source.Tools.CameraShaker
     /// <summary>
     /// ScriptableObject asset implementation of the IShakeParameters interface.
     /// </summary>
-    [CreateAssetMenu(fileName = "New Shake Preset", menuName = "My SciptableObjects/Camera shake Preset", order = 58)]
+    [CreateAssetMenu(fileName = "New Shake Preset", menuName = "SciptableObjects/Camera shake Preset", order = 58)]
     public class ShakePreset : ScriptableObject, IShakeParameters
     {
         [Header("Shake Type")]

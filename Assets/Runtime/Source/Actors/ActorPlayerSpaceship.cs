@@ -1,22 +1,19 @@
 ﻿using Pixeye.Actors;
-using Runtime.Source.Signals;
+using Runtime.Source.Components;
+using Runtime.Source.Components.Events;
+using Runtime.Source.Components.Tags;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-
-namespace Game.Source
+namespace Runtime.Source.Actors
 {
     [RequireComponent(typeof(Rigidbody))]
     public class ActorPlayerSpaceship : Actor
     {
-        [FoldoutGroup("Components", true)]
-        public ComponentSpaceship componentSpaceship;
-        [FoldoutGroup("Components", true)]
-        public ComponentRigidbody componentRigidbody;
-        [FoldoutGroup("Components", true)]
-        public ComponentPlayerMovementData componentPlayerMovementData;
-        [FoldoutGroup("Components", true)]
-        public ComponentHealth componentHealth;
+        [FoldoutGroup("Components", true)] public ComponentSpaceship componentSpaceship;
+        [FoldoutGroup("Components", true)] public ComponentRigidbody componentRigidbody;
+        [FoldoutGroup("Components", true)] public ComponentPlayerMovementData componentPlayerMovementData;
+        [FoldoutGroup("Components", true)] public ComponentHealth componentHealth;
 
 
         protected override void Setup()
@@ -29,19 +26,14 @@ namespace Game.Source
             entity.Set(componentHealth);
         }
 
-
         private void OnCollisionEnter(Collision other)
         {
-           var entityCollision = Entity.Create();
-            
-           entityCollision.Set<ComponentCollisionEvent>();
-           var componentCollision = entityCollision.ComponentCollision();
+            var entityCollision = Entity.Create();
+
+            entityCollision.Set<ComponentCollisionEvent>();
+            var componentCollision = entityCollision.ComponentCollision();
             componentCollision.Collision = other;
             componentCollision.ReceiverEntity = entity;
-            // SignalCollision signal;
-            // signal.Collision = other;
-            // signal.ReceiverEntity = entity;
-            // Ecs.Send(signal);
         }
 
         private void OnDrawGizmosSelected()

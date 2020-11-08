@@ -20,25 +20,25 @@ namespace Runtime.Source.Tools.CameraShaker
         /// The original shake parameters.
         /// Note that modifying these parameters will overwrite the original values.
         /// </summary>
-        public ShakeParameters ShakeParameters;
+        public ShakeParameters shakeParameters;
 
         /// <summary>
         /// A scalar value for the shake strength.
         /// You can modify this if you want to adjust the strength of the shake wihout overwriting the original strength.
         /// </summary>
-        public float StrengthScale;
+        public float strengthScale;
 
         /// <summary>
         /// A scalar value for the roughness.
         /// You can modify this if you want to adjust the roughness of the shake wihout overwriting the original roughness.
         /// </summary>
-        public float RoughnessScale;
+        public float roughnessScale;
 
         /// <summary>
         /// Should this shake instance be removed from its Shaker when it is stopped?
         /// You can set this to false if you want to start a shake again after it has been stopped.
         /// </summary>
-        public bool RemoveWhenStopped;
+        public bool removeWhenStopped;
 
         /// <summary>
         /// The current state of the shake.
@@ -56,7 +56,7 @@ namespace Runtime.Source.Tools.CameraShaker
         /// </summary>
         public bool IsFinished
         {
-            get { return State == ShakeState.Stopped && RemoveWhenStopped; }
+            get { return State == ShakeState.Stopped && removeWhenStopped; }
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace Runtime.Source.Tools.CameraShaker
         /// </summary>
         public float CurrentStrength
         {
-            get { return ShakeParameters.Strength * fadeTimer * StrengthScale; }
+            get { return shakeParameters.Strength * fadeTimer * strengthScale; }
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace Runtime.Source.Tools.CameraShaker
         /// </summary>
         public float CurrentRoughness
         {
-            get { return ShakeParameters.Roughness * fadeTimer * RoughnessScale; }
+            get { return shakeParameters.Roughness * fadeTimer * roughnessScale; }
         }
 
         private int baseSeed;
@@ -109,8 +109,8 @@ namespace Runtime.Source.Tools.CameraShaker
             fadeTimer = 0;
             pauseTimer = 0;
 
-            StrengthScale = 1;
-            RoughnessScale = 1;
+            strengthScale = 1;
+            roughnessScale = 1;
         }
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace Runtime.Source.Tools.CameraShaker
         public ShakeInstance(IShakeParameters shakeData, int? seed = null) : this(seed)
         {
             //Create a copy of the shake data.
-            ShakeParameters = new ShakeParameters(shakeData);
+            shakeParameters = new ShakeParameters(shakeData);
 
             fadeInTime = shakeData.FadeIn;
             fadeOutTime = shakeData.FadeOut;
@@ -139,8 +139,8 @@ namespace Runtime.Source.Tools.CameraShaker
             ShakeResult result = new ShakeResult();
 
             //Get shake values
-            result.PositionShake = getPositionShake();
-            result.RotationShake = getRotationShake();
+            result.PositionShake = GetPositionShake();
+            result.RotationShake = GetRotationShake();
 
             //Update timers
             //Protection for updating timers more than once per frame.
@@ -180,10 +180,10 @@ namespace Runtime.Source.Tools.CameraShaker
             //Update the state if needed
             if (fadeTimer == 1)
             {
-                if (ShakeParameters.ShakeType == ShakeType.Sustained)
+                if (shakeParameters.ShakeType == ShakeType.Sustained)
                     State = ShakeState.Sustained;
-                else if (ShakeParameters.ShakeType == ShakeType.OneShot)
-                    Stop(ShakeParameters.FadeOut, true);
+                else if (shakeParameters.ShakeType == ShakeType.OneShot)
+                    Stop(shakeParameters.FadeOut, true);
             }
             else if (fadeTimer == 0)
                 State = ShakeState.Stopped;
@@ -211,7 +211,7 @@ namespace Runtime.Source.Tools.CameraShaker
         public void Stop(float fadeTime, bool removeWhenStopped)
         {
             this.fadeOutTime = fadeTime;
-            this.RemoveWhenStopped = removeWhenStopped;
+            this.removeWhenStopped = removeWhenStopped;
             State = ShakeState.FadingOut;
         }
 
@@ -252,29 +252,29 @@ namespace Runtime.Source.Tools.CameraShaker
                 Pause(fadeTime);
         }
 
-        private Vector3 getPositionShake()
+        private Vector3 GetPositionShake()
         {
             Vector3 v = Vector3.zero;
 
-            v.x = getNoise(noiseTimer + seed1, baseSeed);
-            v.y = getNoise(baseSeed, noiseTimer);
-            v.z = getNoise(seed3 + noiseTimer, baseSeed + noiseTimer);
+            v.x = GetNoise(noiseTimer + seed1, baseSeed);
+            v.y = GetNoise(baseSeed, noiseTimer);
+            v.z = GetNoise(seed3 + noiseTimer, baseSeed + noiseTimer);
 
-            return Vector3.Scale(v * CurrentStrength, ShakeParameters.PositionInfluence);
+            return Vector3.Scale(v * CurrentStrength, shakeParameters.PositionInfluence);
         }
 
-        private Vector3 getRotationShake()
+        private Vector3 GetRotationShake()
         {
             Vector3 v = Vector3.zero;
 
-            v.x = getNoise(noiseTimer - baseSeed, seed3);
-            v.y = getNoise(baseSeed, noiseTimer + seed2);
-            v.z = getNoise(baseSeed + noiseTimer, seed1 + noiseTimer);
+            v.x = GetNoise(noiseTimer - baseSeed, seed3);
+            v.y = GetNoise(baseSeed, noiseTimer + seed2);
+            v.z = GetNoise(baseSeed + noiseTimer, seed1 + noiseTimer);
 
-            return Vector3.Scale(v * CurrentStrength, ShakeParameters.RotationInfluence);
+            return Vector3.Scale(v * CurrentStrength, shakeParameters.RotationInfluence);
         }
 
-        private float getNoise(float x, float y)
+        private float GetNoise(float x, float y)
         {
             return (Mathf.PerlinNoise(x, y) - 0.5f) * 2f;
         }

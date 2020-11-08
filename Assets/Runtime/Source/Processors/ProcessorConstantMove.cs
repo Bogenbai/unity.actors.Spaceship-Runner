@@ -1,7 +1,7 @@
 ﻿using Pixeye.Actors;
+using Runtime.Source.Components;
 
-
-namespace Game.Source
+namespace Runtime.Source.Processors
 {
     sealed class ProcessorConstantMove : Processor, ITick
     {
@@ -13,10 +13,7 @@ namespace Game.Source
             {
                 var entity = groupMovement[i];
                 var componentMovement = entity.ComponentConstantMove();
-                entity.transform.position +=
-                    componentMovement.MovementDirection *
-                    componentMovement.Speed *
-                    delta;
+                entity.transform.position += componentMovement.MovementDirection * (componentMovement.Speed * delta);
             }
         }
     }

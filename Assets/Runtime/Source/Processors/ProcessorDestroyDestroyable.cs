@@ -1,9 +1,8 @@
 ﻿using Pixeye.Actors;
+using Runtime.Source.Components;
 using Runtime.Source.Data;
-using UnityEngine;
 
-
-namespace Game.Source
+namespace Runtime.Source.Processors
 {
     sealed class ProcessorDestroyDestroyable : Processor, ITick
     {

@@ -1,9 +1,10 @@
 ﻿using Pixeye.Actors;
+using Runtime.Source.Components.Spawn;
 using Runtime.Source.Signals;
 using Random = Pixeye.Actors.Random;
 
 
-namespace Game.Source
+namespace Runtime.Source.Processors
 {
     sealed class ProcessorSpawnSignalSender : Processor, ITick
     {

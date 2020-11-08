@@ -1,10 +1,9 @@
-﻿using Pixeye.Actors;
-using System;
+﻿using System;
 using System.Runtime.CompilerServices;
+using Pixeye.Actors;
 using Unity.IL2CPP.CompilerServices;
 
-
-namespace Game.Source
+namespace Runtime.Source.Components
 {
     [Serializable]
     public class ComponentDamage

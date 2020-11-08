@@ -1,13 +1,10 @@
 ﻿using System.Runtime.CompilerServices;
-using Unity.IL2CPP.CompilerServices;
 using Pixeye.Actors;
- 
+using Unity.IL2CPP.CompilerServices;
 
-namespace Game.Source
+namespace Runtime.Source.Components.Spawn
  {
-   public class ComponentCanSpawn
-   {
-   }
+   public class ComponentCanSpawn { }
  
    #region HELPERS
  

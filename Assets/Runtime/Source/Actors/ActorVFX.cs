@@ -1,7 +1,8 @@
 ﻿using Pixeye.Actors;
+using Runtime.Source.Components;
 using Sirenix.OdinInspector;
 
-namespace Game.Source
+namespace Runtime.Source.Actors
 {
     public class ActorVFX : Actor
     {

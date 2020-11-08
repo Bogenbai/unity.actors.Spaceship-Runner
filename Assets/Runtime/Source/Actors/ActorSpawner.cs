@@ -1,7 +1,7 @@
 ﻿using Pixeye.Actors;
+using Runtime.Source.Components.Spawn;
 
-
-namespace Game.Source
+namespace Runtime.Source.Actors
 {
     public class ActorSpawner : Actor
     {

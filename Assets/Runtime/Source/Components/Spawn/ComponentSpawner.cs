@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
-using Unity.IL2CPP.CompilerServices;
 using Pixeye.Actors;
 using Runtime.Source.Data.ScriptableObjects;
+using Unity.IL2CPP.CompilerServices;
 using UnityEngine;
 
-
-namespace Game.Source
+namespace Runtime.Source.Components.Spawn
 {
     [Serializable]
     public class ComponentSpawner

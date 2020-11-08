@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
-using Unity.IL2CPP.CompilerServices;
 using Pixeye.Actors;
 using Runtime.Source.Data.ScriptableObjects;
 using Sirenix.OdinInspector;
+using Unity.IL2CPP.CompilerServices;
 using UnityEngine;
 
-
-namespace Game.Source
+namespace Runtime.Source.Components
 {
     [Serializable]
     public class ComponentPlayerMovementData

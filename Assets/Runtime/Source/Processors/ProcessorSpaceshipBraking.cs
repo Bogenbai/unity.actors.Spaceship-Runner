@@ -1,9 +1,10 @@
 ﻿using System;
 using Pixeye.Actors;
+using Runtime.Source.Components;
+using Runtime.Source.Components.Tags;
 using Runtime.Source.Tools;
 
-
-namespace Game.Source
+namespace Runtime.Source.Processors
 {
     sealed class ProcessorSpaceshipBraking : Processor, ITick
     {

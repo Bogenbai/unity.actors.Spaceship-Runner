@@ -1,38 +1,41 @@
 ﻿using Pixeye.Actors;
 using UnityEngine;
 
-public class FPSDisplay : MonoCached
+namespace Runtime.Source.Tools
 {
-    [SerializeField]
-    TextAnchor textAnchor = TextAnchor.UpperRight;
-    [SerializeField]
-    private Color color = Color.green;
-    private float deltaTime = 0.0f;
-    [SerializeField, Range(1, 100)]
-    private int fontSize = 2;
-    [SerializeField]
-    private float offsetX = 0;
-    [SerializeField]
-    private float offsetY = 0;
-
-    void OnGUI()
+    public class FPSDisplay : MonoCached
     {
-        int w = Screen.width, h = Screen.height;
+        [SerializeField]
+        TextAnchor textAnchor = TextAnchor.UpperRight;
+        [SerializeField]
+        private Color color = Color.green;
+        private float deltaTime = 0.0f;
+        [SerializeField, Range(1, 100)]
+        private int fontSize = 2;
+        [SerializeField]
+        private float offsetX = 0;
+        [SerializeField]
+        private float offsetY = 0;
 
-        GUIStyle style = new GUIStyle();
+        void OnGUI()
+        {
+            int w = Screen.width, h = Screen.height;
 
-        Rect rect = new Rect(offsetX * w, offsetY * h, w, h * fontSize / 100);
-        style.alignment = textAnchor;
-        style.fontSize = h * fontSize / 100;
-        style.normal.textColor = color;
-        float msec = deltaTime * 1000.0f;
-        float fps = 1.0f / deltaTime;
-        string text = string.Format("{0:0.0} ms ({1:0.} fps)", msec, fps);
-        GUI.Label(rect, text, style);
-    }
+            GUIStyle style = new GUIStyle();
 
-    public void Update()
-    {
-        deltaTime += (Time.deltaTimeUnscaled - deltaTime) * 0.1f;
+            Rect rect = new Rect(offsetX * w, offsetY * h, w, h * fontSize / 100);
+            style.alignment = textAnchor;
+            style.fontSize = h * fontSize / 100;
+            style.normal.textColor = color;
+            float msec = deltaTime * 1000.0f;
+            float fps = 1.0f / deltaTime;
+            string text = string.Format("{0:0.0} ms ({1:0.} fps)", msec, fps);
+            GUI.Label(rect, text, style);
+        }
+
+        public void Update()
+        {
+            deltaTime += (Time.deltaTimeUnscaled - deltaTime) * 0.1f;
+        }
     }
 }

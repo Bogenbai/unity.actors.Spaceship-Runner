@@ -1,8 +1,10 @@
 ﻿using Pixeye.Actors;
-using Runtime.Source.Data.ScriptableObjects;
+using Runtime.Source.Components;
+using Runtime.Source.Components.Tags;
+using Runtime.Source.Data;
 using UnityEngine;
 
-namespace Game.Source
+namespace Runtime.Source.Processors
 {
     sealed class ProcessorSpaceshipDeath : Processor, ITick
     {

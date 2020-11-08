@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
-using Unity.IL2CPP.CompilerServices;
 using Pixeye.Actors;
+using Unity.IL2CPP.CompilerServices;
 
-
-namespace Game.Source
+namespace Runtime.Source.Components
 {
     [Serializable]
-    public class ComponentThrottling
-    {
-    }
+    public class ComponentThrottling { }
 
     #region HELPERS
 

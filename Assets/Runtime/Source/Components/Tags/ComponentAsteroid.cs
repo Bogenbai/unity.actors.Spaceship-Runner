@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
-using Unity.IL2CPP.CompilerServices;
 using Pixeye.Actors;
-using UnityEngine;
+using Unity.IL2CPP.CompilerServices;
 
-
-namespace Game.Source
+namespace Runtime.Source.Components.Tags
 {
     [Serializable]
-    public class ComponentAsteroid
-    {
-    }
+    public class ComponentAsteroid { }
 
     #region HELPERS
 

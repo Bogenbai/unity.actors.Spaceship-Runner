@@ -1,7 +1,9 @@
 ﻿using Pixeye.Actors;
+using Runtime.Source.Processors;
+using Runtime.Source.Processors.Controls;
 using Runtime.Source.Tools.CameraShaker;
 
-namespace Game.Source
+namespace Runtime.Source.Layers
 {
     public class LayerGame : Layer<LayerGame>
     {

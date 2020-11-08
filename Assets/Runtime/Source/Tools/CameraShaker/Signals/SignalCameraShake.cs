@@ -1,6 +1,4 @@
-﻿using Runtime.Source.Tools.CameraShaker;
-
-namespace Runtime.Source.Signals
+﻿namespace Runtime.Source.Tools.CameraShaker.Signals
 {
     public struct SignalCameraShake
     {

@@ -1,7 +1,9 @@
 ﻿using Pixeye.Actors;
+using Runtime.Source.Components;
+using Runtime.Source.Components.Tags;
 using UnityEngine;
 
-namespace Game.Source
+namespace Runtime.Source.Processors
 {
     sealed class ProcessorSpaceshipMoveStateSetter : Processor, ITick
     {

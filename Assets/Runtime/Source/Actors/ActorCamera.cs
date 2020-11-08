@@ -1,9 +1,10 @@
 ﻿using Pixeye.Actors;
+using Runtime.Source.Components;
+using Runtime.Source.Components.Tags;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-
-namespace Game.Source
+namespace Runtime.Source.Actors
 {
     [RequireComponent(typeof(Camera))]
     public class ActorCamera : Actor

@@ -1,7 +1,9 @@
 ﻿using Pixeye.Actors;
+using Runtime.Source.Components.Tags;
+using Runtime.Source.Data;
 using UnityEngine;
 
-namespace Game.Source
+namespace Runtime.Source.Processors
 {
     sealed class ProcessorSpaceshipRespawn : Processor, ITick
     {

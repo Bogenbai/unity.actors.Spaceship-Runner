@@ -1,8 +1,8 @@
 ﻿using Pixeye.Actors;
+using Runtime.Source.Components;
 using Runtime.Source.Signals;
 
-
-namespace Game.Source
+namespace Runtime.Source.Processors
 {
     internal sealed class ProcessorSpawner : Processor<SignalSpawn>
     {

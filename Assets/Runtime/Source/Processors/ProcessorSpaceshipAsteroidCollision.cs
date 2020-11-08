@@ -1,10 +1,14 @@
 ﻿using Pixeye.Actors;
+using Runtime.Source.Components;
+using Runtime.Source.Components.Events;
+using Runtime.Source.Components.Tags;
+using Runtime.Source.Data;
 using Runtime.Source.Tools;
 using Runtime.Source.Tools.CameraShaker;
+using Runtime.Source.Tools.CameraShaker.Signals;
 using Random = UnityEngine.Random;
-using Runtime.Source.Signals;
 
-namespace Game.Source
+namespace Runtime.Source.Processors
 {
     sealed class ProcessorSpaceshipAsteroidCollision : Processor, ITick
     {

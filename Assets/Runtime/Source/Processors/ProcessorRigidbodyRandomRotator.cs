@@ -1,9 +1,10 @@
 ﻿using Pixeye.Actors;
+using Runtime.Source.Components;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 
-namespace Game.Source
+namespace Runtime.Source.Processors
 {
     sealed class ProcessorRigidbodyRandomRotator : Processor, ITick
     {

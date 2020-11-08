@@ -1,8 +1,8 @@
 ﻿using Pixeye.Actors;
+using Runtime.Source.Components;
 using UnityEngine;
 
-
-namespace Game.Source
+namespace Runtime.Source.Processors
 {
     sealed class ProcessorScaleTo : Processor, ITick
     {

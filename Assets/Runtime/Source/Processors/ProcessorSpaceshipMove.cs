@@ -1,9 +1,10 @@
 ﻿using Pixeye.Actors;
-using Runtime.Source.Signals;
+using Runtime.Source.Components;
+using Runtime.Source.Components.Events;
+using Runtime.Source.Components.Tags;
 using UnityEngine;
 
-
-namespace Game.Source
+namespace Runtime.Source.Processors
 {
     sealed class ProcessorSpaceshipMove : Processor, ITick
     {
@@ -30,21 +31,5 @@ namespace Game.Source
                 groupInputEvents[i].Release();
             }
         }
-
-        // public override void ReceiveEcs(ref SignalUserInput signal, ref bool stopSignal)
-        // {
-        //     var direction = signal.MoveDirection;
-        //
-        //     for (int j = 0; j < groupSpaceships.length; j++)
-        //     {
-        //         var spaceship = groupSpaceships[j];
-        //         var componentPlayerMovementData = spaceship.ComponentPlayerMovementData();
-        //         var velocityX = componentPlayerMovementData.CurrentVelocityX;
-        //         componentPlayerMovementData.CurrentMoveDirectionNormalized = direction;
-        //
-        //         direction = new Vector3(velocityX * Time.deltaTime, 0, 0);
-        //         spaceship.transform.position += direction;
-        //     }
-        // }
     }
 }

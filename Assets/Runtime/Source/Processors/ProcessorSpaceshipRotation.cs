@@ -7,7 +7,7 @@ namespace Runtime.Source.Processors
 {
     sealed class ProcessorSpaceshipRotation : Processor, ITick
     {
-        Group<ComponentSpaceship, ComponentPlayerMovementData> groupSpaceships = default;
+        private Group<ComponentSpaceship, ComponentPlayerMovementData> groupSpaceships = default;
 
         public void Tick(float delta)
         {

@@ -12,46 +12,62 @@ namespace Runtime.Source.Processors
 {
     sealed class ProcessorSpaceshipAsteroidCollision : Processor, ITick
     {
-        Group<ComponentCollisionEvent> groupCollisions = default;
+        private Group<ComponentCollisionEvent> groupCollisions = default;
 
         public void Tick(float delta)
         {
             for (var i = 0; i < groupCollisions.length; i++)
             {
                 var componentCollision = groupCollisions[i].ComponentCollision();
-                var collisionInitiator = componentCollision.Collision.gameObject.GetEntity();
 
-                if (collisionInitiator.exist)
+                if (componentCollision.Collision.collider != null)
                 {
-                    if (collisionInitiator.Has<ComponentAsteroid>() &&
-                        componentCollision.ReceiverEntity.Has<ComponentSpaceship>())
+                    var collisionInitiator = componentCollision.Collision.gameObject.GetEntity();
+
+                    if (collisionInitiator.exist)
                     {
-                        var spaceshipEntity = componentCollision.ReceiverEntity;
-                        var asteroidEntity = collisionInitiator;
-                        if (spaceshipEntity.Has<ComponentHealth>() &&
-                            asteroidEntity.Has<ComponentDamage>())
+                        if (collisionInitiator.Has<ComponentAsteroid>() &&
+                            componentCollision.ReceiverEntity.Has<ComponentSpaceship>())
                         {
-                            var componentHealth = spaceshipEntity.ComponentHealth();
-                            var damage = asteroidEntity.ComponentDamage().value;
-                            ReduceHealth(componentHealth, damage);
+                            var spaceshipEntity = componentCollision.ReceiverEntity;
+                            var asteroidEntity = collisionInitiator;
+
+                            if (spaceshipEntity.Has<ComponentHealth>() &&
+                                asteroidEntity.Has<ComponentDamage>())
+                            {
+                                var componentHealth = spaceshipEntity.ComponentHealth();
+                                var damage = asteroidEntity.ComponentDamage().value;
+                                ReduceHealth(componentHealth, damage);
+                            }
+
+                            Explosion(componentCollision);
+                            CreateCameraShakeEvent();
+
+                            collisionInitiator.Release();
+                            groupCollisions[i].Release();
                         }
-
-                        Explosion(componentCollision);
-                        CreateCameraShakeEvent();
-
-                        collisionInitiator.Release();
                     }
                 }
-
-                groupCollisions[i].Release();
             }
         }
 
         private void Explosion(ComponentCollisionEvent componentCollisionEvent)
         {
+            CreateShards(componentCollisionEvent);
+            CreateVFX(componentCollisionEvent);
+        }
+
+        private void CreateVFX(ComponentCollisionEvent componentCollisionEvent)
+        {
+            var sparksPosition = componentCollisionEvent.Collision.contacts[0].point;
+            Actor.Create(DB.Prefabs.VfxSparks, sparksPosition, true);
+            Actor.Create(DB.Prefabs.VfxPlasmaExplosion, sparksPosition, true);
+        }
+
+        private void CreateShards(ComponentCollisionEvent componentCollisionEvent)
+        {
             var collisionInitiator = componentCollisionEvent.Collision.gameObject.GetEntity();
             var componentShatter = collisionInitiator.ComponentCanShatter();
-            var sparksPosition = componentCollisionEvent.Collision.contacts[0].point;
             var shardsCount = Random.Range(componentShatter.MinShards, componentShatter.MaxShards + 1);
 
             for (var j = 0; j < shardsCount; j++)
@@ -60,9 +76,6 @@ namespace Runtime.Source.Processors
                 var shard = Layer.Actor.Create(componentShatter.ShardPrefab, shardPosition, true);
                 shard.transform.localScale = componentShatter.ShardScale;
             }
-
-            Actor.Create(DB.Prefabs.VfxSparks, sparksPosition, true);
-            Actor.Create(DB.Prefabs.VfxPlasmaExplosion, sparksPosition, true);
         }
 
         private void CreateCameraShakeEvent()

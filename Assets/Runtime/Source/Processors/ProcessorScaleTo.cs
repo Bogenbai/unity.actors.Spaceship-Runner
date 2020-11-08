@@ -6,7 +6,7 @@ namespace Runtime.Source.Processors
 {
     sealed class ProcessorScaleTo : Processor, ITick
     {
-        private readonly Group<ComponentScaleTo> groupScalable = default;
+        private Group<ComponentScaleTo> groupScalable = default;
 
         public void Tick(float delta)
         {

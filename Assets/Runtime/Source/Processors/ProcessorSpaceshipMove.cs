@@ -8,8 +8,8 @@ namespace Runtime.Source.Processors
 {
     sealed class ProcessorSpaceshipMove : Processor, ITick
     {
-        Group<ComponentSpaceship, ComponentPlayerMovementData> groupSpaceships = default;
-        Group<ComponentUserInputEvent> groupInputEvents = default;
+        private Group<ComponentSpaceship, ComponentPlayerMovementData> groupSpaceships = default;
+        private Group<ComponentUserInputEvent> groupInputEvents = default;
 
         public void Tick(float delta)
         {

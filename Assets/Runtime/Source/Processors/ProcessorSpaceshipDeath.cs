@@ -8,7 +8,7 @@ namespace Runtime.Source.Processors
 {
     sealed class ProcessorSpaceshipDeath : Processor, ITick
     {
-        Group<ComponentSpaceship, ComponentHealth> groupSpaceships = default;
+        private Group<ComponentSpaceship, ComponentHealth> groupSpaceships = default;
 
         public void Tick(float delta)
         {

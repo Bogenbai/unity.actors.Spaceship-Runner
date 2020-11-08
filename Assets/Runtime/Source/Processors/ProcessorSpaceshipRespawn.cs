@@ -7,7 +7,7 @@ namespace Runtime.Source.Processors
 {
     sealed class ProcessorSpaceshipRespawn : Processor, ITick
     {
-        Group<ComponentSpaceship> groupSpaceships = default;
+        private Group<ComponentSpaceship> groupSpaceships = default;
 
         public void Tick(float delta)
         {

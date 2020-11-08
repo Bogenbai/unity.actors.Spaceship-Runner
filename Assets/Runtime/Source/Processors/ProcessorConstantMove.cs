@@ -5,7 +5,7 @@ namespace Runtime.Source.Processors
 {
     sealed class ProcessorConstantMove : Processor, ITick
     {
-        private readonly Group<ComponentConstantMove> groupMovement = default;
+        private Group<ComponentConstantMove> groupMovement = default;
 
         public void Tick(float delta)
         {

@@ -8,7 +8,7 @@ namespace Runtime.Source.Processors
 {
     sealed class ProcessorSpawnSignalSender : Processor, ITick
     {
-        private readonly Group<ComponentSpawner, ComponentCanSpawn> groupSpawners = default;
+        private Group<ComponentSpawner, ComponentCanSpawn> groupSpawners = default;
 
         public void Tick(float delta)
         {

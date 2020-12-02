@@ -1,5 +1,6 @@
 ﻿using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Runtime.Source.Data.ScriptableObjects
 {
@@ -19,13 +20,13 @@ namespace Runtime.Source.Data.ScriptableObjects
         [FoldoutGroup("Destroy rules"), HideIf("destroyAfterDelay")] [SerializeField]
         private Axis destroyAtAxis = Axis.Z;
 
-        [FoldoutGroup("Destroy rules"), HideIf("destroyAfterDelay")] [SerializeField]
-        private ComparisonSign comparisonSign = ComparisonSign.Below;
+        [FormerlySerializedAs("comparisonSign")] [FoldoutGroup("Destroy rules"), HideIf("destroyAfterDelay")] [SerializeField]
+        private ComparisonType comparisonType = ComparisonType.Below;
 
         public bool DestroyAfterDelay => destroyAfterDelay;
         public float DestroyAfter => destroyAfter;
         public float DestroyAtCoordinate => destroyAtCoordinate;
         public Axis DestroyAtAxis => destroyAtAxis;
-        public ComparisonSign ComparisonSign => comparisonSign;
+        public ComparisonType ComparisonType => comparisonType;
     }
 }

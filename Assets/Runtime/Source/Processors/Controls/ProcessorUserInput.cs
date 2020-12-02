@@ -1,6 +1,7 @@
-﻿using Pixeye.Actors;
-using Runtime.Source.Components.Events;
-using Runtime.Source.Data;
+﻿using System;
+using Pixeye.Actors;
+using Runtime.Source.Components.Markers;
+using Runtime.Source.Tools;
 using UnityEngine;
 
 namespace Runtime.Source.Processors.Controls
@@ -12,19 +13,19 @@ namespace Runtime.Source.Processors.Controls
             var direction = Vector3.zero;
             var horizontalInput = Input.GetAxisRaw("Horizontal");
 
-            if (horizontalInput == 1)
+            if (Math.Abs(horizontalInput - 1) < Toolbox.Tolerance)
             {
                 direction = Vector3.right;
             }
-            else if (horizontalInput == -1)
+            else if (Math.Abs(horizontalInput + 1) < Toolbox.Tolerance)
             {
                 direction = Vector3.left;
             }
-            
-            var entityInputEvent = Entity.Create(DB.Prefabs.EmptyObject, Vector3.zero, true);
-            entityInputEvent.transform.gameObject.name = "UserInput";
-            var userInputEvent = entityInputEvent.Set<ComponentUserInputEvent>();
-            userInputEvent.MoveDirection = direction;
+
+            var userInputMarkerEntity = MarkersCore.Create<ComponentUserInputMarker>(Layer);
+
+            var userInputMarker = userInputMarkerEntity.ComponentUserInputMarker();
+            userInputMarker.MoveDirection = direction;
         }
     }
 }

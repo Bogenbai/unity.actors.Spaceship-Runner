@@ -50,8 +50,10 @@ namespace Runtime.Source.Layers
             Add<ProcessorHealth>();
             Add<ProcessorConstantMove>();
             
-            // Ui
+            // UI
             Add<ProcessorScoreUi>();
+            
+            Add<ProcessorMarkers>();
         }
 
         // Use to clean up custom stuff before the layer gets destroyed.

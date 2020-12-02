@@ -1,6 +1,6 @@
 ﻿using Pixeye.Actors;
 using Runtime.Source.Components;
-using Runtime.Source.Components.Events;
+using Runtime.Source.Components.Markers;
 using Runtime.Source.Components.Tags;
 using Runtime.Source.Data;
 using Runtime.Source.Signals;
@@ -13,13 +13,13 @@ namespace Runtime.Source.Processors
 {
     sealed class ProcessorSpaceshipAsteroidCollision : Processor, ITick
     {
-        private Group<ComponentCollisionEvent> groupCollisions = default;
+        private Group<ComponentCollisionMarker> groupCollisions = default;
 
         public void Tick(float delta)
         {
             for (var i = 0; i < groupCollisions.length; i++)
             {
-                var componentCollision = groupCollisions[i].ComponentCollision();
+                var componentCollision = groupCollisions[i].ComponentCollisionMarker();
 
                 if (componentCollision.Collision.collider != null)
                 {
@@ -60,20 +60,20 @@ namespace Runtime.Source.Processors
             Ecs.Send(signal);
         }
 
-        private void Explosion(ComponentCollisionEvent componentCollisionEvent)
+        private void Explosion(ComponentCollisionMarker componentCollisionEvent)
         {
             CreateShards(componentCollisionEvent);
             CreateVFX(componentCollisionEvent);
         }
 
-        private void CreateVFX(ComponentCollisionEvent componentCollisionEvent)
+        private void CreateVFX(ComponentCollisionMarker componentCollisionEvent)
         {
             var sparksPosition = componentCollisionEvent.Collision.contacts[0].point;
             Actor.Create(DB.Prefabs.VfxSparks, sparksPosition, true);
             Actor.Create(DB.Prefabs.VfxPlasmaExplosion, sparksPosition, true);
         }
 
-        private void CreateShards(ComponentCollisionEvent componentCollisionEvent)
+        private void CreateShards(ComponentCollisionMarker componentCollisionEvent)
         {
             var collisionInitiator = componentCollisionEvent.Collision.gameObject.GetEntity();
             var componentShatter = collisionInitiator.ComponentCanShatter();

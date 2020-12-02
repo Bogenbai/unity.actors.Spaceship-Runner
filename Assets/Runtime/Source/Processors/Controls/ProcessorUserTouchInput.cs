@@ -1,9 +1,9 @@
 ﻿using System;
 using Pixeye.Actors;
 using Runtime.Source.Components;
-using Runtime.Source.Components.Events;
+using Runtime.Source.Components.Markers;
 using Runtime.Source.Components.Tags;
-using Runtime.Source.Data;
+using Runtime.Source.Tools;
 using UnityEngine;
 
 namespace Runtime.Source.Processors.Controls
@@ -42,10 +42,11 @@ namespace Runtime.Source.Processors.Controls
                         }
                     }
 
-                    var entityInputEvent = Entity.Create(DB.Prefabs.EmptyObject, Vector3.zero, true);
-                    entityInputEvent.transform.gameObject.name = "UserInput Event";
-                    var userInputEvent = entityInputEvent.Set<ComponentUserInputEvent>();
-                    userInputEvent.MoveDirection = direction;
+                    
+                    var userInputMarkerEntity = MarkersCore.Create<ComponentUserInputMarker>(Layer);
+
+                    var userInputMarker = userInputMarkerEntity.ComponentUserInputMarker();
+                    userInputMarker.MoveDirection = direction;
                 }
             }
         }

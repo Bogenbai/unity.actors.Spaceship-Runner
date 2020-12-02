@@ -13,9 +13,9 @@ namespace Runtime.Source.Components
         private Rigidbody rigidbody;
         public Rigidbody Rigidbody => rigidbody;
 
-        public void SetRigidbody(Rigidbody rigidbody)
+        public void SetRigidbody(Rigidbody unityRigidbodyComponent)
         {
-            this.rigidbody = rigidbody;
+            rigidbody = unityRigidbodyComponent;
         }
     }
 

@@ -1,6 +1,6 @@
 ﻿namespace Runtime.Source.Data
 {
-    public enum ComparisonSign
+    public enum ComparisonType
     {
         Above, Below
     }

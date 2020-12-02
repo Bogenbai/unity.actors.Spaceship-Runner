@@ -41,13 +41,13 @@ namespace Runtime.Source.Processors
             switch (destroyData.DestroyAtAxis)
             {
                 case Axis.X:
-                    switch (destroyData.ComparisonSign)
+                    switch (destroyData.ComparisonType)
                     {
-                        case ComparisonSign.Above
+                        case ComparisonType.Above
                             when spawnedObj.transform.position.x > releaseAtCoordinate:
                             spawnedObj.Release();
                             break;
-                        case ComparisonSign.Below
+                        case ComparisonType.Below
                             when spawnedObj.transform.position.x < releaseAtCoordinate:
                             spawnedObj.Release();
                             break;
@@ -55,13 +55,13 @@ namespace Runtime.Source.Processors
 
                     break;
                 case Axis.Y:
-                    switch (destroyData.ComparisonSign)
+                    switch (destroyData.ComparisonType)
                     {
-                        case ComparisonSign.Above
+                        case ComparisonType.Above
                             when spawnedObj.transform.position.y > releaseAtCoordinate:
                             spawnedObj.Release();
                             break;
-                        case ComparisonSign.Below
+                        case ComparisonType.Below
                             when spawnedObj.transform.position.y < releaseAtCoordinate:
                             spawnedObj.Release();
                             break;
@@ -69,13 +69,13 @@ namespace Runtime.Source.Processors
 
                     break;
                 case Axis.Z:
-                    switch (destroyData.ComparisonSign)
+                    switch (destroyData.ComparisonType)
                     {
-                        case ComparisonSign.Above
+                        case ComparisonType.Above
                             when spawnedObj.transform.position.z > releaseAtCoordinate:
                             spawnedObj.Release();
                             break;
-                        case ComparisonSign.Below
+                        case ComparisonType.Below
                             when spawnedObj.transform.position.z < releaseAtCoordinate:
                             spawnedObj.Release();
                             break;

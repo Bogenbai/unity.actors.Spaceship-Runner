@@ -1,6 +1,6 @@
 ﻿using Pixeye.Actors;
 using Runtime.Source.Components;
-using Runtime.Source.Components.Events;
+using Runtime.Source.Components.Markers;
 using Runtime.Source.Components.Tags;
 using UnityEngine;
 
@@ -9,13 +9,13 @@ namespace Runtime.Source.Processors
     sealed class ProcessorSpaceshipMove : Processor, ITick
     {
         private Group<ComponentSpaceship, ComponentPlayerMovementData> groupSpaceships = default;
-        private Group<ComponentUserInputEvent> groupInputEvents = default;
+        private Group<ComponentUserInputMarker> groupInputEvents = default;
 
         public void Tick(float delta)
         {
             for (int i = 0; i < groupInputEvents.length; i++)
             {
-                var direction = groupInputEvents[i].ComponentUserInputEvent().MoveDirection;
+                var direction = groupInputEvents[i].ComponentUserInputMarker().MoveDirection;
                 
                 for (int j = 0; j < groupSpaceships.length; j++)
                 {

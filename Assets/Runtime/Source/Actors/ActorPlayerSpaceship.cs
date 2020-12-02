@@ -1,7 +1,8 @@
 ﻿using Pixeye.Actors;
 using Runtime.Source.Components;
-using Runtime.Source.Components.Events;
+using Runtime.Source.Components.Markers;
 using Runtime.Source.Components.Tags;
+using Runtime.Source.Tools;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -28,12 +29,11 @@ namespace Runtime.Source.Actors
 
         private void OnCollisionEnter(Collision other)
         {
-            var entityCollision = Entity.Create();
-
-            entityCollision.Set<ComponentCollisionEvent>();
-            var componentCollision = entityCollision.ComponentCollision();
-            componentCollision.Collision = other;
-            componentCollision.ReceiverEntity = entity;
+            var collisionEntity = MarkersCore.Create<ComponentCollisionMarker>(Layer);
+            var collisionMarker = collisionEntity.ComponentCollisionMarker();
+            
+            collisionMarker.Collision = other;
+            collisionMarker.ReceiverEntity = entity;
         }
 
         private void OnDrawGizmosSelected()

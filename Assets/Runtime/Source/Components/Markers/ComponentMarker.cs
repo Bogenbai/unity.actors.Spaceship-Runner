@@ -1,14 +1,12 @@
 ﻿using System.Runtime.CompilerServices;
 using Pixeye.Actors;
 using Unity.IL2CPP.CompilerServices;
-using UnityEngine;
 
-namespace Runtime.Source.Components.Events
+namespace Runtime.Source.Components.Markers
 {
-    public class ComponentCollisionEvent
+    public class ComponentMarker
     {
-        public Collision Collision { get; set; }
-        public ent ReceiverEntity { get; set; }
+        public int LifeTime = 1;
     }
 
     #region HELPERS
@@ -18,19 +16,19 @@ namespace Runtime.Source.Components.Events
     [Il2CppSetOption(Option.DivideByZeroChecks, false)]
     static partial class Component
     {
-        public const string PlayerAsteroidCollision = "Game.Source.ComponentPlayerAsteroidCollision";
+        public const string Marker = "Game.Source.ComponentMarker";
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static ref ComponentCollisionEvent ComponentCollision(in this ent entity) =>
-            ref Storage<ComponentCollisionEvent>.components[entity.id];
+        public static ref ComponentMarker ComponentMarker(in this ent entity) =>
+            ref Storage<ComponentMarker>.components[entity.id];
     }
 
     [Il2CppSetOption(Option.NullChecks, false)]
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
     [Il2CppSetOption(Option.DivideByZeroChecks, false)]
-    sealed class StorageComponentPlayerAsteroidCollision : Storage<ComponentCollisionEvent>
+    sealed class StorageComponentMarker : Storage<ComponentMarker>
     {
-        public override ComponentCollisionEvent Create() => new ComponentCollisionEvent();
+        public override ComponentMarker Create() => new ComponentMarker();
 
         // Use for cleaning components that were removed at the current frame.
         public override void Dispose(indexes disposed)

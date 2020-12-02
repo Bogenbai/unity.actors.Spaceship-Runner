@@ -4,6 +4,7 @@ using Runtime.Source.Signals;
 
 namespace Runtime.Source.Processors
 {
+    // Class represents a system that controls the healths of the entities
     sealed class ProcessorHealth : Processor<SignalHealthChanged>
     {
         public override void ReceiveEcs(ref SignalHealthChanged signal, ref bool stopSignal)

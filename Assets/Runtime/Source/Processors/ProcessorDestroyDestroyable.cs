@@ -4,6 +4,7 @@ using Runtime.Source.Data;
 
 namespace Runtime.Source.Processors
 {
+    // Class represents a system which destroys entities depending on the specified data
     sealed class ProcessorDestroyDestroyable : Processor, ITick
     {
         private Group<ComponentDestroyable> groupDestroyable = default;

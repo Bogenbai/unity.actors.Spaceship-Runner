@@ -8,10 +8,14 @@ using UnityEngine;
 
 namespace Runtime.Source.Processors.Controls
 {
+    // Class represents a system which is handles user input on mobile devices
     sealed class ProcessorUserTouchInput : Processor, ITick
     {
         private Group<ComponentSpaceship> groupPlayers = default;
         private Group<ComponentMainCamera, ComponentCamera> groupMainCamera = default;
+        
+        // How far user need to touch from the player spaceship to create a user input event
+        private const float DistanceToReact = 1.3f;
 
         public void Tick(float delta)
         {
@@ -29,7 +33,7 @@ namespace Runtime.Source.Processors.Controls
                         var worldPosition = mainCamera.ScreenToWorldPoint(mousePos);
                         var playerX         = groupPlayers[i].transform.position.x;
 
-                        if (Math.Abs(worldPosition.x - playerX) > 1.3f)
+                        if (Math.Abs(worldPosition.x - playerX) > DistanceToReact)
                         {
                             if (worldPosition.x > playerX)
                             {
@@ -42,7 +46,6 @@ namespace Runtime.Source.Processors.Controls
                         }
                     }
 
-                    
                     var userInputMarkerEntity = MarkersCore.Create<ComponentUserInputMarker>(Layer);
 
                     var userInputMarker = userInputMarkerEntity.ComponentUserInputMarker();

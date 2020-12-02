@@ -1,7 +1,5 @@
 ﻿using System;
 using Pixeye.Actors;
-using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Runtime.Source.Tools
 {
@@ -29,26 +27,6 @@ namespace Runtime.Source.Tools
             }
 
             return result;
-        }
-
-        public static float ConvertToRange(float val, float oldMin, float oldMax, float newMin, float newMax)
-        {
-            var oldRange = (oldMax - oldMin);
-
-            if (oldRange == 0)
-                val = newMin;
-            else
-            {
-                var newRange = (newMax - newMin);
-                val = (((val - oldMin) * newRange) / oldRange) + newMin;
-            }
-
-            return val;
-        }
-
-        public static Vector3 GetRandomVector3()
-        {
-            return new Vector3(Random.Range(0, 2), Random.Range(0, 2), Random.Range(0, 2));
         }
     }
 }

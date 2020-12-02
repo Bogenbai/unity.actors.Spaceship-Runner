@@ -6,6 +6,7 @@ using Random = UnityEngine.Random;
 
 namespace Runtime.Source.Processors
 {
+    // Class is a system that rotates entities in a random direction
     sealed class ProcessorRigidbodyRandomRotator : Processor, ITick
     {
         private Group<ComponentRandomRotatable, ComponentRigidbody> groupRigidbodyRotatable = default;

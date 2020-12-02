@@ -3,6 +3,7 @@ using Runtime.Source.Components;
 
 namespace Runtime.Source.Processors
 {
+    // Class represents a system which is constantly moves entities which are has appropriate component
     sealed class ProcessorConstantMove : Processor, ITick
     {
         private Group<ComponentConstantMove> groupMovement = default;

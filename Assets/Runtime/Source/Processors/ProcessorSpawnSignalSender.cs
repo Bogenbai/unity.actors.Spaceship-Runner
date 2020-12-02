@@ -6,6 +6,7 @@ using Random = Pixeye.Actors.Random;
 
 namespace Runtime.Source.Processors
 {
+    // Class represents a system which purpose is to send signals to spawn certain entities depending on specified spawn data
     sealed class ProcessorSpawnSignalSender : Processor, ITick
     {
         private Group<ComponentSpawner, ComponentCanSpawn> groupSpawners = default;
@@ -16,7 +17,7 @@ namespace Runtime.Source.Processors
             {
                 var spawner = groupSpawners[i];
                 var componentSpawner = spawner.ComponentSpawner();
-                
+
                 Spawn(spawner, componentSpawner, delta);
             }
         }
@@ -29,7 +30,7 @@ namespace Runtime.Source.Processors
             if (spawner.SpawnAfter <= 0)
             {
                 spawner.SpawnAfter = spawnerData.SpawnDelay;
-                
+
                 var spawnPosition = spawnerData.SpawnPositions[Random.Range(0, spawnerData.SpawnPositions.Count)];
 
                 var signal = new SignalSpawn

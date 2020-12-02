@@ -11,6 +11,7 @@ namespace Runtime.Source.Tools.CameraShaker
     // Link to the Asset store page: https://assetstore.unity.com/packages/tools/camera/milkshake-camera-shaker-165604
     // Great thanks!
     
+    // Class represents a system that shakes the main camera
     sealed class ProcessorCameraShake : Processor<SignalCameraShake>, ITick
     {
         private readonly List<ShakeInstance> activeShakes = new List<ShakeInstance>();

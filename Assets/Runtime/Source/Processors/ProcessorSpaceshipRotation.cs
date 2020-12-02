@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Runtime.Source.Processors
 {
+    // Class is a system that rotates player's spaceship depending on it's movement
     sealed class ProcessorSpaceshipRotation : Processor, ITick
     {
         private Group<ComponentSpaceship, ComponentPlayerMovementData> groupSpaceships = default;

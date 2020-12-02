@@ -20,6 +20,7 @@ namespace Runtime.Source.Actors
         protected override void Setup()
         {
             componentRigidbody.SetRigidbody(GetComponent<Rigidbody>());
+            componentSpaceship.startPosition = transform.position;
 
             entity.Set(componentSpaceship);
             entity.Set(componentRigidbody);

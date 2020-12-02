@@ -5,18 +5,17 @@ using UnityEngine;
 
 namespace Runtime.Source.Processors
 {
+    // Class is a system that allows player to respawn their spaceship after losing
     sealed class ProcessorSpaceshipRespawn : Processor, ITick
     {
         private Group<ComponentSpaceship> groupSpaceships = default;
 
         public void Tick(float delta)
         {
-            if(groupSpaceships.length == 0)
+            if (groupSpaceships.length == 0 && Input.GetMouseButtonDown(0))
             {
-                if(Input.GetMouseButtonDown(0))
-                {
-                    Layer.Actor.Create(DB.Prefabs.ActorPlayerSpaceship, new Vector3(0, 0, 15));
-                }
+                var cSpaceship = groupSpaceships[0].ComponentSpaceship();
+                Layer.Actor.Create(DB.Prefabs.ActorPlayerSpaceship, cSpaceship.startPosition);
             }
         }
     }

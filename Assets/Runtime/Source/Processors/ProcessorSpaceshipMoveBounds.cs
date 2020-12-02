@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Runtime.Source.Processors
 {
+    // Class is a system that limits player's spaceship movement zone
     sealed class ProcessorSpaceshipMoveBounds : Processor, ITick
     {
         private Group<ComponentSpaceship, ComponentPlayerMovementData> groupSpaceships = default;

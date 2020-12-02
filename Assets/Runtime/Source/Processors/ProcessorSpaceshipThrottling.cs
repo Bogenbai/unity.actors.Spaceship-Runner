@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Runtime.Source.Processors
 {
+    // Class is a system that sets the player's spaceship movement data when it's throttles
     sealed class ProcessorSpaceshipThrottling : Processor, ITick
     {
         private Group<ComponentSpaceship, ComponentPlayerMovementData, ComponentThrottling> groupSpaceships = default;

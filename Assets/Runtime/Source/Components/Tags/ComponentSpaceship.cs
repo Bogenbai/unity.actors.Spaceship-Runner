@@ -2,11 +2,15 @@
 using System.Runtime.CompilerServices;
 using Pixeye.Actors;
 using Unity.IL2CPP.CompilerServices;
+using UnityEngine;
 
 namespace Runtime.Source.Components.Tags
 {
     [Serializable]
-    public class ComponentSpaceship { }
+    public class ComponentSpaceship
+    {
+        public Vector3 startPosition;
+    }
 
     #region HELPERS
 

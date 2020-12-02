@@ -6,12 +6,13 @@ using UnityEngine;
 
 namespace Runtime.Source.Processors
 {
-    sealed class ProcessorSpaceshipMove : Processor, ITick
+    // Class is a system that moves player spaceship depending on it's movement data
+    sealed class ProcessorSpaceshipMove : Processor, ITickFixed
     {
         private Group<ComponentSpaceship, ComponentPlayerMovementData> groupSpaceships = default;
         private Group<ComponentUserInputMarker> groupInputEvents = default;
 
-        public void Tick(float delta)
+        public void TickFixed(float delta)
         {
             for (int i = 0; i < groupInputEvents.length; i++)
             {
@@ -27,8 +28,6 @@ namespace Runtime.Source.Processors
                     direction = new Vector3(velocityX * delta, 0, 0);
                     spaceship.transform.position += direction;
                 }
-                
-                groupInputEvents[i].Release();
             }
         }
     }

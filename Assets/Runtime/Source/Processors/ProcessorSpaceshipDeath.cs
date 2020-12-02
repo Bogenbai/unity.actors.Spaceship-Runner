@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace Runtime.Source.Processors
 {
+    // Class represents a system that destroys player's spaceship if it's health points gets below zero
     sealed class ProcessorSpaceshipDeath : Processor, ITick
     {
         private Group<ComponentSpaceship, ComponentHealth> groupSpaceships = default;

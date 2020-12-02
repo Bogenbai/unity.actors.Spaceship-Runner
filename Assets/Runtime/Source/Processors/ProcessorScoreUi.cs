@@ -5,6 +5,7 @@ using Runtime.Source.Components.Ui;
 
 namespace Runtime.Source.Processors
 {
+    // Class represents a system that updates player's score in the ui
     sealed class ProcessorScoreUi : Processor
     {
         private Group<ComponentScore> groupScores = default;

@@ -4,13 +4,14 @@ using Runtime.Source.Components.Markers;
 using Runtime.Source.Components.Tags;
 using Runtime.Source.Data;
 using Runtime.Source.Signals;
-using Runtime.Source.Tools;
 using Runtime.Source.Tools.CameraShaker;
 using Runtime.Source.Tools.CameraShaker.Signals;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Runtime.Source.Processors
 {
+    // Class represents a system that handles spaceships and asteroids collisions
     sealed class ProcessorSpaceshipAsteroidCollision : Processor, ITick
     {
         private Group<ComponentCollisionMarker> groupCollisions = default;
@@ -30,26 +31,31 @@ namespace Runtime.Source.Processors
                         if (collisionInitiator.Has<ComponentAsteroid>() &&
                             componentCollision.ReceiverEntity.Has<ComponentSpaceship>())
                         {
-                            var spaceshipEntity = componentCollision.ReceiverEntity;
-                            var asteroidEntity = collisionInitiator;
-
-                            if (spaceshipEntity.Has<ComponentHealth>() &&
-                                asteroidEntity.Has<ComponentDamage>())
-                            {
-                                var componentHealth = spaceshipEntity.ComponentHealth();
-                                var damage = asteroidEntity.ComponentDamage().value;
-                                SendHealthChangeSignal(componentHealth, damage);
-                            }
-
-                            Explosion(componentCollision);
-                            CreateCameraShakeEvent();
-
-                            collisionInitiator.Release();
+                            HandleCollision(componentCollision, collisionInitiator);
                             groupCollisions[i].Release();
                         }
                     }
                 }
             }
+        }
+
+        private void HandleCollision(ComponentCollisionMarker componentCollision, ent collisionInitiator)
+        {
+            var spaceshipEntity = componentCollision.ReceiverEntity;
+            var asteroidEntity = collisionInitiator;
+
+            if (spaceshipEntity.Has<ComponentHealth>() &&
+                asteroidEntity.Has<ComponentDamage>())
+            {
+                var componentHealth = spaceshipEntity.ComponentHealth();
+                var damage = asteroidEntity.ComponentDamage().value;
+                SendHealthChangeSignal(componentHealth, damage);
+            }
+
+            Explosion(componentCollision);
+            CreateCameraShakeSignal();
+
+            collisionInitiator.Release();
         }
 
         private void SendHealthChangeSignal(ComponentHealth cHealth, int amount)
@@ -81,13 +87,13 @@ namespace Runtime.Source.Processors
 
             for (var j = 0; j < shardsCount; j++)
             {
-                var shardPosition = collisionInitiator.transform.position + Toolbox.GetRandomVector3() / 3;
+                var shardPosition = collisionInitiator.transform.position + GetRandomVector3() / 3;
                 var shard = Layer.Actor.Create(componentShatter.ShardPrefab, shardPosition, true);
                 shard.transform.localScale = componentShatter.ShardScale;
             }
         }
 
-        private void CreateCameraShakeEvent()
+        private void CreateCameraShakeSignal()
         {
             SignalCameraShake signal;
 
@@ -96,6 +102,11 @@ namespace Runtime.Source.Processors
             signal.ShakeData = (ShakePreset) shakeData;
 
             Ecs.Send(signal);
+        }
+
+        private Vector3 GetRandomVector3()
+        {
+            return new Vector3(Random.Range(0, 2), Random.Range(0, 2), Random.Range(0, 2));
         }
     }
 }

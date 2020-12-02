@@ -3,6 +3,10 @@ using Runtime.Source.Components.Markers;
 
 namespace Runtime.Source.Processors
 {
+    // Class represents a system that manages markers
+    // Markers itself are an entities which are supposed to play a role of events in the ECS world
+    // Markers has a lifetime. Marker's lifetime decreases by one every frame
+    // Also marker can contain some data
     sealed class ProcessorMarkers : Processor, ITick
     {
         private Group<ComponentMarker> groupMarkers = default;
@@ -11,6 +15,19 @@ namespace Runtime.Source.Processors
         {
             ReleaseDeadMarkers();
             MarkersLifeReduction();
+        }
+
+        public ent GetMarker<T>()
+        {
+            for (var i = 0; i < groupMarkers.length; i++)
+            {
+                if (groupMarkers[i].Has<T>())
+                {
+                    return groupMarkers[i];
+                }
+            }
+
+            return -1;
         }
 
         private void ReleaseDeadMarkers()
@@ -30,19 +47,6 @@ namespace Runtime.Source.Processors
             {
                 groupMarkers[i].ComponentMarker().LifeTime--;
             }
-        }
-
-        public ent GetMarker<T>()
-        {
-            for (var i = 0; i < groupMarkers.length; i++)
-            {
-                if (groupMarkers[i].Has<T>())
-                {
-                    return groupMarkers[i];
-                }
-            }
-
-            return -1;
         }
     }
 }

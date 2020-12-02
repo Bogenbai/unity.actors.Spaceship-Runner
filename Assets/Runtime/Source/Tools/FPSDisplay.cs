@@ -9,7 +9,7 @@ namespace Runtime.Source.Tools
         TextAnchor textAnchor = TextAnchor.UpperRight;
         [SerializeField]
         private Color color = Color.green;
-        private float deltaTime = 0.0f;
+        private float deltaTime;
         [SerializeField, Range(1, 100)]
         private int fontSize = 2;
         [SerializeField]
@@ -23,7 +23,7 @@ namespace Runtime.Source.Tools
 
             GUIStyle style = new GUIStyle();
 
-            Rect rect = new Rect(offsetX * w, offsetY * h, w, h * fontSize / 100);
+            Rect rect = new Rect(offsetX * w, offsetY * h, w, h * fontSize / 100f);
             style.alignment = textAnchor;
             style.fontSize = h * fontSize / 100;
             style.normal.textColor = color;

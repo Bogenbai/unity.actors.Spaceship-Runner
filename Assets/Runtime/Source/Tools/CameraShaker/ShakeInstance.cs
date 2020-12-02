@@ -178,7 +178,7 @@ namespace Runtime.Source.Tools.CameraShaker
             fadeTimer = Mathf.Clamp01(fadeTimer);
 
             //Update the state if needed
-            if (fadeTimer == 1)
+            if (Math.Abs(fadeTimer - 1) < Toolbox.Tolerance)
             {
                 if (shakeParameters.ShakeType == ShakeType.Sustained)
                     State = ShakeState.Sustained;
@@ -206,12 +206,12 @@ namespace Runtime.Source.Tools.CameraShaker
         /// <summary>
         /// Stop the shake.
         /// <paramref name="fadeTime">The time in seconds for the shake to fade out. If 0 the shake will be stopped immediately with no fade out.</paramref>
-        /// <paramref name="removeWhenStopped">Should the Shakers that use this shake remove it when it is fully stopped? You can set this to false if you want to restart the shake later.</paramref>
+        /// <paramref name="removeStopped">Should the Shakers that use this shake remove it when it is fully stopped? You can set this to false if you want to restart the shake later.</paramref>
         /// </summary>
-        public void Stop(float fadeTime, bool removeWhenStopped)
+        public void Stop(float fadeTime, bool removeStopped)
         {
             this.fadeOutTime = fadeTime;
-            this.removeWhenStopped = removeWhenStopped;
+            this.removeWhenStopped = removeStopped;
             State = ShakeState.FadingOut;
         }
 

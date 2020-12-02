@@ -14,7 +14,7 @@ namespace Runtime.Source.Components.Spawn
 
         public SpawnerData SpawnerData => spawnerData;
 
-        public float SpawnAfter { get; set; } = 0;
+        public float SpawnAfter { get; set; }
     }
 
     #region HELPERS

@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace Runtime.Source.Processors.Controls
 {
+    // Class represents a system which is handles user input on PC, Mac or Linux devices
     sealed class ProcessorUserInput : Processor, ITick
     {
         public void Tick(float delta)

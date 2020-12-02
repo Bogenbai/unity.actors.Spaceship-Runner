@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Runtime.Source.Processors
 {
+    // Class is a system that scales entities to a specified scale in a specified time
     sealed class ProcessorScaleTo : Processor, ITick
     {
         private Group<ComponentScaleTo> groupScalable = default;

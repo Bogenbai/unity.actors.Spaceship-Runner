@@ -9,7 +9,6 @@ namespace Runtime.Source.Data
         {
             public const string PrefabsFolder = "Prefabs/";
 
-            public static readonly GameObject EmptyObject = new GameObject("Pool");
             public static readonly GameObject ActorPlayerSpaceship = Box.Load<GameObject>(PrefabsFolder + "ActorPlayerSpaceship");
             public static readonly GameObject Asteroid = Box.Load<GameObject>(PrefabsFolder + "ActorAsteroid");
             public static readonly GameObject AsteroidShard = Box.Load<GameObject>(PrefabsFolder + "ActorAsteroidShard");

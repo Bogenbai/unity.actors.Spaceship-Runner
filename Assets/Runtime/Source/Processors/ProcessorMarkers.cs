@@ -1,5 +1,6 @@
 ﻿using Pixeye.Actors;
 using Runtime.Source.Components.Markers;
+using UnityEngine;
 
 namespace Runtime.Source.Processors
 {
@@ -13,8 +14,13 @@ namespace Runtime.Source.Processors
 
         public void Tick(float delta)
         {
-            ReleaseDeadMarkers();
-            MarkersLifeReduction();
+            for (var i = 0; i < groupMarkers.length; i++)
+            {
+                var marker = groupMarkers[i];
+
+                ReleaseDeadMarker(marker);
+                MarkersLifeReduction(marker);
+            }
         }
 
         public ent GetMarker<T>()
@@ -30,22 +36,19 @@ namespace Runtime.Source.Processors
             return -1;
         }
 
-        private void ReleaseDeadMarkers()
+        private void ReleaseDeadMarker(ent marker)
         {
-            for (var i = 0; i < groupMarkers.length; i++)
+            if (marker.ComponentMarker().LifeTime <= 0)
             {
-                if (groupMarkers[i].ComponentMarker().LifeTime <= 0)
-                {
-                    groupMarkers[i].Release();
-                }
+                marker.Release();
             }
         }
 
-        private void MarkersLifeReduction()
+        private void MarkersLifeReduction(ent marker)
         {
-            for (var i = 0; i < groupMarkers.length; i++)
+            if (marker.exist)
             {
-                groupMarkers[i].ComponentMarker().LifeTime--;
+                marker.ComponentMarker().LifeTime--;
             }
         }
     }

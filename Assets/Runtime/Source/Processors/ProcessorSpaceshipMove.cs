@@ -10,21 +10,21 @@ namespace Runtime.Source.Processors
     sealed class ProcessorSpaceshipMove : Processor, ITickFixed
     {
         private Group<ComponentSpaceship, ComponentPlayerMovementData> groupSpaceships = default;
-        private Group<ComponentUserInputMarker> groupInputEvents = default;
+        private Group<ComponentUserInputMarker> groupInputMarkers = default;
 
         public void TickFixed(float delta)
         {
-            for (int i = 0; i < groupInputEvents.length; i++)
+            for (int i = 0; i < groupInputMarkers.length; i++)
             {
-                var direction = groupInputEvents[i].ComponentUserInputMarker().MoveDirection;
-                
+                var direction = groupInputMarkers[i].ComponentUserInputMarker().MoveDirection;
+
                 for (int j = 0; j < groupSpaceships.length; j++)
                 {
                     var spaceship = groupSpaceships[j];
                     var componentPlayerMovementData = spaceship.ComponentPlayerMovementData();
                     var velocityX = componentPlayerMovementData.CurrentVelocityX;
                     componentPlayerMovementData.CurrentMoveDirectionNormalized = direction;
-                
+
                     direction = new Vector3(velocityX * delta, 0, 0);
                     spaceship.transform.position += direction;
                 }

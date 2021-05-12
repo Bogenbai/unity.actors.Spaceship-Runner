@@ -1,4 +1,6 @@
-﻿using Pixeye.Actors;
+﻿using System;
+using System.Collections.Generic;
+using Pixeye.Actors;
 using Runtime.Source.Components.Markers;
 using UnityEngine;
 
@@ -11,6 +13,7 @@ namespace Runtime.Source.Processors
     sealed class ProcessorMarkers : Processor, ITick
     {
         private Group<ComponentMarker> groupMarkers = default;
+        private List<Action> requests = new List<Action>();
 
         public void Tick(float delta)
         {
@@ -19,37 +22,36 @@ namespace Runtime.Source.Processors
                 var marker = groupMarkers[i];
 
                 ReleaseDeadMarker(marker);
-                MarkersLifeReduction(marker);
             }
+
+            HandleRequests();
         }
 
-        public ent GetMarker<T>()
+        private void HandleRequests()
         {
-            for (var i = 0; i < groupMarkers.length; i++)
+            for (var i = 0; i < requests.Count; i++)
             {
-                if (groupMarkers[i].Has<T>())
-                {
-                    return groupMarkers[i];
-                }
+                requests[i].Invoke();
             }
 
-            return -1;
+            requests.Clear();
         }
 
-        private void ReleaseDeadMarker(ent marker)
+        public void Request<T>(T markerComponent)
         {
-            if (marker.ComponentMarker().LifeTime <= 0)
-            {
-                marker.Release();
-            }
+            requests.Add(() => Create(Layer, markerComponent));
         }
 
-        private void MarkersLifeReduction(ent marker)
+        private static void Create<T>(Layer layer, T markerComponent)
         {
-            if (marker.exist)
-            {
-                marker.ComponentMarker().LifeTime--;
-            }
+            var markerEntity = layer.Entity.Create();
+            markerEntity.Set(markerComponent);
+            markerEntity.Set<ComponentMarker>();
+        }
+
+        private static void ReleaseDeadMarker(ent marker)
+        {
+            marker.Release();
         }
     }
 }

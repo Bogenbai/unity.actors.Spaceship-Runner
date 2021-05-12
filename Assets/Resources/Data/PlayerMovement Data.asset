@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: PlayerMovement Data
   m_EditorClassIdentifier: 
   maxVelocityX: 20
-  speed: 1
   interpolationAcceleration: 5
   acceleration: 70
   accelerationBrakingScale: 1.35

@@ -2,6 +2,7 @@
 using Runtime.Source.Components;
 using Runtime.Source.Components.Markers;
 using Runtime.Source.Components.Tags;
+using Runtime.Source.Processors;
 using Runtime.Source.Tools;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -30,11 +31,8 @@ namespace Runtime.Source.Actors
 
         private void OnCollisionEnter(Collision other)
         {
-            var collisionEntity = MarkersCore.Create<ComponentCollisionMarker>(Layer);
-            var collisionMarker = collisionEntity.ComponentCollisionMarker();
-            
-            collisionMarker.Collision = other;
-            collisionMarker.ReceiverEntity = entity;
+            var collisionMarker = new ComponentCollisionMarker {Collision = other, ReceiverEntity = entity};
+            MarkersCore.Register(Layer, collisionMarker);
         }
 
         private void OnDrawGizmosSelected()

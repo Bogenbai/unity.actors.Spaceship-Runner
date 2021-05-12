@@ -23,10 +23,8 @@ namespace Runtime.Source.Processors.Controls
                 direction = Vector3.left;
             }
 
-            var userInputMarkerEntity = MarkersCore.Create<ComponentUserInputMarker>(Layer);
-
-            var userInputMarker = userInputMarkerEntity.ComponentUserInputMarker();
-            userInputMarker.MoveDirection = direction;
+            var userInputMarker = new ComponentUserInputMarker {MoveDirection = direction};
+            MarkersCore.Register(Layer, userInputMarker);
         }
     }
 }

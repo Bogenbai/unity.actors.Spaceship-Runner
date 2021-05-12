@@ -6,7 +6,6 @@ namespace Runtime.Source.Components.Markers
 {
     public class ComponentMarker
     {
-        public int LifeTime = 1;
     }
 
     #region HELPERS

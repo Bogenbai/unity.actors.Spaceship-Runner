@@ -13,7 +13,7 @@ namespace Runtime.Source.Processors.Controls
     {
         private Group<ComponentSpaceship> groupPlayers = default;
         private Group<ComponentMainCamera, ComponentCamera> groupMainCamera = default;
-        
+
         // How far user need to touch from the player spaceship to create a user input event
         private const float DistanceToReact = 1.3f;
 
@@ -27,11 +27,11 @@ namespace Runtime.Source.Processors.Controls
 
                     if (Input.GetMouseButton(0))
                     {
-                        var mousePos      = Input.mousePosition;
-                        mousePos.z                = groupPlayers[i].transform.position.z;
-                        var mainCamera            = groupMainCamera[0].ComponentCamera().Camera;
+                        var mousePos = Input.mousePosition;
+                        mousePos.z = groupPlayers[i].transform.position.z;
+                        var mainCamera = groupMainCamera[0].ComponentCamera().Camera;
                         var worldPosition = mainCamera.ScreenToWorldPoint(mousePos);
-                        var playerX         = groupPlayers[i].transform.position.x;
+                        var playerX = groupPlayers[i].transform.position.x;
 
                         if (Math.Abs(worldPosition.x - playerX) > DistanceToReact)
                         {
@@ -46,10 +46,8 @@ namespace Runtime.Source.Processors.Controls
                         }
                     }
 
-                    var userInputMarkerEntity = MarkersCore.Create<ComponentUserInputMarker>(Layer);
-
-                    var userInputMarker = userInputMarkerEntity.ComponentUserInputMarker();
-                    userInputMarker.MoveDirection = direction;
+                    var userInputMarker = new ComponentUserInputMarker {MoveDirection = direction};
+                    MarkersCore.Register(Layer, userInputMarker);
                 }
             }
         }

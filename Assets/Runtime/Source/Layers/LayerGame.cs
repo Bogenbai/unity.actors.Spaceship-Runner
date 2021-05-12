@@ -18,19 +18,12 @@ namespace Runtime.Source.Layers
             // PC
             Add<ProcessorUserInput>();
 #endif
-            // SPAWN AND DESTROY
             Add<ProcessorSpawnSignalSender>();
             Add<ProcessorSpawner>();
             Add<ProcessorDestroyDestroyable>();
-
-            // SETTERS
             Add<ProcessorSpaceshipMoveStateSetter>();
-            
-            // ASTEROIDS
             Add<ProcessorRigidbodyRandomRotator>();
             Add<ProcessorScaleTo>();
-
-            // PLAYER
             Add<ProcessorSpaceshipMove>();
             Add<ProcessorSpaceshipThrottling>();
             Add<ProcessorSpaceshipBraking>();
@@ -39,20 +32,11 @@ namespace Runtime.Source.Layers
             Add<ProcessorSpaceshipRespawn>();
             Add<ProcessorSpaceshipDeath>();
             Add<ProcessorScore>();
-
-            // COLLISIONS
             Add<ProcessorSpaceshipAsteroidCollision>();
-
-            // CAMERA
             Add<ProcessorCameraShake>();
-
-            // COMMON
             Add<ProcessorHealth>();
             Add<ProcessorConstantMove>();
-            
-            // UI
             Add<ProcessorScoreUi>();
-            
             Add<ProcessorMarkers>();
         }
 

@@ -3,9 +3,9 @@ using Pixeye.Actors;
 using Unity.IL2CPP.CompilerServices;
 using UnityEngine;
 
-namespace Runtime.Source.Components.Markers
+namespace Runtime.Source.Components
 {
-    public class ComponentUserInputMarker
+    public class ComponentUserInput
     {
         public Vector3 MoveDirection { get; set; }
     }
@@ -17,19 +17,19 @@ namespace Runtime.Source.Components.Markers
     [Il2CppSetOption(Option.DivideByZeroChecks, false)]
     static partial class Component
     {
-        public const string UserInputMarker = "Game.Source.ComponentUserInputMarker";
+        public const string UserInput = "Game.Source.ComponentUserInput";
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static ref ComponentUserInputMarker ComponentUserInputMarker(in this ent entity) =>
-            ref Storage<ComponentUserInputMarker>.components[entity.id];
+        public static ref ComponentUserInput ComponentUserInputMarker(in this ent entity) =>
+            ref Storage<ComponentUserInput>.components[entity.id];
     }
 
     [Il2CppSetOption(Option.NullChecks, false)]
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
     [Il2CppSetOption(Option.DivideByZeroChecks, false)]
-    sealed class StorageComponentUserInputMarker : Storage<ComponentUserInputMarker>
+    sealed class StorageComponentUserInputMarker : Storage<ComponentUserInput>
     {
-        public override ComponentUserInputMarker Create() => new ComponentUserInputMarker();
+        public override ComponentUserInput Create() => new ComponentUserInput();
 
         // Use for cleaning components that were removed at the current frame.
         public override void Dispose(indexes disposed)

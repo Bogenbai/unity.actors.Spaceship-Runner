@@ -1,6 +1,5 @@
 ﻿using Pixeye.Actors;
 using Runtime.Source.Components;
-using Runtime.Source.Components.Markers;
 using Runtime.Source.Components.Tags;
 using UnityEngine;
 
@@ -10,7 +9,7 @@ namespace Runtime.Source.Processors
     sealed class ProcessorSpaceshipMove : Processor, ITickFixed
     {
         private Group<ComponentSpaceship, ComponentPlayerMovementData> groupSpaceships = default;
-        private Group<ComponentUserInputMarker> groupInputMarkers = default;
+        private Group<ComponentUserInput> groupInputMarkers = default;
 
         public void TickFixed(float delta)
         {

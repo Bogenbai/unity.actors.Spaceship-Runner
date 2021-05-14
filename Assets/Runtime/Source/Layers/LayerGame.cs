@@ -1,6 +1,7 @@
 ﻿using Pixeye.Actors;
+using Runtime.Source.Components;
 using Runtime.Source.Processors;
-using Runtime.Source.Processors.Controls;
+using Runtime.Source.Processors.Input;
 using Runtime.Source.Tools.CameraShaker;
 
 namespace Runtime.Source.Layers
@@ -37,7 +38,8 @@ namespace Runtime.Source.Layers
             Add<ProcessorHealth>();
             Add<ProcessorConstantMove>();
             Add<ProcessorScoreUi>();
-            Add<ProcessorMarkers>();
+            Add<ProcessorOneFrame<ComponentUserInput>>();
+            Add<ProcessorOneFrame<ComponentCollision>>();
         }
 
         // Use to clean up custom stuff before the layer gets destroyed.

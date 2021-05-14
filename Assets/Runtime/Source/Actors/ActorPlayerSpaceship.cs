@@ -1,6 +1,5 @@
 ﻿using Pixeye.Actors;
 using Runtime.Source.Components;
-using Runtime.Source.Components.Markers;
 using Runtime.Source.Components.Tags;
 using Runtime.Source.Processors;
 using Runtime.Source.Tools;
@@ -31,8 +30,8 @@ namespace Runtime.Source.Actors
 
         private void OnCollisionEnter(Collision other)
         {
-            var collisionMarker = new ComponentCollisionMarker {Collision = other, ReceiverEntity = entity};
-            MarkersCore.Register(Layer, collisionMarker);
+            var collisionMarker = new ComponentCollision {Collision = other, ReceiverEntity = entity};
+            OneFramesCore.Register(Layer, collisionMarker);
         }
 
         private void OnDrawGizmosSelected()

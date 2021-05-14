@@ -3,9 +3,9 @@ using Pixeye.Actors;
 using Unity.IL2CPP.CompilerServices;
 using UnityEngine;
 
-namespace Runtime.Source.Components.Markers
+namespace Runtime.Source.Components
  {
-   public class ComponentCollisionMarker
+   public class ComponentCollision
    {
      public Collision Collision { get; set; }
      public ent ReceiverEntity { get; set; }
@@ -18,18 +18,18 @@ namespace Runtime.Source.Components.Markers
    [Il2CppSetOption(Option.DivideByZeroChecks, false)]
    static partial class Component
    {
-     public const string CollisionMarker = "Game.Source.ComponentCollisionMarker";
+     public const string Collision = "Game.Source.ComponentCollision";
      [MethodImpl(MethodImplOptions.AggressiveInlining)]
-     public static ref ComponentCollisionMarker ComponentCollisionMarker(in this ent entity) =>
-       ref Storage<ComponentCollisionMarker>.components[entity.id];
+     public static ref ComponentCollision ComponentCollisionMarker(in this ent entity) =>
+       ref Storage<ComponentCollision>.components[entity.id];
    }
 
    [Il2CppSetOption(Option.NullChecks, false)]
    [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
    [Il2CppSetOption(Option.DivideByZeroChecks, false)]
-   sealed class StorageComponentCollisionMarker : Storage<ComponentCollisionMarker>
+   sealed class StorageComponentCollision : Storage<ComponentCollision>
    {
-     public override ComponentCollisionMarker Create() => new ComponentCollisionMarker();
+     public override ComponentCollision Create() => new ComponentCollision();
      // Use for cleaning components that were removed at the current frame.
      public override void Dispose(indexes disposed)
      {

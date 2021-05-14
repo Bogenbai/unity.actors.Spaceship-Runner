@@ -1,12 +1,11 @@
 ﻿using System;
 using Pixeye.Actors;
 using Runtime.Source.Components;
-using Runtime.Source.Components.Markers;
 using Runtime.Source.Components.Tags;
 using Runtime.Source.Tools;
 using UnityEngine;
 
-namespace Runtime.Source.Processors.Controls
+namespace Runtime.Source.Processors.Input
 {
     // Class represents a system which is handles user input on mobile devices
     sealed class ProcessorUserTouchInput : Processor, ITick
@@ -25,9 +24,9 @@ namespace Runtime.Source.Processors.Controls
                 {
                     var direction = Vector3.zero;
 
-                    if (Input.GetMouseButton(0))
+                    if (UnityEngine.Input.GetMouseButton(0))
                     {
-                        var mousePos = Input.mousePosition;
+                        var mousePos = UnityEngine.Input.mousePosition;
                         mousePos.z = groupPlayers[i].transform.position.z;
                         var mainCamera = groupMainCamera[0].ComponentCamera().Camera;
                         var worldPosition = mainCamera.ScreenToWorldPoint(mousePos);
@@ -46,8 +45,8 @@ namespace Runtime.Source.Processors.Controls
                         }
                     }
 
-                    var userInputMarker = new ComponentUserInputMarker {MoveDirection = direction};
-                    MarkersCore.Register(Layer, userInputMarker);
+                    var userInputMarker = new ComponentUserInput {MoveDirection = direction};
+                    OneFramesCore.Register(Layer, userInputMarker);
                 }
             }
         }

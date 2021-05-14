@@ -1,7 +1,6 @@
 ﻿using Pixeye.Actors;
 using Runtime.Source.Components.Tags;
 using Runtime.Source.Data;
-using UnityEngine;
 
 namespace Runtime.Source.Processors
 {
@@ -12,7 +11,7 @@ namespace Runtime.Source.Processors
 
         public void Tick(float delta)
         {
-            if (groupSpaceships.length == 0 && Input.GetMouseButtonDown(0))
+            if (groupSpaceships.length == 0 && UnityEngine.Input.GetMouseButtonDown(0))
             {
                 var cSpaceship = groupSpaceships[0].ComponentSpaceship();
                 Layer.Actor.Create(DB.Prefabs.ActorPlayerSpaceship, cSpaceship.startPosition);

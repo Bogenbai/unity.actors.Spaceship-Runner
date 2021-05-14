@@ -7,11 +7,11 @@ namespace Runtime.Source.Actors
     [RequireComponent(typeof(Rigidbody), typeof(SphereCollider))]
     public class ActorAsteroidShard : Actor
     {
-        [Sirenix.OdinInspector.FoldoutGroup("Components", true)]
+        [FoldoutGroup("Components", true)]
         public ComponentDestroyable componentDestroyable;
-        [Sirenix.OdinInspector.FoldoutGroup("Components", true)]
+        [FoldoutGroup("Components", true)]
         public ComponentRigidbody componentRigidbody;
-        [Sirenix.OdinInspector.FoldoutGroup("Components", true)]
+        [FoldoutGroup("Components", true)]
         public ComponentConstantMove componentConstantMove;
 
         protected override void Setup()

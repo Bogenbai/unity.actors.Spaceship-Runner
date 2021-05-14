@@ -1,6 +1,5 @@
 ﻿using Pixeye.Actors;
 using Runtime.Source.Components;
-using Sirenix.OdinInspector;
 
 namespace Runtime.Source.Actors
 {

@@ -15,7 +15,7 @@ namespace Runtime.Source.Processors
             for (var i = 0; i < groupPlayerMovements.length; i++)
             {
                 var player = groupPlayerMovements[i];
-                var direction = player.ComponentPlayerMovementData().CurrentMoveDirectionNormalized;
+                var direction = player.ComponentPlayerMovementData().currentMoveDirectionNormalized;
 
                 if (direction != Vector3.zero)
                 {

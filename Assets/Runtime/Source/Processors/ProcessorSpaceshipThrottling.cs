@@ -17,8 +17,8 @@ namespace Runtime.Source.Processors
                 var spaceship = groupSpaceships[j];
                 var componentMovementData = spaceship.ComponentPlayerMovementData();
                 var movementData = componentMovementData.Parameters;
-                var speedX = componentMovementData.CurrentVelocityX;
-                var direction = componentMovementData.CurrentMoveDirectionNormalized;
+                var speedX = componentMovementData.currentVelocityX;
+                var direction = componentMovementData.currentMoveDirectionNormalized;
                 var acceleration = movementData.Acceleration;
 
                 if (direction != Vector3.zero)
@@ -43,7 +43,7 @@ namespace Runtime.Source.Processors
                         speedX = -movementData.MaxVelocityX;
                 }
 
-                componentMovementData.CurrentVelocityX = speedX;
+                componentMovementData.currentVelocityX = speedX;
             }
         }
     }

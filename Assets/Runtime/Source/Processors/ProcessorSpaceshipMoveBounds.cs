@@ -16,8 +16,8 @@ namespace Runtime.Source.Processors
             {
                 var spaceship = groupSpaceships[i];
                 var movementData = spaceship.ComponentPlayerMovementData();
-                var speedX = movementData.CurrentVelocityX;
-                var direction = movementData.CurrentMoveDirectionNormalized;
+                var speedX = movementData.currentVelocityX;
+                var direction = movementData.currentMoveDirectionNormalized;
                 var acceleration = movementData.Parameters.Acceleration;
                 var accelerationBrakingScale = movementData.Parameters.AccelerationBrakingScale;
                 var leftBoundX = movementData.Parameters.LeftMovementBoundX;
@@ -47,7 +47,7 @@ namespace Runtime.Source.Processors
                         speedX -= acceleration * delta;
                 }
 
-                movementData.CurrentVelocityX = speedX;
+                movementData.currentVelocityX = speedX;
             }
         }
     }

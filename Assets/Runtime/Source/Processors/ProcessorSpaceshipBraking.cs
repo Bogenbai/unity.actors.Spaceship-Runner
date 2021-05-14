@@ -18,7 +18,7 @@ namespace Runtime.Source.Processors
                 var spaceship = groupSpaceships[j];
                 var componentMovementData = spaceship.ComponentPlayerMovementData();
                 var movementData = componentMovementData.Parameters;
-                var speedX = componentMovementData.CurrentVelocityX;
+                var speedX = componentMovementData.currentVelocityX;
                 var acceleration = movementData.InterpolationAcceleration;
 
                 if (speedX > Toolbox.Tolerance || speedX < -Toolbox.Tolerance)
@@ -35,9 +35,9 @@ namespace Runtime.Source.Processors
                         speedX += value * Time.deltaTime;
                     }
 
-                    componentMovementData.CurrentVelocityX = speedX;
+                    componentMovementData.currentVelocityX = speedX;
                 }
-                else componentMovementData.CurrentVelocityX = 0;
+                else componentMovementData.currentVelocityX = 0;
             }
         }
     }

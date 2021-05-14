@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
+using MyBox;
 using Pixeye.Actors;
 using Unity.IL2CPP.CompilerServices;
 using UnityEngine;
@@ -9,7 +10,7 @@ namespace Runtime.Source.Components
     [Serializable]
     public class ComponentRigidbody
     {
-        [SerializeField, Sirenix.OdinInspector.ReadOnly]
+        [SerializeField, ReadOnly]
         private Rigidbody rigidbody;
         public Rigidbody Rigidbody => rigidbody;
 

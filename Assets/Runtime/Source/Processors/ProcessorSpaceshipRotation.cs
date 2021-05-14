@@ -16,14 +16,14 @@ namespace Runtime.Source.Processors
             {
                 var spaceship = groupSpaceships[i];
                 var movementData = spaceship.ComponentPlayerMovementData();
-                var speedX = movementData.CurrentVelocityX;
+                var speedX = movementData.currentVelocityX;
                 var thrustRotationScale = movementData.Parameters.ThrustRotationScale;
 
-                movementData.CurrentThrustRotation = Mathf.SmoothDamp(movementData.CurrentThrustRotation,
+                movementData.currentThrustRotation = Mathf.SmoothDamp(movementData.currentThrustRotation,
                     -speedX * thrustRotationScale, ref movementData.currentThrustRotationVelocity,
                     movementData.Parameters.ThrustRotationSmooth);
 
-               spaceship.transform.rotation = Quaternion.Euler(0, 0, movementData.CurrentThrustRotation);
+               spaceship.transform.rotation = Quaternion.Euler(0, 0, movementData.currentThrustRotation);
             }
         }
     }

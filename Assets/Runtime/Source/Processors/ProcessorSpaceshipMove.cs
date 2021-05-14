@@ -21,8 +21,8 @@ namespace Runtime.Source.Processors
                 {
                     var spaceship = groupSpaceships[j];
                     var componentPlayerMovementData = spaceship.ComponentPlayerMovementData();
-                    var velocityX = componentPlayerMovementData.CurrentVelocityX;
-                    componentPlayerMovementData.CurrentMoveDirectionNormalized = direction;
+                    var velocityX = componentPlayerMovementData.currentVelocityX;
+                    componentPlayerMovementData.currentMoveDirectionNormalized = direction;
 
                     direction = new Vector3(velocityX * delta, 0, 0);
                     spaceship.transform.position += direction;

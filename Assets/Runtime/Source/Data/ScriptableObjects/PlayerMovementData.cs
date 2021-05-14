@@ -1,10 +1,8 @@
-﻿using Sirenix.OdinInspector;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Runtime.Source.Data.ScriptableObjects
 {
     [CreateAssetMenu(fileName = "New PlayerMovement Data", menuName = "SciptableObjects/PlayerMovement Data", order = 58)]
-    [InlineEditor]
     public class PlayerMovementData : ScriptableObject
     {
         [SerializeField] private float maxVelocityX = 20;

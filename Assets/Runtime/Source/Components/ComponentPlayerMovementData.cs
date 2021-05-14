@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
+using MyBox;
 using Pixeye.Actors;
 using Runtime.Source.Data.ScriptableObjects;
-using Sirenix.OdinInspector;
 using Unity.IL2CPP.CompilerServices;
 using UnityEngine;
 
@@ -12,16 +12,11 @@ namespace Runtime.Source.Components
     public class ComponentPlayerMovementData
     {
         [SerializeField] private PlayerMovementData parameters = null;
-
-        [ShowInInspector, ReadOnly]
-        public float currentThrustRotationVelocity = 0.0f;
+        [ReadOnly]public float currentThrustRotationVelocity;
+        [ReadOnly] public Vector3 currentMoveDirectionNormalized;
+        [ReadOnly] public float currentVelocityX;
+        [ReadOnly] public float currentThrustRotation;
         public PlayerMovementData Parameters => parameters;
-        [ShowInInspector, ReadOnly]
-        public Vector3 CurrentMoveDirectionNormalized { get; set; }
-        [ShowInInspector, ReadOnly]
-        public float CurrentVelocityX { get; set; }
-        [ShowInInspector, ReadOnly]
-        public float CurrentThrustRotation { get; set; }
     }
 
     #region HELPERS

@@ -16,22 +16,9 @@ namespace Runtime.Source.Processors
                 var spawnedObj = groupDestroyable[i];
                 
                 var destroyableEntity = spawnedObj.ComponentDestroyable();
-                if (destroyableEntity.DestroyData.DestroyAfterDelay)
-                    ReleaseEntityAfter(spawnedObj, destroyableEntity);
-                else ReleaseEntityAtCoordinate(spawnedObj, destroyableEntity);
+                
+                ReleaseEntityAtCoordinate(spawnedObj, destroyableEntity);
             }
-        }
-
-        private void ReleaseEntityAfter(ent spawnedObj, ComponentDestroyable destroyable)
-        {
-            var destroyData = destroyable.DestroyData;
-
-            if (destroyable.Lifetime >= destroyData.DestroyAfter)
-            {
-                destroyable.Lifetime = 0;
-                spawnedObj.Release();
-            }
-            else destroyable.Lifetime += Time.deltaTime;
         }
 
         private void ReleaseEntityAtCoordinate(ent spawnedObj, ComponentDestroyable destroyable)

@@ -1,9 +1,7 @@
 ﻿using Pixeye.Actors;
 using Runtime.Source.Components;
 using Runtime.Source.Components.Tags;
-using Runtime.Source.Processors;
 using Runtime.Source.Tools;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Runtime.Source.Actors
@@ -37,7 +35,7 @@ namespace Runtime.Source.Actors
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.blue;
-            var speedX = componentPlayerMovementData.CurrentVelocityX;
+            var speedX = componentPlayerMovementData.currentVelocityX;
             Gizmos.DrawRay(transform.position, new Vector3(speedX, 0, 0));
         }
     }

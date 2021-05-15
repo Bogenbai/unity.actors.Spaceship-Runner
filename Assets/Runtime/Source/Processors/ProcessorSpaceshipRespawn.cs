@@ -14,7 +14,7 @@ namespace Runtime.Source.Processors
             if (groupSpaceships.length == 0 && UnityEngine.Input.GetMouseButtonDown(0))
             {
                 var cSpaceship = groupSpaceships[0].ComponentSpaceship();
-                Layer.Actor.Create(DB.Prefabs.ActorPlayerSpaceship, cSpaceship.startPosition);
+                Layer.Actor.Create(DataBase.Prefabs.ActorPlayerSpaceship, cSpaceship.startPosition);
             }
         }
     }

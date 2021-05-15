@@ -28,8 +28,8 @@ namespace Runtime.Source.Processors
 
         private void Explosion(Vector3 position)
         {
-            Layer.Actor.Create(DB.Prefabs.VfxSparks, position, true);
-            Layer.Actor.Create(DB.Prefabs.VfxBluePlasmaExplosion, position, true);
+            Layer.Actor.Create(DataBase.Prefabs.VfxSparks, position, true);
+            Layer.Actor.Create(DataBase.Prefabs.VfxBluePlasmaExplosion, position, true);
         }
     }
 }

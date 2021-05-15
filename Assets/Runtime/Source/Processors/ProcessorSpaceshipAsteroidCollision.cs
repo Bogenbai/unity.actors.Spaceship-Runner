@@ -74,8 +74,8 @@ namespace Runtime.Source.Processors
         private void CreateVFX(ComponentCollision componentCollisionEvent)
         {
             var sparksPosition = componentCollisionEvent.Collision.contacts[0].point;
-            Actor.Create(DB.Prefabs.VfxSparks, sparksPosition, true);
-            Actor.Create(DB.Prefabs.VfxPlasmaExplosion, sparksPosition, true);
+            Actor.Create(DataBase.Prefabs.VfxSparks, sparksPosition, true);
+            Actor.Create(DataBase.Prefabs.VfxPlasmaExplosion, sparksPosition, true);
         }
 
         private void CreateShards(ComponentCollision componentCollisionEvent)
@@ -96,7 +96,7 @@ namespace Runtime.Source.Processors
         {
             SignalCameraShake signal;
 
-            var shakeData = DB.ScriptableObjects.CameraShakeOnAsteroidHit;
+            var shakeData = DataBase.ScriptableObjects.CameraShakeOnAsteroidHit;
 
             signal.ShakeData = (ShakePreset) shakeData;
 

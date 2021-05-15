@@ -3,10 +3,11 @@ using Pixeye.Actors;
 
 namespace Runtime.Source.Processors
 {
-    // Class represents a system that manages OneFrames
-    // OneFrame itself are an entities which are supposed to play a role of events in the ECS world
-    // OneFrames have a lifetime. They live, surprisingly, only one frame
-    // Also OneFrame can contain some data
+    // Class represents a system that manages OneFrames.
+    // OneFrame itself are an entities which are supposed to play a role of events in the ECS world.
+    // OneFrames have a lifetime. They live, surprisingly, only one frame.
+    // Also OneFrame can contain some data.
+    // If you want oneframe to be captured by all processors on the layer then register it using OneFramesCore.Register.
     sealed class ProcessorOneFrame<T> : Processor, ITick
     {
         private Group<T> groupOneframes = default;

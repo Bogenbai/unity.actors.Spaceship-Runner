@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81aafc5776544cc0967a615b90a98a59, type: 3}
   m_Name: VFX DestroyParameters
   m_EditorClassIdentifier: 
-  destroyAfterDelay: 1
-  destroyAfter: 5
-  destroyAtCoordinate: -20
+  destroyAtCoordinate: -75
   destroyAtAxis: 2
-  comparisonSign: 1
+  comparisonType: 1

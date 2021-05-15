@@ -9,17 +9,9 @@ namespace Runtime.Source.Components
     [Serializable]
     public class ComponentScaleTo
     {
-        [SerializeField] private Vector3 finalScale = Vector3.one;
-        [SerializeField] private float scaleSpeed = 2;
-
-        public Vector3 FinalScale
-        {
-            get => finalScale; set => finalScale = value;
-        }
-        public float ScaleSpeed
-        {
-            get => scaleSpeed; set => scaleSpeed = value;
-        }
+        public Vector3 startScale = Vector3.zero;
+        public Vector3 finalScale = Vector3.one;
+        public float scaleSpeed = 2;
     }
 
     #region HELPERS

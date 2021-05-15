@@ -4,7 +4,7 @@
   "//": "Fixed FPS, 50 by default",
   "FpsPhysics": 50,
   "//": "FPS, -1 for fast as possible",
-  "Fps": 60,
+  "Fps": -1,
   "//": "How much entities do you need at start",
   "SizeEntities": 5000,
   "//": "Amount of component types. Must be multiple of 32",

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
-using MyBox;
 using Pixeye.Actors;
 using Unity.IL2CPP.CompilerServices;
 using UnityEngine;
@@ -10,7 +9,7 @@ namespace Runtime.Source.Components
     [Serializable]
     public class ComponentCamera
     {
-        [SerializeField, ReadOnly]
+        [SerializeField, MyBox.ReadOnly]
         private Camera camera;
 
         public Camera Camera => camera;

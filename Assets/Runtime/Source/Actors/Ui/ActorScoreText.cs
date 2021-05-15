@@ -1,7 +1,6 @@
 ﻿using Pixeye.Actors;
 using Runtime.Source.Components.Tags.Ui;
 using Runtime.Source.Components.Ui;
-using Sirenix.OdinInspector;
 
 namespace Runtime.Source.Actors.Ui
 {

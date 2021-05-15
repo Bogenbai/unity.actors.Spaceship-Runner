@@ -657,7 +657,7 @@ Transform:
   m_GameObject: {fileID: 5744776870327136637}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -14.52, y: 2.8906612, z: 19.28}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5744776870327456591}
   - {fileID: 4256851848104034548}
@@ -830,6 +830,7 @@ MonoBehaviour:
     movementDirection: {x: 0, y: 0, z: -1}
     speed: 65
   componentScaleTo:
+    startScale: {x: 0, y: 0, z: 0}
     finalScale: {x: 1, y: 1, z: 1}
     scaleSpeed: 2
   componentCanShatter:

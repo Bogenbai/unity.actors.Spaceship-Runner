@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
-using MyBox;
 using Pixeye.Actors;
 using Runtime.Source.Data.ScriptableObjects;
 using Unity.IL2CPP.CompilerServices;
@@ -12,10 +11,10 @@ namespace Runtime.Source.Components
     public class ComponentPlayerMovementData
     {
         [SerializeField] private PlayerMovementData parameters = null;
-        [ReadOnly]public float currentThrustRotationVelocity;
-        [ReadOnly] public Vector3 currentMoveDirectionNormalized;
-        [ReadOnly] public float currentVelocityX;
-        [ReadOnly] public float currentThrustRotation;
+        public float currentThrustRotationVelocity;
+        public Vector3 currentMoveDirectionNormalized;
+        public float currentVelocityX;
+        public float currentThrustRotation;
         public PlayerMovementData Parameters => parameters;
     }
 

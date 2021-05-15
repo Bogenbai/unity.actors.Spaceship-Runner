@@ -27,11 +27,11 @@ namespace Runtime.Source.Layers
             Add<ProcessorSpaceshipRotation>();
             Add<ProcessorSpaceshipMoveBounds>();
             Add<ProcessorSpaceshipRespawn>();
-            Add<ProcessorSpaceshipDeath>();
-            Add<ProcessorScore>();
             Add<ProcessorSpaceshipAsteroidCollision>();
-            Add<ProcessorCameraShake>();
+            Add<ProcessorSpaceshipDeath>();
             Add<ProcessorHealth>();
+            Add<ProcessorScore>();
+            Add<ProcessorCameraShake>();
             Add<ProcessorConstantMove>();
             Add<ProcessorScoreUi>();
             Add<ProcessorOneFrame<ComponentUserInput>>();

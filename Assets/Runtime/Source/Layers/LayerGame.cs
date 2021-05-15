@@ -1,5 +1,6 @@
 ﻿using Pixeye.Actors;
 using Runtime.Source.Components;
+using Runtime.Source.Components.Spawn;
 using Runtime.Source.Processors;
 using Runtime.Source.Processors.Input;
 using Runtime.Source.Tools.CameraShaker;
@@ -10,17 +11,28 @@ namespace Runtime.Source.Layers
     {
         protected override void Setup()
         {
-#if UNITY_IPHONE || UNITY_ANDROID && !UNITY_EDITOR // Comment '&& !UNITY_EDITOR' to turn on mobile controls
+#if UNITY_IOS || UNITY_ANDROID && !UNITY_EDITOR // Comment '&& !UNITY_EDITOR' to turn on mobile controls
             Add<ProcessorUserTouchInput>();
 #elif UNITY_STANDALONE_WIN || UNITY_STANDALONE_LINUX || UNITY_STANDALONE_OSX || UNITY_EDITOR
             Add<ProcessorUserInput>();
 #endif
-            Add<ProcessorSpawnSignalSender>();
+            Add<ProcessorSpawnTimer>();
             Add<ProcessorSpawner>();
             Add<ProcessorDestroyDestroyable>();
-            Add<ProcessorSpaceshipMoveStateSetter>();
             Add<ProcessorRigidbodyRandomRotator>();
             Add<ProcessorScaleTo>();
+            Add<ProcessorHealth>();
+            Add<ProcessorScore>();
+            Add<ProcessorCameraShake>();
+            Add<ProcessorConstantMove>();
+            Add<ProcessorScoreUi>();
+            AddSpaceshipProcessors();
+            AddOneFramesProcessors();
+        }
+
+        private static void AddSpaceshipProcessors()
+        {
+            Add<ProcessorSpaceshipMoveStateSetter>();
             Add<ProcessorSpaceshipMove>();
             Add<ProcessorSpaceshipThrottling>();
             Add<ProcessorSpaceshipBraking>();
@@ -29,13 +41,14 @@ namespace Runtime.Source.Layers
             Add<ProcessorSpaceshipRespawn>();
             Add<ProcessorSpaceshipAsteroidCollision>();
             Add<ProcessorSpaceshipDeath>();
-            Add<ProcessorHealth>();
-            Add<ProcessorScore>();
-            Add<ProcessorCameraShake>();
-            Add<ProcessorConstantMove>();
-            Add<ProcessorScoreUi>();
+        }
+
+        private static void AddOneFramesProcessors()
+        {
             Add<ProcessorOneFrame<ComponentUserInput>>();
             Add<ProcessorOneFrame<ComponentCollision>>();
+            Add<ProcessorOneFrame<ComponentSpawn>>();
+            Add<ProcessorOneFrame<ComponentHealthChanged>>();
         }
     }
 }

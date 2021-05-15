@@ -2,7 +2,7 @@
 using Runtime.Source.Components;
 using Runtime.Source.Components.Tags;
 using Runtime.Source.Data;
-using Runtime.Source.Signals;
+using Runtime.Source.Tools;
 using Runtime.Source.Tools.CameraShaker;
 using Runtime.Source.Tools.CameraShaker.Signals;
 using UnityEngine;
@@ -59,10 +59,13 @@ namespace Runtime.Source.Processors
 
         private void SendHealthChangeSignal(ComponentHealth cHealth, int amount)
         {
-            SignalHealthChanged signal;
-            signal.Health = cHealth;
-            signal.Amount = amount;
-            Ecs.Send(signal);
+            var componentHealthChanged = new ComponentHealthChanged()
+            {
+                componentHealth = cHealth,
+                amount = amount
+            };
+
+            OneFramesCore.Register(Layer, componentHealthChanged);
         }
 
         private void Explosion(ComponentCollision componentCollisionEvent)

@@ -3,19 +3,18 @@ using Runtime.Source.Components;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-
 namespace Runtime.Source.Processors
 {
     // Class is a system that rotates entities in a random direction
-    sealed class ProcessorRigidbodyRandomRotator : Processor//, ITick
+    sealed class ProcessorRigidbodyRandomRotator : Processor
     {
-        private Group<ComponentRandomRotatable, ComponentRigidbody> groupRigidbodyRotatable = default;
+        private readonly Group<ComponentRandomRotatable, ComponentRigidbody> groupRotatable = default;
 
         public override void HandleEcsEvents()
         {
-            for (var i = 0; i < groupRigidbodyRotatable.added.length; i++)
+            for (var i = 0; i < groupRotatable.added.length; i++)
             {
-                var entity = groupRigidbodyRotatable.added[i];
+                var entity = groupRotatable.added[i];
                 var rigidbody = entity.ComponentRigidbody().Rigidbody;
                 var tumble = entity.ComponentRandomRotatable().Tumble;
                 

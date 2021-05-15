@@ -7,11 +7,11 @@ namespace Runtime.Source.Processors
     // Class represents a system which destroys entities depending on the specified data
     sealed class ProcessorDestroyDestroyable : Processor, ITick
     {
-        private Group<ComponentDestroyable> groupDestroyable = default;
+        private readonly Group<ComponentDestroyable> groupDestroyable = default;
 
         public void Tick(float delta)
         {
-            for (int i = 0; i < groupDestroyable.length; i++)
+            for (var i = 0; i < groupDestroyable.length; i++)
             {
                 var spawnedObj = groupDestroyable[i];
                 

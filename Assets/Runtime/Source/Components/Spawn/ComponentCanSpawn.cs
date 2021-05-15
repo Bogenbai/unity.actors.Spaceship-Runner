@@ -1,9 +1,11 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System;
+using System.Runtime.CompilerServices;
 using Pixeye.Actors;
 using Unity.IL2CPP.CompilerServices;
 
 namespace Runtime.Source.Components.Spawn
  {
+   [Serializable]
    public class ComponentCanSpawn { }
  
    #region HELPERS

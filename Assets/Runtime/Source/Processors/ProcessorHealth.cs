@@ -1,20 +1,28 @@
 ﻿using Pixeye.Actors;
 using Runtime.Source.Components;
-using Runtime.Source.Signals;
 
 namespace Runtime.Source.Processors
 {
     // Class represents a system that controls the healths of the entities
-    sealed class ProcessorHealth : Processor<SignalHealthChanged>
+    sealed class ProcessorHealth : Processor, ITick
     {
-        public override void ReceiveEcs(ref SignalHealthChanged signal, ref bool stopSignal)
+        private Group<ComponentHealthChanged> healthChangedSignals = default;
+        
+        public void Tick(float dt)
         {
-            ReduceHealth(signal.Health, signal.Amount);
+            for (var i = 0; i < healthChangedSignals.length; i++)
+            {
+                var signal = healthChangedSignals[i].ComponentHealthChanged();
+                var componentHealth = signal.componentHealth;
+
+                ReduceHealth(componentHealth, signal.amount);
+            }
         }
         
-        private void ReduceHealth(ComponentHealth health, int amount)
+        private static void ReduceHealth(ComponentHealth health, int amount)
         {
             health.value -= amount;
         }
+
     }
 }

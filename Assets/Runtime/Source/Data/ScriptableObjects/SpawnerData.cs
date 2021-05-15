@@ -11,7 +11,6 @@ namespace Runtime.Source.Data.ScriptableObjects
         [SerializeField] private List<Vector3> spawnPositions = new List<Vector3>();
         [SerializeField] private DestroyData destroyData;
 
-
         public float SpawnDelay => spawnDelay;
         public GameObject Prefab => prefab;
         public List<Vector3> SpawnPositions => spawnPositions;

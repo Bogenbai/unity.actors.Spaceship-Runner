@@ -4,7 +4,6 @@ using Runtime.Source.Components.Tags;
 using Runtime.Source.Tools.CameraShaker.Signals;
 using Random = Pixeye.Actors.Random;
 
-
 namespace Runtime.Source.Tools.CameraShaker
 {
     // Based on plugin 'MilkShake Camera Shaker' 

@@ -1,28 +1,35 @@
 ﻿using Pixeye.Actors;
 using Runtime.Source.Components;
-using Runtime.Source.Signals;
+using Runtime.Source.Components.Spawn;
 
 namespace Runtime.Source.Processors
 {
     // Class represents a system which is handles spawn signals and spawns appropriate entities using the specified data
-    internal sealed class ProcessorSpawner : Processor<SignalSpawn>
+    internal sealed class ProcessorSpawner : Processor, ITick
     {
-        public override void ReceiveEcs(ref SignalSpawn signal, ref bool stopSignal)
+        private readonly Group<ComponentSpawn> spawnSignals = default;
+
+
+        public void Tick(float dt)
         {
-            var spawnerData = signal.SpawnerData;
-
-            var spawnedActor = Layer.Actor.Create(
-                spawnerData.Prefab, signal.SpawnPosition, true);
-
-            var destroyData = spawnerData.DestroyData;
-
-            if (destroyData != null)
+            for (var i = 0; i < spawnSignals.length; i++)
             {
-                spawnedActor.entity.Get<ComponentDestroyable>();
-                spawnedActor.entity.ComponentDestroyable().DestroyData = destroyData;
-            }
+                var componentSpawn = spawnSignals[i].ComponentSpawn();
+                var spawnerData = componentSpawn.SpawnerData;
 
-            spawnedActor.entity.transform.parent = signal.SpawnInitiator.transform;
+                var spawnedActor = Layer.Actor.Create(
+                    spawnerData.Prefab, componentSpawn.SpawnPosition, true);
+
+                var destroyData = spawnerData.DestroyData;
+
+                if (destroyData != null)
+                {
+                    spawnedActor.entity.Get<ComponentDestroyable>();
+                    spawnedActor.entity.ComponentDestroyable().DestroyData = destroyData;
+                }
+
+                spawnedActor.entity.transform.parent = componentSpawn.SpawnInitiator.transform;
+            }
         }
     }
 }

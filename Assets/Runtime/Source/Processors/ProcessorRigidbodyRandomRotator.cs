@@ -23,19 +23,6 @@ namespace Runtime.Source.Processors
             }
         }
 
-        // public void Tick(float delta)
-        // {
-        //     for (var i = 0; i < groupRigidbodyRotatable.length; i++)
-        //     {
-        //         var entity = groupRigidbodyRotatable[i];
-        //         var rigidbody = entity.ComponentRigidbody().Rigidbody;
-        //
-        //         var tumble = entity.ComponentRandomRotatable().Tumble;
-        //         RandomRotate(rigidbody, tumble);
-        //         entity.Remove<ComponentRandomRotatable>();
-        //     }
-        // }
-
         private void RandomRotate(Rigidbody rigidbody, float tumble)
         {
             rigidbody.angularVelocity = Random.insideUnitSphere * tumble;

@@ -20,7 +20,7 @@ namespace Runtime.Source.Components
    {
      public const string Collision = "Game.Source.ComponentCollision";
      [MethodImpl(MethodImplOptions.AggressiveInlining)]
-     public static ref ComponentCollision ComponentCollisionMarker(in this ent entity) =>
+     public static ref ComponentCollision ComponentCollision(in this ent entity) =>
        ref Storage<ComponentCollision>.components[entity.id];
    }
 

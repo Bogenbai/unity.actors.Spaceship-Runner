@@ -17,21 +17,19 @@ namespace Runtime.Source.Processors
 
         public void Tick(float delta)
         {
-            for (var i = 0; i < groupCollisions.length; i++)
+            foreach (var entity in groupCollisions)
             {
-                var componentCollision = groupCollisions[i].ComponentCollisionMarker();
-
-                if (componentCollision.Collision.collider != null)
+                if (entity.ComponentCollision().Collision.collider != null)
                 {
-                    var collisionInitiator = componentCollision.Collision.gameObject.GetEntity();
+                    var collisionInitiator = entity.ComponentCollision().Collision.gameObject.GetEntity();
 
                     if (collisionInitiator.exist)
                     {
                         if (collisionInitiator.Has<ComponentAsteroid>() &&
-                            componentCollision.ReceiverEntity.Has<ComponentSpaceship>())
+                            entity.ComponentCollision().ReceiverEntity.Has<ComponentSpaceship>())
                         {
-                            HandleCollision(componentCollision, collisionInitiator);
-                            groupCollisions[i].Release();
+                            HandleCollision(entity.ComponentCollision(), collisionInitiator);
+                            entity.Release();
                         }
                     }
                 }

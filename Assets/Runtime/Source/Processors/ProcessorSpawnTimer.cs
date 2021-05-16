@@ -4,7 +4,6 @@ using Runtime.Source.Data.ScriptableObjects;
 using Runtime.Source.Tools;
 using Random = Pixeye.Actors.Random;
 
-
 namespace Runtime.Source.Processors
 {
     // Class represents a system which purpose is to send signals to spawn certain entities depending on specified spawn data
@@ -14,14 +13,13 @@ namespace Runtime.Source.Processors
 
         public void Tick(float delta)
         {
-            for (var i = 0; i < groupSpawners.length; i++)
+            foreach (var entity in groupSpawners)
             {
-                var spawner = groupSpawners[i];
-                var componentSpawner = spawner.ComponentSpawner();
+                var componentSpawner = entity.ComponentSpawner();
                 var spawnerData = componentSpawner.SpawnerData;
 
                 if (IsSpawnCooldownOver(componentSpawner, delta))
-                    RequestSpawn(spawner, componentSpawner, spawnerData);
+                    RequestSpawn(entity, componentSpawner, spawnerData);
             }
         }
 
@@ -38,7 +36,7 @@ namespace Runtime.Source.Processors
 
             var spawnPosition = spawnerData.SpawnPositions[Random.Range(0, spawnerData.SpawnPositions.Count)];
 
-            var componentSpawn = new ComponentSpawn()
+            var componentSpawn = new ComponentSpawn
             {
                 SpawnerData = spawnerData, SpawnPosition = spawnPosition, SpawnInitiator = spawnInitiator
             };

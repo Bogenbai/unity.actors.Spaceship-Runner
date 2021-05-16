@@ -20,14 +20,14 @@ namespace Runtime.Source.Components
         public const string UserInput = "Game.Source.ComponentUserInput";
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static ref ComponentUserInput ComponentUserInputMarker(in this ent entity) =>
+        public static ref ComponentUserInput ComponentUserInput(in this ent entity) =>
             ref Storage<ComponentUserInput>.components[entity.id];
     }
 
     [Il2CppSetOption(Option.NullChecks, false)]
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
     [Il2CppSetOption(Option.DivideByZeroChecks, false)]
-    sealed class StorageComponentUserInputMarker : Storage<ComponentUserInput>
+    sealed class StorageComponentUserInput : Storage<ComponentUserInput>
     {
         public override ComponentUserInput Create() => new ComponentUserInput();
 

@@ -10,10 +10,8 @@ namespace Runtime.Source.Processors
 
         public void TickFixed(float delta)
         {
-            for (var i = 0; i < groupMovement.length; i++)
+            foreach (var entity in groupMovement)
             {
-                var entity = groupMovement[i];
-
                 var cMove = entity.ComponentMove();
                 var rigidbody = entity.ComponentRigidbody().Rigidbody;
 

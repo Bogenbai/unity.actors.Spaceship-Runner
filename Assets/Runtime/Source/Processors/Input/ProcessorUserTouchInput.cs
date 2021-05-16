@@ -18,7 +18,7 @@ namespace Runtime.Source.Processors.Input
 
         public void Tick(float delta)
         {
-            for (int i = 0; i < groupPlayers.length; i++)
+            foreach (var entity in groupPlayers)
             {
                 if (Camera.main != null)
                 {
@@ -27,10 +27,10 @@ namespace Runtime.Source.Processors.Input
                     if (UnityEngine.Input.GetMouseButton(0))
                     {
                         var mousePos = UnityEngine.Input.mousePosition;
-                        mousePos.z = groupPlayers[i].transform.position.z;
+                        mousePos.z = entity.transform.position.z;
                         var mainCamera = groupMainCamera[0].ComponentCamera().Camera;
                         var worldPosition = mainCamera.ScreenToWorldPoint(mousePos);
-                        var playerX = groupPlayers[i].transform.position.x;
+                        var playerX = entity.transform.position.x;
 
                         if (Math.Abs(worldPosition.x - playerX) > DistanceToReact)
                         {

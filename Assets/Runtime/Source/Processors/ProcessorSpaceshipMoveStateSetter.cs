@@ -12,36 +12,34 @@ namespace Runtime.Source.Processors
 
         public void Tick(float delta)
         {
-            for (var i = 0; i < userInputs.length; i++)
+            foreach (var userInput in userInputs)
             {
-                var inputDirection = userInputs[i].ComponentUserInputMarker().MoveDirection;
+                var inputDirection = userInput.ComponentUserInput().MoveDirection;
 
-                for (var j = 0; j < groupPlayerMovements.length; j++)
+                foreach (var entity in groupPlayerMovements)
                 {
-                    var player = groupPlayerMovements[j];
-
                     if (inputDirection != Vector3.zero)
                     {
-                        if (player.Has<ComponentBraking>())
+                        if (entity.Has<ComponentBraking>())
                         {
-                            player.Remove<ComponentBraking>();
+                            entity.Remove<ComponentBraking>();
                         }
 
-                        if (player.Has<ComponentThrottling>() == false)
+                        if (entity.Has<ComponentThrottling>() == false)
                         {
-                            player.Get<ComponentThrottling>();
+                            entity.Get<ComponentThrottling>();
                         }
                     }
                     else
                     {
-                        if (player.Has<ComponentBraking>() == false)
+                        if (entity.Has<ComponentBraking>() == false)
                         {
-                            player.Get<ComponentBraking>();
+                            entity.Get<ComponentBraking>();
                         }
 
-                        if (player.Has<ComponentThrottling>())
+                        if (entity.Has<ComponentThrottling>())
                         {
-                            player.Remove<ComponentThrottling>();
+                            entity.Remove<ComponentThrottling>();
                         }
                     }
                 }

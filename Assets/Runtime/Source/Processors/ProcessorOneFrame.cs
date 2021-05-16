@@ -15,9 +15,9 @@ namespace Runtime.Source.Processors
 
         public void Tick(float delta)
         {
-            for (var i = 0; i < groupOneframes.length; i++)
+            foreach (var entity in groupOneframes)
             {
-                ReleaseDeadOneFrame(groupOneframes[i]);
+                ReleaseDeadOneFrame(entity);
             }
 
             HandleRequests();

@@ -12,9 +12,8 @@ namespace Runtime.Source.Processors
 
         public void Tick(float delta)
         {
-            for (int i = 0; i < groupSpaceships.length; i++)
+            foreach (var spaceship in groupSpaceships)
             {
-                var spaceship = groupSpaceships[i];
                 var movementData = spaceship.ComponentMovementData();
                 var speed = spaceship.ComponentMove().speed;
                 var thrustRotationScale = movementData.Parameters.ThrustRotationScale;

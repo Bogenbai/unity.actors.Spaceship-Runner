@@ -13,15 +13,14 @@ namespace Runtime.Source.Processors
 
         public void Tick(float delta)
         {
-            for (int i = 0; i < groupSpaceships.length; i++)
+            foreach (var entity in groupSpaceships)
             {
-                var spaceship = groupSpaceships[i];
-                var health = spaceship.ComponentHealth().value;
+                var health = entity.ComponentHealth().value;
 
                 if (health <= 0)
                 {
-                    spaceship.Release();
-                    Explosion(spaceship.transform.position);
+                    entity.Release();
+                    Explosion(entity.transform.position);
                 }
             }
         }

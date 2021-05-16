@@ -10,11 +10,10 @@ namespace Runtime.Source.Processors
 
         public void Tick(float delta)
         {
-            for (var j = 0; j < groupBraking.length; j++)
+            foreach (var entity in groupBraking)
             {
-                var brakingEntity = groupBraking[j];
-                var cMovementData = brakingEntity.ComponentMovementData();
-                var cMove = brakingEntity.ComponentMove();
+                var cMovementData = entity.ComponentMovementData();
+                var cMove = entity.ComponentMove();
                 var movementData = cMovementData.Parameters;
                 var acceleration = movementData.AccelerationBrakingScale;
 

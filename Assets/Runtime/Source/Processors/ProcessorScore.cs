@@ -19,12 +19,12 @@ namespace Runtime.Source.Processors
 
         public override void HandleEcsEvents()
         {
-            foreach (var e in groupSpaceships.added)
+            foreach (var unused in groupSpaceships.added)
             {
                 scoreCounterEntity.ComponentScore().Score = 0;
             }
 
-            foreach (var e in groupAsteroids.removed)
+            foreach (var unused in groupAsteroids.removed)
             {
                 if (groupSpaceships.length > 0)
                 {

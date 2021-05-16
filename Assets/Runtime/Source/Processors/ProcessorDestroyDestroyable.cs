@@ -11,13 +11,11 @@ namespace Runtime.Source.Processors
 
         public void Tick(float delta)
         {
-            for (var i = 0; i < groupDestroyable.length; i++)
+            foreach (var entity in groupDestroyable)
             {
-                var spawnedObj = groupDestroyable[i];
+                var destroyableEntity = entity.ComponentDestroyable();
                 
-                var destroyableEntity = spawnedObj.ComponentDestroyable();
-                
-                ReleaseEntityAtCoordinate(spawnedObj, destroyableEntity);
+                ReleaseEntityAtCoordinate(entity, destroyableEntity);
             }
         }
 

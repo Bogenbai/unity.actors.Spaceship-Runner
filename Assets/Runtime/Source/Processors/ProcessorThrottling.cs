@@ -13,13 +13,12 @@ namespace Runtime.Source.Processors
 
         public void Tick(float delta)
         {
-            for (var i = 0; i < userInputs.length; i++)
+            foreach (var userInput in userInputs)
             {
-                var inputDirection = userInputs[i].ComponentUserInputMarker().MoveDirection;
+                var inputDirection = userInput.ComponentUserInput().MoveDirection;
 
-                for (var j = 0; j < groupThrottles.length; j++)
+                foreach (var throttleEntity in groupThrottles)
                 {
-                    var throttleEntity = groupThrottles[j];
                     var cMovementData = throttleEntity.ComponentMovementData();
                     var cMove = throttleEntity.ComponentMove();
                     var rigidbody = throttleEntity.ComponentRigidbody().Rigidbody;

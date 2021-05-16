@@ -11,13 +11,13 @@ namespace Runtime.Source.Processors
 
         public void Tick(float dt)
         {
-            for (var i = 0; i < spawnSignals.length; i++)
+            foreach (var entity in spawnSignals)
             {
-                var componentSpawn = spawnSignals[i].ComponentSpawn();
-                var spawnerData = componentSpawn.SpawnerData;
+                var cSpawn = entity.ComponentSpawn();
+                var spawnerData = cSpawn.SpawnerData;
 
                 var spawnedActor = Layer.Actor.Create(
-                    spawnerData.Prefab, componentSpawn.SpawnPosition, true);
+                    spawnerData.Prefab, cSpawn.SpawnPosition, true);
 
                 var destroyData = spawnerData.DestroyData;
 
@@ -27,7 +27,7 @@ namespace Runtime.Source.Processors
                     spawnedActor.entity.ComponentDestroyable().DestroyData = destroyData;
                 }
 
-                spawnedActor.entity.transform.parent = componentSpawn.SpawnInitiator.transform;
+                spawnedActor.entity.transform.parent = cSpawn.SpawnInitiator.transform;
             }
         }
     }

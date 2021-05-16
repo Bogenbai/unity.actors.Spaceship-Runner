@@ -12,9 +12,8 @@ namespace Runtime.Source.Processors
 
         public override void HandleEcsEvents()
         {
-            for (var i = 0; i < groupRotatable.added.length; i++)
+            foreach (var entity in groupRotatable.added)
             {
-                var entity = groupRotatable.added[i];
                 var rigidbody = entity.ComponentRigidbody().Rigidbody;
                 var tumble = entity.ComponentRandomRotatable().Tumble;
                 

@@ -11,7 +11,7 @@ namespace Runtime.Source.Actors
         [FoldoutGroup("Components", true)] public ComponentAsteroid componentAsteroid;
         [FoldoutGroup("Components", true)] public ComponentRigidbody componentRigidbody;
         [FoldoutGroup("Components", true)] public ComponentRandomRotatable componentRandomRotatable;
-        [FoldoutGroup("Components", true)] public ComponentConstantMove componentConstantMove;
+        [FoldoutGroup("Components", true)] public ComponentMove componentMove;
         [FoldoutGroup("Components", true)] public ComponentScaleTo componentScaleTo;
         [FoldoutGroup("Components", true)] public ComponentCanShatter componentCanShatter;
         [FoldoutGroup("Components", true)] public ComponentDamage componentDamage;
@@ -25,7 +25,7 @@ namespace Runtime.Source.Actors
             entity.Set(componentAsteroid);
             entity.Set(componentRigidbody);
             entity.Set(componentRandomRotatable);
-            entity.Set(componentConstantMove);
+            entity.Set(componentMove);
             entity.Set(componentScaleTo);
             entity.Set(componentCanShatter);
             entity.Set(componentDamage);

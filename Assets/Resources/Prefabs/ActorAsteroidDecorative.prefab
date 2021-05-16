@@ -826,13 +826,13 @@ MonoBehaviour:
     rigidbody: {fileID: 0}
   componentRandomRotatable:
     tumble: 10
-  componentConstantMove:
+  componentMove:
     movementDirection: {x: 0, y: 0, z: -1}
-    speed: 65
+    speed: 3200
   componentScaleTo:
     startScale: {x: 0, y: 0, z: 0}
     finalScale: {x: 1, y: 1, z: 1}
-    scaleSpeed: 2
+    scaleSpeed: 10
   componentDestroyable:
     destroyData: {fileID: 11400000, guid: dd3030af49788264ea65b7fc9c6d2609, type: 2}
 --- !u!1 &5744776870327155097

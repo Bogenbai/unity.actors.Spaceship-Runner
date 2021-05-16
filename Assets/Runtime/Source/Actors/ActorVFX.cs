@@ -8,11 +8,11 @@ namespace Runtime.Source.Actors
         [FoldoutGroup("Components", true)]
         public ComponentDestroyable componentDestroyable;
         [FoldoutGroup("Components", true)]
-        public ComponentConstantMove componentConstantMove;
+        public ComponentMove componentMove;
 
         protected override void Setup()
         {
-            entity.Set(componentConstantMove);
+            entity.Set(componentMove);
             entity.Set(componentDestroyable);
         }
     }

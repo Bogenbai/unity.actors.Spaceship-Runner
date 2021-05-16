@@ -9,7 +9,7 @@ namespace Runtime.Source.Actors
     {
         [FoldoutGroup("Components", true)] public ComponentRigidbody componentRigidbody;
         [FoldoutGroup("Components", true)] public ComponentRandomRotatable componentRandomRotatable;
-        [FoldoutGroup("Components", true)] public ComponentConstantMove componentConstantMove;
+        [FoldoutGroup("Components", true)] public ComponentMove componentMove;
         [FoldoutGroup("Components", true)] public ComponentScaleTo componentScaleTo;
         [FoldoutGroup("Components", true)] public ComponentDestroyable componentDestroyable;
 
@@ -19,7 +19,7 @@ namespace Runtime.Source.Actors
             
             entity.Set(componentRigidbody);
             entity.Set(componentRandomRotatable);
-            entity.Set(componentConstantMove);
+            entity.Set(componentMove);
             entity.Set(componentScaleTo);
             entity.Set(componentDestroyable);
         }

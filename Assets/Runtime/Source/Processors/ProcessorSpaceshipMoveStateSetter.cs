@@ -1,6 +1,5 @@
 ﻿using Pixeye.Actors;
 using Runtime.Source.Components;
-using Runtime.Source.Components.Tags;
 using UnityEngine;
 
 namespace Runtime.Source.Processors
@@ -8,37 +7,42 @@ namespace Runtime.Source.Processors
     // Class represents a system which sets a certain movement state (Throttling, Braking) to spaceships in the game 
     sealed class ProcessorSpaceshipMoveStateSetter : Processor, ITick
     {
-        private Group<ComponentSpaceship, ComponentPlayerMovementData> groupPlayerMovements = default;
+        private Group<ComponentUserInput> userInputs = default;
+        private readonly Group<ComponentMove, ComponentMovementData> groupPlayerMovements = default;
 
         public void Tick(float delta)
         {
-            for (var i = 0; i < groupPlayerMovements.length; i++)
+            for (var i = 0; i < userInputs.length; i++)
             {
-                var player = groupPlayerMovements[i];
-                var direction = player.ComponentPlayerMovementData().currentMoveDirectionNormalized;
+                var inputDirection = userInputs[i].ComponentUserInputMarker().MoveDirection;
 
-                if (direction != Vector3.zero)
+                for (var j = 0; j < groupPlayerMovements.length; j++)
                 {
-                    if (player.Has<ComponentBraking>())
-                    {
-                        player.Remove<ComponentBraking>();
-                    }
+                    var player = groupPlayerMovements[j];
 
-                    if (!player.Has<ComponentThrottling>())
+                    if (inputDirection != Vector3.zero)
                     {
-                        player.Get<ComponentThrottling>();
-                    }
-                }
-                else
-                {
-                    if (!player.Has<ComponentBraking>())
-                    {
-                        player.Get<ComponentBraking>();
-                    }
+                        if (player.Has<ComponentBraking>())
+                        {
+                            player.Remove<ComponentBraking>();
+                        }
 
-                    if (player.Has<ComponentThrottling>())
+                        if (player.Has<ComponentThrottling>() == false)
+                        {
+                            player.Get<ComponentThrottling>();
+                        }
+                    }
+                    else
                     {
-                        player.Remove<ComponentThrottling>();
+                        if (player.Has<ComponentBraking>() == false)
+                        {
+                            player.Get<ComponentBraking>();
+                        }
+
+                        if (player.Has<ComponentThrottling>())
+                        {
+                            player.Remove<ComponentThrottling>();
+                        }
                     }
                 }
             }

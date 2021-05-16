@@ -12,14 +12,14 @@ namespace Runtime.Source.Actors
         [FoldoutGroup("Components", true)]
         public ComponentRigidbody componentRigidbody;
         [FoldoutGroup("Components", true)]
-        public ComponentConstantMove componentConstantMove;
+        public ComponentMove componentMove;
 
         protected override void Setup()
         {
             componentRigidbody.SetRigidbody(GetComponent<Rigidbody>());
             
             entity.Set(componentRigidbody);
-            entity.Set(componentConstantMove);
+            entity.Set(componentMove);
             entity.Set(componentDestroyable);
         }
     }

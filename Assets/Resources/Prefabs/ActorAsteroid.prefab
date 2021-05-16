@@ -635,7 +635,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 0
+  m_Constraints: 6
   m_CollisionDetection: 0
 --- !u!135 &215028357
 SphereCollider:
@@ -775,13 +775,13 @@ MonoBehaviour:
     rigidbody: {fileID: 0}
   componentRandomRotatable:
     tumble: 10
-  componentConstantMove:
+  componentMove:
     movementDirection: {x: 0, y: 0, z: -1}
-    speed: 65
+    speed: 3200
   componentScaleTo:
     startScale: {x: 0, y: 0, z: 0}
     finalScale: {x: 1, y: 1, z: 1}
-    scaleSpeed: 2
+    scaleSpeed: 10
   componentCanShatter:
     shardPrefab: {fileID: 7473241595259952896, guid: 6f92c940753de3641a5bb64402e37c2e,
       type: 3}

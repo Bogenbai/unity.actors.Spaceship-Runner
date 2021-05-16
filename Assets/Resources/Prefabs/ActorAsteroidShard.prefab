@@ -317,7 +317,7 @@ GameObject:
   - component: {fileID: 2886743050976967928}
   - component: {fileID: 81546487}
   m_Layer: 0
-  m_Name: AsteroidShard
+  m_Name: ActorAsteroidShard
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -346,7 +346,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7473241595259952896}
   serializedVersion: 2
-  m_Mass: 100
+  m_Mass: 1
   m_Drag: 1
   m_AngularDrag: 0
   m_UseGravity: 0
@@ -385,6 +385,6 @@ MonoBehaviour:
     destroyData: {fileID: 11400000, guid: dd3030af49788264ea65b7fc9c6d2609, type: 2}
   componentRigidbody:
     rigidbody: {fileID: 0}
-  componentConstantMove:
+  componentMove:
     movementDirection: {x: 0, y: 0, z: -1}
-    speed: 45
+    speed: 3200

@@ -600,7 +600,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 12
   m_CollisionDetection: 3
@@ -622,11 +622,16 @@ MonoBehaviour:
     startPosition: {x: 0, y: 0, z: 0}
   componentRigidbody:
     rigidbody: {fileID: 0}
-  componentPlayerMovementData:
+  componentMovementData:
     parameters: {fileID: 11400000, guid: 77917388c254d304ba16ed5644deec9c, type: 2}
-    currentThrustRotationVelocity: 0
+    thrustRotationVelocity: 0
+    thrustRotation: 0
+    velocityX: 0
   componentHealth:
     value: 5
+  componentMove:
+    movementDirection: {x: 0, y: 0, z: 0}
+    speed: 0
 --- !u!1 &2601132543782527179
 GameObject:
   m_ObjectHideFlags: 0

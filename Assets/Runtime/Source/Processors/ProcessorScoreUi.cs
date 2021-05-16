@@ -8,8 +8,8 @@ namespace Runtime.Source.Processors
     // Class represents a system that updates player's score in the ui
     sealed class ProcessorScoreUi : Processor
     {
-        private Group<ComponentScore> groupScores = default;
-        private Group<ComponentScoreText, ComponentText> groupScoreTexts = default;
+        private readonly Group<ComponentScore> groupScores = default;
+        private readonly Group<ComponentScoreText, ComponentText> groupScoreTexts = default;
         
         public override void HandleEcsEvents()
         {

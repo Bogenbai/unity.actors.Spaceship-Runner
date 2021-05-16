@@ -1,28 +1,20 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 using Pixeye.Actors;
+using Runtime.Source.Data.ScriptableObjects;
 using Unity.IL2CPP.CompilerServices;
 using UnityEngine;
 
 namespace Runtime.Source.Components
 {
     [Serializable]
-    public class ComponentConstantMove
+    public class ComponentMovementData
     {
-        [SerializeField] private Vector3 movementDirection;
-        [SerializeField] private float speed;
-
-        public Vector3 MovementDirection
-        {
-            get => movementDirection;
-            set => movementDirection = value;
-        }
-
-        public float Speed
-        {
-            get => speed;
-            set => speed = value;
-        }
+        [SerializeField] private PlayerMovementData parameters = null;
+        public float thrustRotationVelocity;
+        public float thrustRotation;
+        public float velocityX;
+        public PlayerMovementData Parameters => parameters;
     }
 
     #region HELPERS
@@ -32,19 +24,19 @@ namespace Runtime.Source.Components
     [Il2CppSetOption(Option.DivideByZeroChecks, false)]
     static partial class Component
     {
-        public const string Speed = "Game.Source.SpeedComponent";
+        public const string MovementData = "Game.Source.ComponentMovementData";
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static ref ComponentConstantMove ComponentConstantMove(in this ent entity) =>
-            ref Storage<ComponentConstantMove>.components[entity.id];
+        public static ref ComponentMovementData ComponentMovementData(in this ent entity) =>
+            ref Storage<ComponentMovementData>.components[entity.id];
     }
 
     [Il2CppSetOption(Option.NullChecks, false)]
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
     [Il2CppSetOption(Option.DivideByZeroChecks, false)]
-    sealed class StorageSpeedComponent : Storage<ComponentConstantMove>
+    sealed class StorageComponentMovementData : Storage<ComponentMovementData>
     {
-        public override ComponentConstantMove Create() => new ComponentConstantMove();
+        public override ComponentMovementData Create() => new ComponentMovementData();
 
         // Use for cleaning components that were removed at the current frame.
         public override void Dispose(indexes disposed)

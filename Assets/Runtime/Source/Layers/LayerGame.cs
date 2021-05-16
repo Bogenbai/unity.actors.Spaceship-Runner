@@ -24,7 +24,7 @@ namespace Runtime.Source.Layers
             Add<ProcessorHealth>();
             Add<ProcessorScore>();
             Add<ProcessorCameraShake>();
-            Add<ProcessorConstantMove>();
+            Add<ProcessorMove>();
             Add<ProcessorScoreUi>();
             AddSpaceshipProcessors();
             AddOneFramesProcessors();
@@ -33,14 +33,14 @@ namespace Runtime.Source.Layers
         private static void AddSpaceshipProcessors()
         {
             Add<ProcessorSpaceshipMoveStateSetter>();
-            Add<ProcessorSpaceshipMove>();
-            Add<ProcessorSpaceshipThrottling>();
+            //Add<ProcessorSpaceshipMove>();
+            Add<ProcessorThrottling>();
             Add<ProcessorSpaceshipBraking>();
             Add<ProcessorSpaceshipRotation>();
             Add<ProcessorSpaceshipMoveBounds>();
             Add<ProcessorSpaceshipRespawn>();
             Add<ProcessorSpaceshipAsteroidCollision>();
-            Add<ProcessorSpaceshipDeath>();
+            //Add<ProcessorSpaceshipDeath>();
         }
 
         private static void AddOneFramesProcessors()

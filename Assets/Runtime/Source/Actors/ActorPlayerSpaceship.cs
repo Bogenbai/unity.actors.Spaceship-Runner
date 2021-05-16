@@ -11,10 +11,10 @@ namespace Runtime.Source.Actors
     {
         [FoldoutGroup("Components", true)] public ComponentSpaceship componentSpaceship;
         [FoldoutGroup("Components", true)] public ComponentRigidbody componentRigidbody;
-        [FoldoutGroup("Components", true)] public ComponentPlayerMovementData componentPlayerMovementData;
+        [FoldoutGroup("Components", true)] public ComponentMovementData componentMovementData;
         [FoldoutGroup("Components", true)] public ComponentHealth componentHealth;
-
-
+        [FoldoutGroup("Components", true)] public ComponentMove componentMove;
+        
         protected override void Setup()
         {
             componentRigidbody.SetRigidbody(GetComponent<Rigidbody>());
@@ -22,7 +22,8 @@ namespace Runtime.Source.Actors
 
             entity.Set(componentSpaceship);
             entity.Set(componentRigidbody);
-            entity.Set(componentPlayerMovementData);
+            entity.Set(componentMovementData);
+            entity.Set(componentMove);
             entity.Set(componentHealth);
         }
 
@@ -30,13 +31,6 @@ namespace Runtime.Source.Actors
         {
             var collisionMarker = new ComponentCollision {Collision = other, ReceiverEntity = entity};
             OneFramesCore.Register(Layer, collisionMarker);
-        }
-
-        private void OnDrawGizmosSelected()
-        {
-            Gizmos.color = Color.blue;
-            var speedX = componentPlayerMovementData.currentVelocityX;
-            Gizmos.DrawRay(transform.position, new Vector3(speedX, 0, 0));
         }
     }
 }

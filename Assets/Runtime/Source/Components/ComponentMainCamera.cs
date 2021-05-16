@@ -2,15 +2,11 @@
 using System.Runtime.CompilerServices;
 using Pixeye.Actors;
 using Unity.IL2CPP.CompilerServices;
-using UnityEngine;
 
-namespace Runtime.Source.Components.Tags
+namespace Runtime.Source.Components
 {
     [Serializable]
-    public class ComponentSpaceship
-    {
-        public Vector3 startPosition;
-    }
+    public class ComponentMainCamera { }
 
     #region HELPERS
 
@@ -19,18 +15,20 @@ namespace Runtime.Source.Components.Tags
     [Il2CppSetOption(Option.DivideByZeroChecks, false)]
     static partial class Component
     {
-        public const string Spaceship = "Game.Source.ComponentSpaceship";
+        public const string MainCamera = "Game.Source.ComponentMainCamera";
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static ref ComponentSpaceship ComponentSpaceship(in this ent entity) =>
-          ref Storage<ComponentSpaceship>.components[entity.id];
+        public static ref ComponentMainCamera ComponentMainCamera(in this ent entity) =>
+            ref Storage<ComponentMainCamera>.components[entity.id];
     }
 
     [Il2CppSetOption(Option.NullChecks, false)]
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
     [Il2CppSetOption(Option.DivideByZeroChecks, false)]
-    sealed class StorageComponentSpaceship : Storage<ComponentSpaceship>
+    sealed class StorageComponentMainCamera : Storage<ComponentMainCamera>
     {
-        public override ComponentSpaceship Create() => new ComponentSpaceship();
+        public override ComponentMainCamera Create() => new ComponentMainCamera();
+
         // Use for cleaning components that were removed at the current frame.
         public override void Dispose(indexes disposed)
         {
@@ -43,4 +41,3 @@ namespace Runtime.Source.Components.Tags
 
     #endregion
 }
-

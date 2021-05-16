@@ -7,8 +7,8 @@ namespace Runtime.Source.Processors
     // Class represents a system which sets a certain movement state (Throttling, Braking) to spaceships in the game 
     sealed class ProcessorSpaceshipMoveStateSetter : Processor, ITick
     {
-        private Group<ComponentUserInput> userInputs = default;
-        private readonly Group<ComponentMove, ComponentMovementData> groupPlayerMovements = default;
+        private readonly Group<ComponentUserInput> userInputs = default;
+        private readonly Group<ComponentSpaceship, ComponentMove> groupSpaceships = default;
 
         public void Tick(float delta)
         {
@@ -16,7 +16,7 @@ namespace Runtime.Source.Processors
             {
                 var inputDirection = userInput.ComponentUserInput().MoveDirection;
 
-                foreach (var entity in groupPlayerMovements)
+                foreach (var entity in groupSpaceships)
                 {
                     if (inputDirection != Vector3.zero)
                     {

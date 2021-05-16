@@ -7,19 +7,18 @@ namespace Runtime.Source.Processors
     // Class is a system that rotates player's spaceship depending on it's movement
     sealed class ProcessorThrust : Processor, ITick
     {
-        private Group<ComponentMovementData, ComponentMove, ComponentThrust> groupSpaceships =
-            default;
+        private Group<ComponentSpaceship, ComponentMove, ComponentThrust> groupSpaceships = default;
 
         public void Tick(float delta)
         {
-            foreach (var spaceship in groupSpaceships)
+            foreach (var entity in groupSpaceships)
             {
-                var movementData = spaceship.ComponentMovementData();
-                var cThrust = spaceship.ComponentThrust();
-                var speed = spaceship.ComponentMove().speed;
-                var thrustRotationScale = movementData.Parameters.ThrustRotationScale;
+                var parameters = entity.ComponentSpaceship().Parameters;
+                var cThrust = entity.ComponentThrust();
+                var speed = entity.ComponentMove().speed;
+                var thrustRotationScale = parameters.ThrustRotationScale;
 
-                if (spaceship.ComponentMove().movementDirection.x < 0)
+                if (entity.ComponentMove().movementDirection.x < 0)
                 {
                     speed = -speed;
                 }
@@ -28,9 +27,9 @@ namespace Runtime.Source.Processors
                     cThrust.thrustRotation,
                     -speed * thrustRotationScale,
                     ref cThrust.thrustRotationVelocity,
-                    movementData.Parameters.ThrustRotationSmooth);
+                    parameters.ThrustRotationSmooth);
 
-                spaceship.transform.rotation = Quaternion.Euler(0, 0, cThrust.thrustRotation);
+                entity.transform.rotation = Quaternion.Euler(0, 0, cThrust.thrustRotation);
             }
         }
     }

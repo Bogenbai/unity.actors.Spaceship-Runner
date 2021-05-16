@@ -8,7 +8,7 @@ namespace Runtime.Source.Processors
     {
         private Group<ComponentUserInput> userInputs = default;
 
-        private Group<ComponentMove, ComponentMovementData, ComponentThrottling, ComponentRigidbody> groupThrottles =
+        private Group<ComponentSpaceship, ComponentThrottling, ComponentRigidbody> groupThrottles =
             default;
 
         public void Tick(float delta)
@@ -19,12 +19,12 @@ namespace Runtime.Source.Processors
 
                 foreach (var throttleEntity in groupThrottles)
                 {
-                    var cMovementData = throttleEntity.ComponentMovementData();
+                    var spaceship = throttleEntity.ComponentSpaceship();
                     var cMove = throttleEntity.ComponentMove();
                     var rigidbody = throttleEntity.ComponentRigidbody().Rigidbody;
-                    var movementData = cMovementData.Parameters;
+                    var parameters = spaceship.Parameters;
                     var speed = cMove.speed;
-                    var acceleration = movementData.Acceleration;
+                    var acceleration = parameters.Acceleration;
 
                     if (inputDirection.x != 0)
                     {
@@ -36,13 +36,13 @@ namespace Runtime.Source.Processors
                         }
 
                         if (speed < 0)
-                            acceleration = movementData.InterpolationAcceleration;
+                            acceleration = parameters.InterpolationAcceleration;
 
                         speed += acceleration * delta;
                     }
 
-                    if (speed > movementData.MaxVelocityX)
-                        speed = movementData.MaxVelocityX;
+                    if (speed > parameters.MaxVelocityX)
+                        speed = parameters.MaxVelocityX;
 
                     cMove.movementDirection = inputDirection;
                     cMove.speed = speed;

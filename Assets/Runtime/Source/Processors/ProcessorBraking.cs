@@ -6,16 +6,15 @@ namespace Runtime.Source.Processors
     // Class is a system that sets the player's spaceship movement data when it's braking
     sealed class ProcessorBraking : Processor, ITick
     {
-        private Group<ComponentMove, ComponentMovementData, ComponentBraking> groupBraking = default;
+        private Group<ComponentSpaceship, ComponentMove, ComponentBraking> groupBraking = default;
 
         public void Tick(float delta)
         {
             foreach (var entity in groupBraking)
             {
-                var cMovementData = entity.ComponentMovementData();
+                var parameters = entity.ComponentSpaceship().Parameters;
                 var cMove = entity.ComponentMove();
-                var movementData = cMovementData.Parameters;
-                var acceleration = movementData.AccelerationBrakingScale;
+                var acceleration = parameters.AccelerationBrakingScale;
 
                 if (cMove.speed != 0)
                 {

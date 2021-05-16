@@ -591,18 +591,21 @@ MonoBehaviour:
   _entity: 0
   prefabReferenceName: 
   componentSpaceship:
+    parameters: {fileID: 11400000, guid: 77917388c254d304ba16ed5644deec9c, type: 2}
     startPosition: {x: 0, y: 0, z: 0}
   componentRigidbody:
     rigidbody: {fileID: 0}
-  componentMovementData:
-    parameters: {fileID: 11400000, guid: 77917388c254d304ba16ed5644deec9c, type: 2}
-    thrustRotationVelocity: 0
-    thrustRotation: 0
   componentHealth:
     value: 5
   componentMove:
     movementDirection: {x: 0, y: 0, z: 0}
     speed: 0
+  componentThrust:
+    thrustRotationVelocity: 0
+    thrustRotation: 0
+  componentBounds:
+    leftMovementBoundX: -6
+    rightMovementBoundX: 6
 --- !u!1 &2601132543782527179
 GameObject:
   m_ObjectHideFlags: 0

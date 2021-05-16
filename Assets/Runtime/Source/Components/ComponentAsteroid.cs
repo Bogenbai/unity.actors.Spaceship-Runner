@@ -1,18 +1,12 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 using Pixeye.Actors;
-using Runtime.Source.Data.ScriptableObjects;
 using Unity.IL2CPP.CompilerServices;
-using UnityEngine;
 
 namespace Runtime.Source.Components
 {
     [Serializable]
-    public class ComponentMovementData
-    {
-        [SerializeField] private PlayerMovementData parameters = null;
-        public PlayerMovementData Parameters => parameters;
-    }
+    public class ComponentAsteroid { }
 
     #region HELPERS
 
@@ -21,19 +15,19 @@ namespace Runtime.Source.Components
     [Il2CppSetOption(Option.DivideByZeroChecks, false)]
     static partial class Component
     {
-        public const string MovementData = "Game.Source.ComponentMovementData";
+        public const string Asteroid = "Game.Source.ComponentAsteroid";
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static ref ComponentMovementData ComponentMovementData(in this ent entity) =>
-            ref Storage<ComponentMovementData>.components[entity.id];
+        public static ref ComponentAsteroid ComponentAsteroid(in this ent entity) =>
+            ref Storage<ComponentAsteroid>.components[entity.id];
     }
 
     [Il2CppSetOption(Option.NullChecks, false)]
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
     [Il2CppSetOption(Option.DivideByZeroChecks, false)]
-    sealed class StorageComponentMovementData : Storage<ComponentMovementData>
+    sealed class StorageComponentAsteroid : Storage<ComponentAsteroid>
     {
-        public override ComponentMovementData Create() => new ComponentMovementData();
+        public override ComponentAsteroid Create() => new ComponentAsteroid();
 
         // Use for cleaning components that were removed at the current frame.
         public override void Dispose(indexes disposed)

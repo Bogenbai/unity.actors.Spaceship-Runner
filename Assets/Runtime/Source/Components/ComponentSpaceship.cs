@@ -1,12 +1,19 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 using Pixeye.Actors;
+using Runtime.Source.Data.ScriptableObjects;
 using Unity.IL2CPP.CompilerServices;
+using UnityEngine;
 
-namespace Runtime.Source.Components.Tags
+namespace Runtime.Source.Components
 {
     [Serializable]
-    public class ComponentAsteroid { }
+    public class ComponentSpaceship
+    {
+        [SerializeField] private PlayerMovementData parameters = null;
+        public Vector3 startPosition;
+        public PlayerMovementData Parameters => parameters;
+    }
 
     #region HELPERS
 
@@ -15,20 +22,18 @@ namespace Runtime.Source.Components.Tags
     [Il2CppSetOption(Option.DivideByZeroChecks, false)]
     static partial class Component
     {
-        public const string Asteroid = "Game.Source.ComponentAsteroid";
-
+        public const string Spaceship = "Game.Source.ComponentSpaceship";
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static ref ComponentAsteroid ComponentAsteroid(in this ent entity) =>
-            ref Storage<ComponentAsteroid>.components[entity.id];
+        public static ref ComponentSpaceship ComponentSpaceship(in this ent entity) =>
+          ref Storage<ComponentSpaceship>.components[entity.id];
     }
 
     [Il2CppSetOption(Option.NullChecks, false)]
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
     [Il2CppSetOption(Option.DivideByZeroChecks, false)]
-    sealed class StorageComponentAsteroid : Storage<ComponentAsteroid>
+    sealed class StorageComponentSpaceship : Storage<ComponentSpaceship>
     {
-        public override ComponentAsteroid Create() => new ComponentAsteroid();
-
+        public override ComponentSpaceship Create() => new ComponentSpaceship();
         // Use for cleaning components that were removed at the current frame.
         public override void Dispose(indexes disposed)
         {
@@ -41,3 +46,4 @@ namespace Runtime.Source.Components.Tags
 
     #endregion
 }
+

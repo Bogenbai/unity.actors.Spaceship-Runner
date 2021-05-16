@@ -1,6 +1,5 @@
 ﻿using Pixeye.Actors;
 using Runtime.Source.Components;
-using Runtime.Source.Components.Tags;
 using Runtime.Source.Tools;
 using UnityEngine;
 
@@ -11,7 +10,6 @@ namespace Runtime.Source.Actors
     {
         [FoldoutGroup("Components", true)] public ComponentSpaceship componentSpaceship;
         [FoldoutGroup("Components", true)] public ComponentRigidbody componentRigidbody;
-        [FoldoutGroup("Components", true)] public ComponentMovementData componentMovementData;
         [FoldoutGroup("Components", true)] public ComponentHealth componentHealth;
         [FoldoutGroup("Components", true)] public ComponentMove componentMove;
         [FoldoutGroup("Components", true)] public ComponentThrust componentThrust;
@@ -24,7 +22,6 @@ namespace Runtime.Source.Actors
 
             entity.Set(componentSpaceship);
             entity.Set(componentRigidbody);
-            entity.Set(componentMovementData);
             entity.Set(componentMove);
             entity.Set(componentHealth);
             entity.Set(componentThrust);

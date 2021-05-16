@@ -1,6 +1,5 @@
 ﻿using Pixeye.Actors;
 using Runtime.Source.Components;
-using Runtime.Source.Components.Tags;
 using UnityEngine;
 
 namespace Runtime.Source.Processors
@@ -8,15 +7,15 @@ namespace Runtime.Source.Processors
     // Class is a system that limits player's spaceship movement zone
     sealed class ProcessorSpaceshipMoveBounds : Processor, ITick
     {
-        private Group<ComponentSpaceship, ComponentMovementData, ComponentRigidbody> groupSpaceships = default;
+        private Group<ComponentBounds> groupBounded = default;
 
         public void Tick(float delta)
         {
-            foreach (var entity in groupSpaceships)
+            foreach (var entity in groupBounded)
             {
-                var movementData = entity.ComponentMovementData();
-                var leftBoundX = movementData.Parameters.LeftMovementBoundX;
-                var rightBoundX = movementData.Parameters.RightMovementBoundX;
+                var cBounds = entity.ComponentBounds();
+                var leftBoundX = cBounds.leftMovementBoundX;
+                var rightBoundX = cBounds.rightMovementBoundX;
 
                 if (entity.transform.position.x <= leftBoundX)
                 {

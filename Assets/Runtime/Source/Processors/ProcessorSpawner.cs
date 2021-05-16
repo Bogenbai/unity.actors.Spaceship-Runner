@@ -23,8 +23,8 @@ namespace Runtime.Source.Processors
 
                 if (destroyData != null)
                 {
-                    spawnedActor.entity.Get<ComponentDestroyable>();
-                    spawnedActor.entity.ComponentDestroyable().DestroyData = destroyData;
+                    var cDestroyable = spawnedActor.entity.Get<ComponentDestroyable>();
+                    cDestroyable.DestroyData = destroyData;
                 }
 
                 spawnedActor.entity.transform.parent = cSpawn.SpawnInitiator.transform;

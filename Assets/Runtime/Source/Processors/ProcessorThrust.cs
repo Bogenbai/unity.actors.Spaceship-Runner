@@ -1,20 +1,21 @@
 ﻿using Pixeye.Actors;
 using Runtime.Source.Components;
-using Runtime.Source.Components.Tags;
 using UnityEngine;
 
 namespace Runtime.Source.Processors
 {
     // Class is a system that rotates player's spaceship depending on it's movement
-    sealed class ProcessorSpaceshipRotation : Processor, ITick
+    sealed class ProcessorThrust : Processor, ITick
     {
-        private Group<ComponentSpaceship, ComponentMovementData, ComponentMove> groupSpaceships = default;
+        private Group<ComponentMovementData, ComponentMove, ComponentThrust> groupSpaceships =
+            default;
 
         public void Tick(float delta)
         {
             foreach (var spaceship in groupSpaceships)
             {
                 var movementData = spaceship.ComponentMovementData();
+                var cThrust = spaceship.ComponentThrust();
                 var speed = spaceship.ComponentMove().speed;
                 var thrustRotationScale = movementData.Parameters.ThrustRotationScale;
 
@@ -23,13 +24,13 @@ namespace Runtime.Source.Processors
                     speed = -speed;
                 }
 
-                movementData.thrustRotation = Mathf.SmoothDamp(
-                    movementData.thrustRotation,
+                cThrust.thrustRotation = Mathf.SmoothDamp(
+                    cThrust.thrustRotation,
                     -speed * thrustRotationScale,
-                    ref movementData.thrustRotationVelocity,
+                    ref cThrust.thrustRotationVelocity,
                     movementData.Parameters.ThrustRotationSmooth);
 
-                spaceship.transform.rotation = Quaternion.Euler(0, 0, movementData.thrustRotation);
+                spaceship.transform.rotation = Quaternion.Euler(0, 0, cThrust.thrustRotation);
             }
         }
     }

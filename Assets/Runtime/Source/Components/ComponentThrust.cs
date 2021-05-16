@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 using Pixeye.Actors;
-using Runtime.Source.Data.ScriptableObjects;
 using Unity.IL2CPP.CompilerServices;
-using UnityEngine;
 
 namespace Runtime.Source.Components
 {
     [Serializable]
-    public class ComponentMovementData
+    public class ComponentThrust
     {
-        [SerializeField] private PlayerMovementData parameters = null;
-        public PlayerMovementData Parameters => parameters;
+        public float thrustRotationVelocity;
+        public float thrustRotation;
     }
 
     #region HELPERS
@@ -21,19 +19,19 @@ namespace Runtime.Source.Components
     [Il2CppSetOption(Option.DivideByZeroChecks, false)]
     static partial class Component
     {
-        public const string MovementData = "Game.Source.ComponentMovementData";
+        public const string Thrust = "Game.Source.ComponentThrust";
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static ref ComponentMovementData ComponentMovementData(in this ent entity) =>
-            ref Storage<ComponentMovementData>.components[entity.id];
+        public static ref ComponentThrust ComponentThrust(in this ent entity) =>
+            ref Storage<ComponentThrust>.components[entity.id];
     }
 
     [Il2CppSetOption(Option.NullChecks, false)]
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
     [Il2CppSetOption(Option.DivideByZeroChecks, false)]
-    sealed class StorageComponentMovementData : Storage<ComponentMovementData>
+    sealed class StorageComponentThrust : Storage<ComponentThrust>
     {
-        public override ComponentMovementData Create() => new ComponentMovementData();
+        public override ComponentThrust Create() => new ComponentThrust();
 
         // Use for cleaning components that were removed at the current frame.
         public override void Dispose(indexes disposed)

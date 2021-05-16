@@ -14,7 +14,9 @@ namespace Runtime.Source.Actors
         [FoldoutGroup("Components", true)] public ComponentMovementData componentMovementData;
         [FoldoutGroup("Components", true)] public ComponentHealth componentHealth;
         [FoldoutGroup("Components", true)] public ComponentMove componentMove;
-        
+        [FoldoutGroup("Components", true)] public ComponentThrust componentThrust;
+        [FoldoutGroup("Components", true)] public ComponentBounds componentBounds;
+
         protected override void Setup()
         {
             componentRigidbody.SetRigidbody(GetComponent<Rigidbody>());
@@ -25,12 +27,14 @@ namespace Runtime.Source.Actors
             entity.Set(componentMovementData);
             entity.Set(componentMove);
             entity.Set(componentHealth);
+            entity.Set(componentThrust);
+            entity.Set(componentBounds);
         }
 
         private void OnCollisionEnter(Collision other)
         {
-            var collisionMarker = new ComponentCollision {Collision = other, ReceiverEntity = entity};
-            OneFramesCore.Register(Layer, collisionMarker);
+            var cCollision = new ComponentCollision {Collision = other, ReceiverEntity = entity};
+            OneFramesCore.Register(Layer, cCollision);
         }
     }
 }

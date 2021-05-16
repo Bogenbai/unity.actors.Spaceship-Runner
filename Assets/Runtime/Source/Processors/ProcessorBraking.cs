@@ -4,7 +4,7 @@ using Runtime.Source.Components;
 namespace Runtime.Source.Processors
 {
     // Class is a system that sets the player's spaceship movement data when it's braking
-    sealed class ProcessorSpaceshipBraking : Processor, ITick
+    sealed class ProcessorBraking : Processor, ITick
     {
         private Group<ComponentMove, ComponentMovementData, ComponentBraking> groupBraking = default;
 

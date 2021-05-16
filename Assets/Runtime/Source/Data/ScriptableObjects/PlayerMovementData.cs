@@ -11,8 +11,6 @@ namespace Runtime.Source.Data.ScriptableObjects
         [SerializeField] private float accelerationBrakingScale = 2;
         [SerializeField] private float thrustRotationScale = 3;
         [SerializeField] private float thrustRotationSmooth = 0.05f;
-        [SerializeField] private float leftMovementBoundX = -5;
-        [SerializeField] private float rightMovementBoundX = 5;
 
         public float MaxVelocityX => maxVelocityX;
         public float InterpolationAcceleration => interpolationAcceleration;
@@ -20,7 +18,5 @@ namespace Runtime.Source.Data.ScriptableObjects
         public float AccelerationBrakingScale => accelerationBrakingScale;
         public float ThrustRotationScale => thrustRotationScale;
         public float ThrustRotationSmooth => thrustRotationSmooth;
-        public float LeftMovementBoundX => leftMovementBoundX;
-        public float RightMovementBoundX => rightMovementBoundX;
     }
 }

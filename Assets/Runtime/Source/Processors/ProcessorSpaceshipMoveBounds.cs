@@ -8,30 +8,32 @@ namespace Runtime.Source.Processors
     // Class is a system that limits player's spaceship movement zone
     sealed class ProcessorSpaceshipMoveBounds : Processor, ITick
     {
-        private Group<ComponentSpaceship, ComponentMovementData> groupSpaceships = default;
+        private Group<ComponentSpaceship, ComponentMovementData, ComponentRigidbody> groupSpaceships = default;
 
         public void Tick(float delta)
         {
             for (var i = 0; i < groupSpaceships.length; i++)
             {
-                var spaceship = groupSpaceships[i];
-                var movementData = spaceship.ComponentMovementData();
+                var entity = groupSpaceships[i];
+                var movementData = entity.ComponentMovementData();
                 var leftBoundX = movementData.Parameters.LeftMovementBoundX;
                 var rightBoundX = movementData.Parameters.RightMovementBoundX;
 
-                if (spaceship.transform.position.x <= leftBoundX)
+                if (entity.transform.position.x <= leftBoundX)
                 {
-                    var position = spaceship.transform.position;
+                    var position = entity.transform.position;
                     position = new Vector3(leftBoundX, position.y, position.z);
-                    spaceship.transform.position = position;
+                    entity.transform.position = position;
+                    entity.Get<ComponentBraking>();
                 }
-
-                if (spaceship.transform.position.x >= rightBoundX)
+                else if (entity.transform.position.x >= rightBoundX)
                 {
-                    var position = spaceship.transform.position;
+                    var position = entity.transform.position;
                     position = new Vector3(rightBoundX, position.y, position.z);
-                    spaceship.transform.position = position;
+                    entity.transform.position = position;
+                    entity.Get<ComponentBraking>();
                 }
+                else entity.Get<ComponentThrottling>();
             }
         }
     }

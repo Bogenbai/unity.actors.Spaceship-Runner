@@ -29821,16 +29821,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2601132543473157360, guid: a36008c49e0b91543b3726df45eb7871,
-        type: 3}
-      propertyPath: m_Mass
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2601132543473157360, guid: a36008c49e0b91543b3726df45eb7871,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 60
-      objectReference: {fileID: 0}
     - target: {fileID: 2601132543473157364, guid: a36008c49e0b91543b3726df45eb7871,
         type: 3}
       propertyPath: m_Name

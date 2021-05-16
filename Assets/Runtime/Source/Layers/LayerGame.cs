@@ -33,7 +33,6 @@ namespace Runtime.Source.Layers
         private static void AddSpaceshipProcessors()
         {
             Add<ProcessorSpaceshipMoveStateSetter>();
-            //Add<ProcessorSpaceshipMove>();
             Add<ProcessorThrottling>();
             Add<ProcessorSpaceshipBraking>();
             Add<ProcessorSpaceshipRotation>();

@@ -13,7 +13,6 @@ namespace Runtime.Source.Components
         [SerializeField] private PlayerMovementData parameters = null;
         public float thrustRotationVelocity;
         public float thrustRotation;
-        public float velocityX;
         public PlayerMovementData Parameters => parameters;
     }
 

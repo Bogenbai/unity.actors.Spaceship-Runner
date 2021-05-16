@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 979c4a6018084053b1110fbb3c6fb2ca, type: 3}
   m_Name: PlayerMovement Data
   m_EditorClassIdentifier: 
-  maxVelocityX: 20
-  interpolationAcceleration: 35
-  acceleration: 75
-  accelerationBrakingScale: 140
-  thrustRotationScale: 2
+  maxVelocityX: 1000
+  interpolationAcceleration: 5000
+  acceleration: 6000
+  accelerationBrakingScale: 2000
+  thrustRotationScale: 0.025
   thrustRotationSmooth: 0.05
-  leftMovementBoundX: -5
-  rightMovementBoundX: 5
+  leftMovementBoundX: -6
+  rightMovementBoundX: 6

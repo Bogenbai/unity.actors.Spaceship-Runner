@@ -9,7 +9,6 @@ namespace Runtime.Source.Processors
     {
         private readonly Group<ComponentSpawn> spawnSignals = default;
 
-
         public void Tick(float dt)
         {
             for (var i = 0; i < spawnSignals.length; i++)

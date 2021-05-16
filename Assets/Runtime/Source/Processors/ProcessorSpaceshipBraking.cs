@@ -16,7 +16,7 @@ namespace Runtime.Source.Processors
                 var cMovementData = brakingEntity.ComponentMovementData();
                 var cMove = brakingEntity.ComponentMove();
                 var movementData = cMovementData.Parameters;
-                var acceleration = movementData.InterpolationAcceleration;
+                var acceleration = movementData.AccelerationBrakingScale;
 
                 if (cMove.speed != 0)
                 {

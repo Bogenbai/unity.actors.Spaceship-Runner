@@ -1,6 +1,5 @@
 ﻿using Pixeye.Actors;
 using Runtime.Source.Components;
-using UnityEngine;
 
 namespace Runtime.Source.Processors
 {
@@ -31,13 +30,14 @@ namespace Runtime.Source.Processors
                     if (inputDirection.x != 0)
                     {
                         if ((rigidbody.velocity.x < 0 && inputDirection.x > 0 ||
-                             rigidbody.velocity.x > 0 && inputDirection.x < 0) && speed > 0)
+                             rigidbody.velocity.x > 0 && inputDirection.x < 0) &&
+                            speed > 0)
                         {
                             speed = -speed;
                         }
 
                         if (speed < 0)
-                            acceleration = movementData.AccelerationBrakingScale;
+                            acceleration = movementData.InterpolationAcceleration;
 
                         speed += acceleration * delta;
                     }

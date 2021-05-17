@@ -4,17 +4,19 @@ using UnityEngine;
 
 namespace Runtime.Source.Actors
 {
-    public class ActorTestRigidbody : Actor
+    public class ActorBoxRigidbody : Actor
     {
         [FoldoutGroup("Components"), SerializeField]
         private ComponentRigid componentRigid;
+
         [FoldoutGroup("Components"), SerializeField]
-        private ComponentSphereCollider componentSphereCollider;
+        private ComponentBoxCollider componentBoxCollider;
+
 
         protected override void Setup()
         {
             entity.Set(componentRigid);
-            entity.Set(componentSphereCollider);
+            entity.Set(componentBoxCollider);
         }
     }
 }

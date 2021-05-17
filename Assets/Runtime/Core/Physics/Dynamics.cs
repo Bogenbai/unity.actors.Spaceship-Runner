@@ -10,11 +10,8 @@ namespace Runtime.Core.Physics
 
         public static void Step(
             Group<ComponentRigid> rigidbodies,
-            Group<ComponentSphereCollider> sphereColliders,
             float delta)
         {
-            ResolveCollisions(sphereColliders, delta);
-
             foreach (var entity in rigidbodies)
             {
                 var cRigid = entity.ComponentRigid();
@@ -39,7 +36,7 @@ namespace Runtime.Core.Physics
             }
         }
 
-        private static void ResolveCollisions(Group<ComponentSphereCollider> sphereColliders, float delta)
+        public static void ResolveCollisions(Group<ComponentSphereCollider> sphereColliders, float delta)
         {
             for (var i = 0; i < sphereColliders.length; i++)
             {
@@ -56,6 +53,32 @@ namespace Runtime.Core.Physics
                         sphereColliderA.transform,
                         sphereColliderB.ComponentSphereCollider(),
                         sphereColliderB.transform);
+
+                    if (points.HasCollision)
+                    {
+                        Debug.Log("Collision");
+                    }
+                }
+            }
+        }
+        
+        public static void ResolveCollisions(Group<ComponentBoxCollider> boxColliders, float delta)
+        {
+            for (var i = 0; i < boxColliders.length; i++)
+            {
+                var boxColliderA = boxColliders[i];
+
+                for (var j = 0; j < boxColliders.length; j++)
+                {
+                    var boxColliderB = boxColliders[j];
+
+                    if (boxColliderA == boxColliderB) break;
+
+                    var points = Collisions.FindBoxBoxCollisionPoints(
+                        boxColliderA.ComponentBoxCollider(),
+                        boxColliderA.transform,
+                        boxColliderB.ComponentBoxCollider(),
+                        boxColliderB.transform);
 
                     if (points.HasCollision)
                     {

@@ -7,10 +7,13 @@ namespace Runtime.Core.Physics.Processors
     {
         private readonly Group<ComponentRigid> groupRigidbodies = default;
         private readonly Group<ComponentSphereCollider> groupSphereColliders = default;
+        private readonly Group<ComponentBoxCollider> groupBoxColliders = default;
 
         public void TickFixed(float delta)
         {
-            Dynamics.Step(groupRigidbodies, groupSphereColliders, delta);
+            Dynamics.ResolveCollisions(groupSphereColliders, delta);
+            Dynamics.ResolveCollisions(groupBoxColliders, delta);
+            Dynamics.Step(groupRigidbodies, delta);
         }
     }
 }

@@ -23,5 +23,22 @@ namespace Runtime.Core.Physics
 
             return new CollisionPoints(positionA, positionB, normal, distance, hasCollision);
         }
+
+        public static CollisionPoints FindBoxBoxCollisionPoints(
+            ComponentBoxCollider a, Transform ta,
+            ComponentBoxCollider b, Transform tb)
+        {
+            var positionA = ta.position;
+            var positionB = tb.position;
+
+            var hasCollision = -a.HalfWidth <= b.HalfWidth && a.HalfWidth >= -b.HalfWidth && 
+                               -a.HalfHeight <= b.HalfHeight && a.HalfHeight >= -b.HalfHeight && 
+                               -a.HalfLength <= b.HalfLength && a.HalfLength >= -b.HalfLength;
+
+            var normal = positionA - positionB;
+            var depth = 0; // How to calculate it with box colliders??? Custom 3d physics hard :(
+
+            return new CollisionPoints(positionA, positionB, normal, depth, hasCollision);
+        }
     }
 }

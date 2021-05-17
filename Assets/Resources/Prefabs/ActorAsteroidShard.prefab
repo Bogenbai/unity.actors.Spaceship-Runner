@@ -386,5 +386,5 @@ MonoBehaviour:
   componentRigidbody:
     rigidbody: {fileID: 0}
   componentMove:
-    movementDirection: {x: 0, y: 0, z: -1}
+    moveDirection: {x: 0, y: 0, z: -1}
     speed: 3200

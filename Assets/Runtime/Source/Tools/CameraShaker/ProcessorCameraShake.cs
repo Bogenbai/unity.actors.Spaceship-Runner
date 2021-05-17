@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Pixeye.Actors;
 using Runtime.Source.Components;
-using Runtime.Source.Components.Tags;
 using Runtime.Source.Tools.CameraShaker.Signals;
 using Random = Pixeye.Actors.Random;
 

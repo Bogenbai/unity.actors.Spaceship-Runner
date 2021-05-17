@@ -9,7 +9,7 @@ namespace Runtime.Source.Processors
     {
         private readonly Group<ComponentSpawn> spawnSignals = default;
 
-        public void Tick(float dt)
+        public void Tick(float delta)
         {
             foreach (var entity in spawnSignals)
             {

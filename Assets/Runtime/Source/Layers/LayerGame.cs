@@ -11,9 +11,9 @@ namespace Runtime.Source.Layers
     {
         protected override void Setup()
         {
-#if UNITY_IOS || UNITY_ANDROID && !UNITY_EDITOR // Comment '&& !UNITY_EDITOR' to turn on mobile controls
+#if UNITY_IOS || UNITY_ANDROID
             Add<ProcessorUserTouchInput>();
-#elif UNITY_STANDALONE_WIN || UNITY_STANDALONE_LINUX || UNITY_STANDALONE_OSX || UNITY_EDITOR
+#else
             Add<ProcessorUserInput>();
 #endif
             Add<ProcessorSpawnTimer>();
@@ -23,18 +23,19 @@ namespace Runtime.Source.Layers
             Add<ProcessorScaleTo>();
             Add<ProcessorHealth>();
             Add<ProcessorScore>();
-            Add<ProcessorCameraShake>();
-            Add<ProcessorMove>();
             Add<ProcessorScoreUi>();
+            Add<ProcessorMove>();
+            Add<ProcessorCameraShake>();
+            Add<ProcessorSpaceshipMovementDirection>();
             Add<ProcessorSpaceshipMoveStateSetter>();
-            Add<ProcessorThrottling>();
-            Add<ProcessorBraking>();
-            Add<ProcessorThrust>();
+            Add<ProcessorSpaceshipThrottling>();
+            Add<ProcessorSpaceshipBraking>();
+            Add<ProcessorSpaceshipThrust>();
             Add<ProcessorSpaceshipMoveBounds>();
             Add<ProcessorSpaceshipRespawn>();
             Add<ProcessorSpaceshipAsteroidCollision>();
             Add<ProcessorSpaceshipDeath>();
-            
+
             AddOneFramesProcessors();
         }
 

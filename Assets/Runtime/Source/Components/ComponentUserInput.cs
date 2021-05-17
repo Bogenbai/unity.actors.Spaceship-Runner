@@ -7,7 +7,7 @@ namespace Runtime.Source.Components
 {
     public class ComponentUserInput
     {
-        public Vector3 MoveDirection { get; set; }
+        public Vector3 value { get; set; }
     }
 
     #region HELPERS

@@ -23,7 +23,7 @@ namespace Runtime.Source.Processors.Input
                 direction = Vector3.left;
             }
 
-            var userInputMarker = new ComponentUserInput {MoveDirection = direction};
+            var userInputMarker = new ComponentUserInput {value = direction};
             OneFramesCore.Register(Layer, userInputMarker);
         }
     }

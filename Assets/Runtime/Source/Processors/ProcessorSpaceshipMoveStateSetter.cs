@@ -7,40 +7,36 @@ namespace Runtime.Source.Processors
     // Class represents a system which sets a certain movement state (Throttling, Braking) to spaceships in the game 
     sealed class ProcessorSpaceshipMoveStateSetter : Processor, ITick
     {
-        private readonly Group<ComponentUserInput> userInputs = default;
         private readonly Group<ComponentSpaceship, ComponentMove> groupSpaceships = default;
 
         public void Tick(float delta)
         {
-            foreach (var userInput in userInputs)
+            foreach (var entity in groupSpaceships)
             {
-                var inputDirection = userInput.ComponentUserInput().MoveDirection;
+                var input = entity.ComponentSpaceship().input;
 
-                foreach (var entity in groupSpaceships)
+                if (input != Vector3.zero)
                 {
-                    if (inputDirection != Vector3.zero)
+                    if (entity.Has<ComponentBraking>())
                     {
-                        if (entity.Has<ComponentBraking>())
-                        {
-                            entity.Remove<ComponentBraking>();
-                        }
-
-                        if (entity.Has<ComponentThrottling>() == false)
-                        {
-                            entity.Get<ComponentThrottling>();
-                        }
+                        entity.Remove<ComponentBraking>();
                     }
-                    else
-                    {
-                        if (entity.Has<ComponentBraking>() == false)
-                        {
-                            entity.Get<ComponentBraking>();
-                        }
 
-                        if (entity.Has<ComponentThrottling>())
-                        {
-                            entity.Remove<ComponentThrottling>();
-                        }
+                    if (entity.Has<ComponentThrottling>() == false)
+                    {
+                        entity.Get<ComponentThrottling>();
+                    }
+                }
+                else
+                {
+                    if (entity.Has<ComponentBraking>() == false)
+                    {
+                        entity.Get<ComponentBraking>();
+                    }
+
+                    if (entity.Has<ComponentThrottling>())
+                    {
+                        entity.Remove<ComponentThrottling>();
                     }
                 }
             }

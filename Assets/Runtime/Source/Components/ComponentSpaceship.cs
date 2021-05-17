@@ -13,6 +13,7 @@ namespace Runtime.Source.Components
         [SerializeField] private PlayerMovementData parameters = null;
         public Vector3 startPosition;
         public PlayerMovementData Parameters => parameters;
+        public Vector3 input;
     }
 
     #region HELPERS

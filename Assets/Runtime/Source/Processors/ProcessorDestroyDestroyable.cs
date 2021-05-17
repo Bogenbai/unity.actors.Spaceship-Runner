@@ -14,7 +14,7 @@ namespace Runtime.Source.Processors
             foreach (var entity in groupDestroyable)
             {
                 var destroyableEntity = entity.ComponentDestroyable();
-                
+
                 ReleaseEntityAtCoordinate(entity, destroyableEntity);
             }
         }

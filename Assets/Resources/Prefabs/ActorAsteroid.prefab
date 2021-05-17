@@ -776,7 +776,7 @@ MonoBehaviour:
   componentRandomRotatable:
     tumble: 10
   componentMove:
-    movementDirection: {x: 0, y: 0, z: -1}
+    moveDirection: {x: 0, y: 0, z: -1}
     speed: 3200
   componentScaleTo:
     startScale: {x: 0, y: 0, z: 0}

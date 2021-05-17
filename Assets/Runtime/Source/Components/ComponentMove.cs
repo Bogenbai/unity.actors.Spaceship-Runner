@@ -9,7 +9,7 @@ namespace Runtime.Source.Components
     [Serializable]
     public class ComponentMove
     {
-        public Vector3 movementDirection;
+        public Vector3 moveDirection;
         public float speed;
     }
 

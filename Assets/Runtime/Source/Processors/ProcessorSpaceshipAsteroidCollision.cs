@@ -1,6 +1,5 @@
 ﻿using Pixeye.Actors;
 using Runtime.Source.Components;
-using Runtime.Source.Components.Tags;
 using Runtime.Source.Data;
 using Runtime.Source.Tools;
 using Runtime.Source.Tools.CameraShaker;
@@ -13,7 +12,7 @@ namespace Runtime.Source.Processors
     // Class represents a system that handles spaceships and asteroids collisions
     sealed class ProcessorSpaceshipAsteroidCollision : Processor, ITick
     {
-        private Group<ComponentCollision> groupCollisions = default;
+        private readonly Group<ComponentCollision> groupCollisions = default;
 
         public void Tick(float delta)
         {

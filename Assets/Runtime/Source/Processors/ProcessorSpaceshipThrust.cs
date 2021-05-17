@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Runtime.Source.Processors
 {
     // Class is a system that rotates player's spaceship depending on it's movement
-    sealed class ProcessorThrust : Processor, ITick
+    sealed class ProcessorSpaceshipThrust : Processor, ITick
     {
         private Group<ComponentSpaceship, ComponentMove, ComponentThrust> groupSpaceships = default;
 
@@ -18,7 +18,7 @@ namespace Runtime.Source.Processors
                 var speed = entity.ComponentMove().speed;
                 var thrustRotationScale = parameters.ThrustRotationScale;
 
-                if (entity.ComponentMove().movementDirection.x < 0)
+                if (entity.ComponentMove().moveDirection.x < 0)
                 {
                     speed = -speed;
                 }

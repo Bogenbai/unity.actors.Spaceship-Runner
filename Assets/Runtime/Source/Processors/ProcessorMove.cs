@@ -15,7 +15,7 @@ namespace Runtime.Source.Processors
                 var cMove = entity.ComponentMove();
                 var rigidbody = entity.ComponentRigidbody().Rigidbody;
 
-                rigidbody.velocity = cMove.movementDirection * (cMove.speed * delta);
+                rigidbody.velocity = cMove.moveDirection * (cMove.speed * delta);
             }
         }
     }

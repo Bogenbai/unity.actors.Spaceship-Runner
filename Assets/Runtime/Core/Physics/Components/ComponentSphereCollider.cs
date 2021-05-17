@@ -7,12 +7,10 @@ using UnityEngine;
 namespace Runtime.Core.Physics.Components
 {
     [Serializable]
-    public class ComponentRigid
+    public class ComponentSphereCollider
     {
-        public Vector3 velocity;
-        public Vector3 force;
-        public float mass;
-        public bool useGravity;
+        public Vector3 Center;
+        public float Radius = 0.5f;
     }
 
     #region HELPERS
@@ -22,19 +20,19 @@ namespace Runtime.Core.Physics.Components
     [Il2CppSetOption(Option.DivideByZeroChecks, false)]
     static partial class Component
     {
-        public const string Rigid = "Game.Source.ComponentRigid";
+        public const string SphereCollider = "Game.Source.ComponentSphereCollider";
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static ref ComponentRigid ComponentRigid(in this ent entity) =>
-            ref Storage<ComponentRigid>.components[entity.id];
+        public static ref ComponentSphereCollider ComponentSphereCollider(in this ent entity) =>
+            ref Storage<ComponentSphereCollider>.components[entity.id];
     }
 
     [Il2CppSetOption(Option.NullChecks, false)]
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
     [Il2CppSetOption(Option.DivideByZeroChecks, false)]
-    sealed class StorageComponentRigid : Storage<ComponentRigid>
+    sealed class StorageComponentSphereCollider : Storage<ComponentSphereCollider>
     {
-        public override ComponentRigid Create() => new ComponentRigid();
+        public override ComponentSphereCollider Create() => new ComponentSphereCollider();
 
         // Use for cleaning components that were removed at the current frame.
         public override void Dispose(indexes disposed)

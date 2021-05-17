@@ -8,10 +8,13 @@ namespace Runtime.Source.Actors
     {
         [FoldoutGroup("Components"), SerializeField]
         private ComponentRigid componentRigid;
+        [FoldoutGroup("Components"), SerializeField]
+        private ComponentSphereCollider componentSphereCollider;
 
         protected override void Setup()
         {
             entity.Set(componentRigid);
+            entity.Set(componentSphereCollider);
         }
     }
 }

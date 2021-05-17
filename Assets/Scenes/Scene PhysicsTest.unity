@@ -221,8 +221,12 @@ MonoBehaviour:
   prefabReferenceName: 
   componentRigid:
     velocity: {x: 0, y: 0, z: 0}
-    force: {x: 1, y: 0, z: 0}
+    force: {x: 0, y: 0, z: 0}
     mass: 0.01
+    useGravity: 0
+  componentSphereCollider:
+    Center: {x: 0, y: 0, z: 0}
+    Radius: 0.5
 --- !u!1 &567832739
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,8 +262,12 @@ MonoBehaviour:
   prefabReferenceName: 
   componentRigid:
     velocity: {x: 0, y: 0, z: 0}
-    force: {x: 7, y: 0, z: 0}
+    force: {x: 0, y: 0, z: 0}
     mass: 0.01
+    useGravity: 0
+  componentSphereCollider:
+    Center: {x: 0, y: 0, z: 0}
+    Radius: 0.5
 --- !u!23 &567832741
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -524,8 +532,12 @@ MonoBehaviour:
   prefabReferenceName: 
   componentRigid:
     velocity: {x: 0, y: 0, z: 0}
-    force: {x: 3, y: 0, z: 0}
+    force: {x: 0, y: 0, z: 0}
     mass: 0.01
+    useGravity: 0
+  componentSphereCollider:
+    Center: {x: 0, y: 0, z: 0}
+    Radius: 0.5
 --- !u!23 &862349353
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -707,8 +719,12 @@ MonoBehaviour:
   prefabReferenceName: 
   componentRigid:
     velocity: {x: 0, y: 0, z: 0}
-    force: {x: 5, y: 0, z: 0}
+    force: {x: 0, y: 0, z: 0}
     mass: 0.01
+    useGravity: 0
+  componentSphereCollider:
+    Center: {x: 0, y: 0, z: 0}
+    Radius: 0.5
 --- !u!23 &1492254220
 MeshRenderer:
   m_ObjectHideFlags: 0

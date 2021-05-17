@@ -8,8 +8,13 @@ namespace Runtime.Core.Physics
     {
         public static Vector3 Gravity = new Vector3(0, -9.81f, 0);
 
-        public static void Step(Group<ComponentRigid> rigidbodies, float delta)
+        public static void Step(
+            Group<ComponentRigid> rigidbodies,
+            Group<ComponentSphereCollider> sphereColliders,
+            float delta)
         {
+            ResolveCollisions(sphereColliders, delta);
+
             foreach (var entity in rigidbodies)
             {
                 var cRigid = entity.ComponentRigid();
@@ -24,12 +29,39 @@ namespace Runtime.Core.Physics
                     cRigid.mass = 0.01f;
                 }
 
-                cRigid.force += cRigid.mass * Gravity;
+                if (cRigid.useGravity)
+                    cRigid.force += cRigid.mass * Gravity;
 
                 cRigid.velocity += cRigid.force / cRigid.mass * delta;
                 entityTransform.position += cRigid.velocity * delta;
 
                 cRigid.force = Vector3.zero;
+            }
+        }
+
+        private static void ResolveCollisions(Group<ComponentSphereCollider> sphereColliders, float delta)
+        {
+            for (var i = 0; i < sphereColliders.length; i++)
+            {
+                var sphereColliderA = sphereColliders[i];
+
+                for (var j = 0; j < sphereColliders.length; j++)
+                {
+                    var sphereColliderB = sphereColliders[j];
+
+                    if (sphereColliderA == sphereColliderB) break;
+
+                    var points = Collisions.FindSphereSphereCollisionPoints(
+                        sphereColliderA.ComponentSphereCollider(),
+                        sphereColliderA.transform,
+                        sphereColliderB.ComponentSphereCollider(),
+                        sphereColliderB.transform);
+
+                    if (points.HasCollision)
+                    {
+                        Debug.Log("Collision");
+                    }
+                }
             }
         }
     }

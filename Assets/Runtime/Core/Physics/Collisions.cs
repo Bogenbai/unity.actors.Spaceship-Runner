@@ -31,23 +31,23 @@ namespace Runtime.Core.Physics
             var positionA = ta.position;
             var positionB = tb.position;
 
-            var aMinX = positionA.x - a.HalfWidth;
-            var aMaxX = positionA.x + a.HalfWidth;
+            var aMinX = positionA.x - a.halfWidth;
+            var aMaxX = positionA.x + a.halfWidth;
 
-            var aMinY = positionA.y - a.HalfHeight;
-            var aMaxY = positionA.y + a.HalfHeight;
+            var aMinY = positionA.y - a.halfHeight;
+            var aMaxY = positionA.y + a.halfHeight;
 
-            var aMinZ = positionA.z - a.HalfLength;
-            var aMaxZ = positionA.z + a.HalfLength;
+            var aMinZ = positionA.z - a.halfLength;
+            var aMaxZ = positionA.z + a.halfLength;
 
-            var bMinX = positionB.x - b.HalfWidth;
-            var bMaxX = positionB.x + b.HalfWidth;
+            var bMinX = positionB.x - b.halfWidth;
+            var bMaxX = positionB.x + b.halfWidth;
 
-            var bMinY = positionB.y - b.HalfHeight;
-            var bMaxY = positionB.y + b.HalfHeight;
+            var bMinY = positionB.y - b.halfHeight;
+            var bMaxY = positionB.y + b.halfHeight;
 
-            var bMinZ = positionB.z - b.HalfLength;
-            var bMaxZ = positionB.z + b.HalfLength;
+            var bMinZ = positionB.z - b.halfLength;
+            var bMaxZ = positionB.z + b.halfLength;
 
             var hasCollision = (aMinX <= bMaxX && aMaxX >= bMinX) &&
                                (aMinY <= bMaxY && aMaxY >= bMinY) &&
@@ -66,14 +66,14 @@ namespace Runtime.Core.Physics
             var positionA = ta.position;
             var positionB = tb.position;
             
-            var bMinX = positionB.x - b.HalfWidth;
-            var bMaxX = positionB.x + b.HalfWidth;
+            var bMinX = positionB.x - b.halfWidth;
+            var bMaxX = positionB.x + b.halfWidth;
 
-            var bMinY = positionB.y - b.HalfHeight;
-            var bMaxY = positionB.y + b.HalfHeight;
+            var bMinY = positionB.y - b.halfHeight;
+            var bMaxY = positionB.y + b.halfHeight;
 
-            var bMinZ = positionB.z - b.HalfLength;
-            var bMaxZ = positionB.z + b.HalfLength;
+            var bMinZ = positionB.z - b.halfLength;
+            var bMaxZ = positionB.z + b.halfLength;
             
             var x = Math.Max(bMinX, Math.Min(positionA.x, bMaxX));
             var y = Math.Max(bMinY, Math.Min(positionA.y, bMaxY));

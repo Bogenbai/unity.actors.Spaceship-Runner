@@ -1,28 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Pixeye.Actors;
 using Unity.IL2CPP.CompilerServices;
 
 namespace Runtime.Core.Physics.Components
 {
-    [Serializable]
-    public class ComponentBoxCollider
+    public class ComponentColliding
     {
-        public float halfWidth = 0.5f;
-        public float halfHeight = 0.5f;
-        public float halfLength = 0.5f;
-
-        public float Width
-        {
-            get { return halfWidth * 2; }
-            set { halfWidth = value * 0.5f; }
-        }
-
-        public float Height
-        {
-            get { return halfHeight * 2; }
-            set { halfHeight = value * 0.5f; }
-        }
+        public readonly List<ent> CollidingEntities = new List<ent>();
     }
 
     #region HELPERS
@@ -32,19 +18,19 @@ namespace Runtime.Core.Physics.Components
     [Il2CppSetOption(Option.DivideByZeroChecks, false)]
     static partial class Component
     {
-        public const string BoxCollider = "Game.Source.ComponentBoxCollider";
+        public const string Colliding = "Game.Source.ComponentColliding";
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static ref ComponentBoxCollider ComponentBoxCollider(in this ent entity) =>
-            ref Storage<ComponentBoxCollider>.components[entity.id];
+        public static ref ComponentColliding ComponentColliding(in this ent entity) =>
+            ref Storage<ComponentColliding>.components[entity.id];
     }
 
     [Il2CppSetOption(Option.NullChecks, false)]
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
     [Il2CppSetOption(Option.DivideByZeroChecks, false)]
-    sealed class StorageComponentBoxCollider : Storage<ComponentBoxCollider>
+    sealed class StorageComponentColliding : Storage<ComponentColliding>
     {
-        public override ComponentBoxCollider Create() => new ComponentBoxCollider();
+        public override ComponentColliding Create() => new ComponentColliding();
 
         // Use for cleaning components that were removed at the current frame.
         public override void Dispose(indexes disposed)

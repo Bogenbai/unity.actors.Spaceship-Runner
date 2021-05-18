@@ -11,8 +11,7 @@ namespace Runtime.Source.Actors
 
         [FoldoutGroup("Components"), SerializeField]
         private ComponentBoxCollider componentBoxCollider;
-
-
+        
         protected override void Setup()
         {
             entity.Set(componentRigid);

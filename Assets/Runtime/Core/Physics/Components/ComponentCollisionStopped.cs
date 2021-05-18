@@ -1,14 +1,13 @@
 ﻿using System.Runtime.CompilerServices;
 using Pixeye.Actors;
 using Unity.IL2CPP.CompilerServices;
-using UnityEngine;
 
-namespace Runtime.Source.Components
+namespace Runtime.Core.Physics.Components
  {
-   public class ComponentCollision
+   public class ComponentCollisionStopped
    {
-     public Collision Collision { get; set; }
-     public ent ReceiverEntity { get; set; }
+        public ent ReceiverEntity { get; set; }
+        public ent SenderEntity { get; set; }
    }
  
    #region HELPERS
@@ -18,18 +17,18 @@ namespace Runtime.Source.Components
    [Il2CppSetOption(Option.DivideByZeroChecks, false)]
    static partial class Component
    {
-     public const string Collision = "Game.Source.ComponentCollision";
+     public const string CollisionStopped = "Game.Source.ComponentCollisionStopped";
      [MethodImpl(MethodImplOptions.AggressiveInlining)]
-     public static ref ComponentCollision ComponentCollision(in this ent entity) =>
-       ref Storage<ComponentCollision>.components[entity.id];
+     public static ref ComponentCollisionStopped ComponentCollisionStopped(in this ent entity) =>
+       ref Storage<ComponentCollisionStopped>.components[entity.id];
    }
 
    [Il2CppSetOption(Option.NullChecks, false)]
    [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
    [Il2CppSetOption(Option.DivideByZeroChecks, false)]
-   sealed class StorageComponentCollision : Storage<ComponentCollision>
+   sealed class StorageComponentCollisionStopped : Storage<ComponentCollisionStopped>
    {
-     public override ComponentCollision Create() => new ComponentCollision();
+     public override ComponentCollisionStopped Create() => new ComponentCollisionStopped();
      // Use for cleaning components that were removed at the current frame.
      public override void Dispose(indexes disposed)
      {

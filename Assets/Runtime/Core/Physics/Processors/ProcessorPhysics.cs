@@ -11,8 +11,9 @@ namespace Runtime.Core.Physics.Processors
 
         public void TickFixed(float delta)
         {
-            Dynamics.ResolveCollisions(groupSphereColliders, delta);
-            Dynamics.ResolveCollisions(groupBoxColliders, delta);
+            Dynamics.ResolveCollisions(groupSphereColliders);
+            Dynamics.ResolveCollisions(groupBoxColliders);
+            Dynamics.ResolveCollisions(groupBoxColliders, groupSphereColliders);
             Dynamics.Step(groupRigidbodies, delta);
         }
     }

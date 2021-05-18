@@ -13,15 +13,15 @@ namespace Runtime.Core.Physics
             var positionA = ta.position;
             var positionB = tb.position;
 
-            var distance = (float) Math.Sqrt(
+            var depth = (float) Math.Sqrt(
                 (positionA.x - positionB.x) * (positionA.x - positionB.x) +
                 (positionA.y - positionB.y) * (positionA.y - positionB.y) +
                 (positionA.z - positionB.z) * (positionA.z - positionB.z));
 
-            var hasCollision = distance < (a.Radius + b.Radius);
+            var hasCollision = depth < (a.Radius + b.Radius);
             var normal = positionA - positionB;
 
-            return new CollisionPoints(positionA, positionB, normal, distance, hasCollision);
+            return new CollisionPoints(positionA, positionB, normal, depth, hasCollision);
         }
 
         public static CollisionPoints FindBoxBoxCollisionPoints(
@@ -31,13 +31,62 @@ namespace Runtime.Core.Physics
             var positionA = ta.position;
             var positionB = tb.position;
 
-            var hasCollision = -a.HalfWidth <= b.HalfWidth && a.HalfWidth >= -b.HalfWidth && 
-                               -a.HalfHeight <= b.HalfHeight && a.HalfHeight >= -b.HalfHeight && 
-                               -a.HalfLength <= b.HalfLength && a.HalfLength >= -b.HalfLength;
+            var aMinX = positionA.x - a.HalfWidth;
+            var aMaxX = positionA.x + a.HalfWidth;
+
+            var aMinY = positionA.y - a.HalfHeight;
+            var aMaxY = positionA.y + a.HalfHeight;
+
+            var aMinZ = positionA.z - a.HalfLength;
+            var aMaxZ = positionA.z + a.HalfLength;
+
+            var bMinX = positionB.x - b.HalfWidth;
+            var bMaxX = positionB.x + b.HalfWidth;
+
+            var bMinY = positionB.y - b.HalfHeight;
+            var bMaxY = positionB.y + b.HalfHeight;
+
+            var bMinZ = positionB.z - b.HalfLength;
+            var bMaxZ = positionB.z + b.HalfLength;
+
+            var hasCollision = (aMinX <= bMaxX && aMaxX >= bMinX) &&
+                               (aMinY <= bMaxY && aMaxY >= bMinY) &&
+                               (aMinZ <= bMaxZ && aMaxZ >= bMinZ);
 
             var normal = positionA - positionB;
-            var depth = 0; // How to calculate it with box colliders??? Custom 3d physics hard :(
+            var depth = 0; // Depth with boxes is hard :(
 
+            return new CollisionPoints(positionA, positionB, normal, depth, hasCollision);
+        }
+
+        public static CollisionPoints FindSphereBoxCollisionPoints(
+            ComponentSphereCollider a, Transform ta,
+            ComponentBoxCollider b, Transform tb)
+        {
+            var positionA = ta.position;
+            var positionB = tb.position;
+            
+            var bMinX = positionB.x - b.HalfWidth;
+            var bMaxX = positionB.x + b.HalfWidth;
+
+            var bMinY = positionB.y - b.HalfHeight;
+            var bMaxY = positionB.y + b.HalfHeight;
+
+            var bMinZ = positionB.z - b.HalfLength;
+            var bMaxZ = positionB.z + b.HalfLength;
+            
+            var x = Math.Max(bMinX, Math.Min(positionA.x, bMaxX));
+            var y = Math.Max(bMinY, Math.Min(positionA.y, bMaxY));
+            var z = Math.Max(bMinZ, Math.Min(positionA.z, bMaxZ));
+
+            var depth = (float)Math.Sqrt(
+                (x - positionA.x) * (x - positionA.x) +
+                (y - positionA.y) * (y - positionA.y) +
+                (z - positionA.z) * (z - positionA.z));
+
+            var hasCollision = depth < a.Radius;
+            var normal = positionA - positionB;
+            
             return new CollisionPoints(positionA, positionB, normal, depth, hasCollision);
         }
     }

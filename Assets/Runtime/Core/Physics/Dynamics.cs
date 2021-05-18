@@ -36,7 +36,7 @@ namespace Runtime.Core.Physics
             }
         }
 
-        public static void ResolveCollisions(Group<ComponentSphereCollider> sphereColliders, float delta)
+        public static void ResolveCollisions(Group<ComponentSphereCollider> sphereColliders)
         {
             for (var i = 0; i < sphereColliders.length; i++)
             {
@@ -48,21 +48,21 @@ namespace Runtime.Core.Physics
 
                     if (sphereColliderA == sphereColliderB) break;
 
-                    var points = Collisions.FindSphereSphereCollisionPoints(
+                    var collision = Collisions.FindSphereSphereCollisionPoints(
                         sphereColliderA.ComponentSphereCollider(),
                         sphereColliderA.transform,
                         sphereColliderB.ComponentSphereCollider(),
                         sphereColliderB.transform);
 
-                    if (points.HasCollision)
+                    if (collision.HasCollision)
                     {
-                        Debug.Log("Collision");
+                        Debug.Log("Spheres collision");
                     }
                 }
             }
         }
-        
-        public static void ResolveCollisions(Group<ComponentBoxCollider> boxColliders, float delta)
+
+        public static void ResolveCollisions(Group<ComponentBoxCollider> boxColliders)
         {
             for (var i = 0; i < boxColliders.length; i++)
             {
@@ -74,15 +74,41 @@ namespace Runtime.Core.Physics
 
                     if (boxColliderA == boxColliderB) break;
 
-                    var points = Collisions.FindBoxBoxCollisionPoints(
+                    var collision = Collisions.FindBoxBoxCollisionPoints(
                         boxColliderA.ComponentBoxCollider(),
                         boxColliderA.transform,
                         boxColliderB.ComponentBoxCollider(),
                         boxColliderB.transform);
 
-                    if (points.HasCollision)
+                    if (collision.HasCollision)
                     {
-                        Debug.Log("Collision");
+                        Debug.Log("Boxes collision");
+                    }
+                }
+            }
+        }
+
+        public static void ResolveCollisions(
+            Group<ComponentBoxCollider> boxColliders,
+            Group<ComponentSphereCollider> sphereColliders)
+        {
+            for (var i = 0; i < boxColliders.length; i++)
+            {
+                var boxCollider = boxColliders[i];
+
+                for (var j = 0; j < sphereColliders.length; j++)
+                {
+                    var sphereCollider = sphereColliders[j];
+
+                    var collision = Collisions.FindSphereBoxCollisionPoints(
+                        sphereCollider.ComponentSphereCollider(),
+                        sphereCollider.transform,
+                        boxCollider.ComponentBoxCollider(),
+                        boxCollider.transform);
+
+                    if (collision.HasCollision)
+                    {
+                        Debug.Log("Box and sphere collision");
                     }
                 }
             }

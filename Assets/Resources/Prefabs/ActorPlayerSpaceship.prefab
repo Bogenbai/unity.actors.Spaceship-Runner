@@ -255,7 +255,6 @@ GameObject:
   - component: {fileID: 2601132542305076505}
   - component: {fileID: 2601132542305076510}
   - component: {fileID: 2601132542305076511}
-  - component: {fileID: 2601132542305076508}
   m_Layer: 0
   m_Name: Ship
   m_TagString: Untagged
@@ -351,20 +350,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!64 &2601132542305076508
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2601132542305076483}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 4b3071d113f87f24fb37f0b071ab1c7a, type: 3}
 --- !u!1 &2601132542318285125
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,7 +521,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2601132543473157367}
-  - component: {fileID: 2601132543473157360}
   - component: {fileID: 2601132543473157366}
   m_Layer: 0
   m_Name: ActorPlayerSpaceship
@@ -560,22 +544,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 180, z: 180}
---- !u!54 &2601132543473157360
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2601132543473157364}
-  serializedVersion: 2
-  m_Mass: 1000
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 60
-  m_CollisionDetection: 0
 --- !u!114 &2601132543473157366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -593,12 +561,16 @@ MonoBehaviour:
   componentSpaceship:
     parameters: {fileID: 11400000, guid: 77917388c254d304ba16ed5644deec9c, type: 2}
     startPosition: {x: 0, y: 0, z: 0}
-  componentRigidbody:
-    rigidbody: {fileID: 0}
+    input: {x: 0, y: 0, z: 0}
+  componentRigid:
+    velocity: {x: 0, y: 0, z: 0}
+    force: {x: 0, y: 0, z: 0}
+    mass: 1
+    useGravity: 0
   componentHealth:
     value: 5
   componentMove:
-    movementDirection: {x: 0, y: 0, z: 0}
+    moveDirection: {x: 0, y: 0, z: 0}
     speed: 0
   componentThrust:
     thrustRotationVelocity: 0
@@ -606,6 +578,11 @@ MonoBehaviour:
   componentBounds:
     leftMovementBoundX: -6
     rightMovementBoundX: 6
+  componentBoxCollider:
+    halfWidth: 2.16
+    halfHeight: 0.74
+    halfLength: 4.06
+    center: {x: 0, y: 0, z: 0.69}
 --- !u!1 &2601132543782527179
 GameObject:
   m_ObjectHideFlags: 0

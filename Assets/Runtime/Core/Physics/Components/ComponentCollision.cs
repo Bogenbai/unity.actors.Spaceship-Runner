@@ -1,13 +1,11 @@
 ﻿using System.Runtime.CompilerServices;
 using Pixeye.Actors;
 using Unity.IL2CPP.CompilerServices;
-using UnityEngine;
 
 namespace Runtime.Core.Physics.Components
 {
     public class ComponentCollision
     {
-        public Collision Collision;
         public CollisionPoints CollisionPoints;
         public ent ReceiverEntity;
         public ent SenderEntity;

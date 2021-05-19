@@ -19,9 +19,9 @@ namespace Runtime.Source.Processors
         {
             foreach (var entity in groupCollisions)
             {
-                if (entity.ComponentCollision().Collision.collider != null)
+                if (entity.ComponentCollision().CollisionPoints != null)
                 {
-                    var collisionInitiator = entity.ComponentCollision().Collision.gameObject.GetEntity();
+                    var collisionInitiator = entity.ComponentCollision().SenderEntity;
 
                     if (collisionInitiator.exist)
                     {
@@ -66,22 +66,25 @@ namespace Runtime.Source.Processors
             OneFramesCore.Register(Layer, componentHealthChanged);
         }
 
-        private void Explosion(ComponentCollision componentCollisionEvent)
+        private void Explosion(ComponentCollision componentCollision)
         {
-            CreateShards(componentCollisionEvent);
-            CreateVFX(componentCollisionEvent);
+            CreateShards(componentCollision);
+            CreateVFX(componentCollision);
         }
 
-        private void CreateVFX(ComponentCollision componentCollisionEvent)
+        private void CreateVFX(ComponentCollision componentCollision)
         {
-            var sparksPosition = componentCollisionEvent.Collision.contacts[0].point;
+            var sparksPosition = componentCollision.SenderEntity.transform.position;
             Actor.Create(DataBase.Prefabs.VfxSparks, sparksPosition, true);
             Actor.Create(DataBase.Prefabs.VfxPlasmaExplosion, sparksPosition, true);
         }
 
-        private void CreateShards(ComponentCollision componentCollisionEvent)
+        private void CreateShards(ComponentCollision componentCollision)
         {
-            var collisionInitiator = componentCollisionEvent.Collision.gameObject.GetEntity();
+            var collisionInitiator = componentCollision.SenderEntity;
+            
+            if (collisionInitiator.Has<ComponentCanShatter>() == false) return;
+            
             var componentShatter = collisionInitiator.ComponentCanShatter();
             var shardsCount = Random.Range(componentShatter.MinShards, componentShatter.MaxShards + 1);
 

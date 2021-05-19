@@ -1,4 +1,5 @@
 ﻿using Pixeye.Actors;
+using Runtime.Core.Physics.Components;
 using Runtime.Source.Components;
 
 namespace Runtime.Source.Processors
@@ -6,7 +7,7 @@ namespace Runtime.Source.Processors
     // Class is a system that sets the player's spaceship movement data when it's throttles
     sealed class ProcessorSpaceshipThrottling : Processor, ITick
     {
-        private readonly Group<ComponentSpaceship, ComponentThrottling, ComponentRigidbody> groupThrottles = default;
+        private readonly Group<ComponentSpaceship, ComponentThrottling, ComponentRigid> groupThrottles = default;
 
         public void Tick(float delta)
         {
@@ -14,7 +15,7 @@ namespace Runtime.Source.Processors
             {
                 var spaceship = throttleEntity.ComponentSpaceship();
                 var cMove = throttleEntity.ComponentMove();
-                var rigidbody = throttleEntity.ComponentRigidbody().Rigidbody;
+                var rigidbody = throttleEntity.ComponentRigid();
                 var parameters = spaceship.Parameters;
                 var speed = cMove.speed;
                 var acceleration = parameters.Acceleration;

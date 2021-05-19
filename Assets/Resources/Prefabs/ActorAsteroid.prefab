@@ -593,8 +593,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5744776870327446669}
-  - component: {fileID: 5744776870330364619}
-  - component: {fileID: 215028357}
   - component: {fileID: 1802633093978276713}
   - component: {fileID: -2556209842652760727}
   m_Layer: 0
@@ -621,35 +619,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &5744776870330364619
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5744776870327136637}
-  serializedVersion: 2
-  m_Mass: 100
-  m_Drag: 1
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 6
-  m_CollisionDetection: 0
---- !u!135 &215028357
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5744776870327136637}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.8
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!96 &1802633093978276713
 TrailRenderer:
   serializedVersion: 2
@@ -771,10 +740,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _entity: 0
   prefabReferenceName: 
-  componentRigidbody:
-    rigidbody: {fileID: 0}
+  componentRigid:
+    velocity: {x: 0, y: 0, z: 0}
+    force: {x: 0, y: 0, z: 0}
+    mass: 1
+    useGravity: 0
   componentRandomRotatable:
-    tumble: 10
+    tumble: 1
   componentMove:
     moveDirection: {x: 0, y: 0, z: -1}
     speed: 3200
@@ -792,6 +764,9 @@ MonoBehaviour:
     value: 1
   componentDestroyable:
     destroyData: {fileID: 11400000, guid: dd3030af49788264ea65b7fc9c6d2609, type: 2}
+  componentSphereCollider:
+    center: {x: 0, y: 0, z: 0}
+    Radius: 0.85
 --- !u!1 &5744776870327155097
 GameObject:
   m_ObjectHideFlags: 0

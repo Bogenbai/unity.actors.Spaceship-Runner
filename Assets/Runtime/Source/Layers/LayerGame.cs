@@ -1,5 +1,6 @@
 ﻿using Pixeye.Actors;
 using Runtime.Core.Physics.Components;
+using Runtime.Core.Physics.Processors;
 using Runtime.Source.Components;
 using Runtime.Source.Components.Spawn;
 using Runtime.Source.Processors;
@@ -20,7 +21,7 @@ namespace Runtime.Source.Layers
             Add<ProcessorSpawnTimer>();
             Add<ProcessorSpawner>();
             Add<ProcessorDestroyDestroyable>();
-            Add<ProcessorRigidbodyRandomRotator>();
+            Add<ProcessorRandomRotator>();
             Add<ProcessorScaleTo>();
             Add<ProcessorHealth>();
             Add<ProcessorScore>();
@@ -38,6 +39,7 @@ namespace Runtime.Source.Layers
             Add<ProcessorSpaceshipDeath>();
 
             AddOneFramesProcessors();
+            Add<ProcessorPhysics>();
         }
 
         private static void AddOneFramesProcessors()

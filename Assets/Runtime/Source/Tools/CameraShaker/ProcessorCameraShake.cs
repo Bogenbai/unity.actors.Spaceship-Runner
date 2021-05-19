@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Pixeye.Actors;
 using Runtime.Source.Components;
-using Runtime.Source.Tools.CameraShaker.Signals;
 using Random = Pixeye.Actors.Random;
 
 namespace Runtime.Source.Tools.CameraShaker
@@ -9,15 +8,17 @@ namespace Runtime.Source.Tools.CameraShaker
     // Based on plugin 'MilkShake Camera Shaker' 
     // Link to the Asset store page: https://assetstore.unity.com/packages/tools/camera/milkshake-camera-shaker-165604
     // Great thanks!
-    
+
     // Class represents a system that shakes the main camera
-    sealed class ProcessorCameraShake : Processor<SignalCameraShake>, ITick
+    sealed class ProcessorCameraShake : Processor, ITick
     {
         private readonly List<ShakeInstance> activeShakes = new List<ShakeInstance>();
         private readonly Group<ComponentMainCamera> mainCameras = default;
+        private readonly Group<ComponentCameraShake> cameraShakes = default;
 
         public void Tick(float delta)
         {
+            HandleCameraShakes();
             CameraShakesTick();
         }
 
@@ -46,11 +47,14 @@ namespace Runtime.Source.Tools.CameraShaker
             activeShakes.Add(shakeInstance);
         }
 
-        public override void ReceiveEcs(ref SignalCameraShake signal, ref bool stopSignal)
+        private void HandleCameraShakes()
         {
-            var shakeData = signal.ShakeData;
-            var shakeInstance = new ShakeInstance(shakeData, Random.Range(0, 100));
-            AddShake(shakeInstance);
+            foreach (var entity in cameraShakes)
+            {
+                var shakeData = entity.ComponentCameraShake().ShakeData;
+                var shakeInstance = new ShakeInstance(shakeData, Random.Range(0, 100));
+                AddShake(shakeInstance);
+            }
         }
     }
 }

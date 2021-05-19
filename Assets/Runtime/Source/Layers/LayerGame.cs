@@ -48,6 +48,7 @@ namespace Runtime.Source.Layers
             Add<ProcessorOneFrame<ComponentCollision>>();
             Add<ProcessorOneFrame<ComponentSpawn>>();
             Add<ProcessorOneFrame<ComponentHealthChanged>>();
+            Add<ProcessorOneFrame<ComponentCameraShake>>();
         }
     }
 }

@@ -4,7 +4,6 @@ using Runtime.Source.Components;
 using Runtime.Source.Data;
 using Runtime.Source.Tools;
 using Runtime.Source.Tools.CameraShaker;
-using Runtime.Source.Tools.CameraShaker.Signals;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -82,9 +81,9 @@ namespace Runtime.Source.Processors
         private void CreateShards(ComponentCollision componentCollision)
         {
             var collisionInitiator = componentCollision.SenderEntity;
-            
+
             if (collisionInitiator.Has<ComponentCanShatter>() == false) return;
-            
+
             var componentShatter = collisionInitiator.ComponentCanShatter();
             var shardsCount = Random.Range(componentShatter.MinShards, componentShatter.MaxShards + 1);
 
@@ -98,13 +97,11 @@ namespace Runtime.Source.Processors
 
         private void CreateCameraShakeSignal()
         {
-            SignalCameraShake signal;
-
             var shakeData = DataBase.ScriptableObjects.CameraShakeOnAsteroidHit;
 
-            signal.ShakeData = (ShakePreset) shakeData;
+            var cCameraShake = new ComponentCameraShake {ShakeData = (ShakePreset) shakeData};
 
-            Ecs.Send(signal);
+            OneFramesCore.Register(Layer, cCameraShake);
         }
 
         private Vector3 GetRandomVector3()

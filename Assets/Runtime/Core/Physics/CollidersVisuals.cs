@@ -1,11 +1,13 @@
 using Runtime.Core.Physics.Components;
 using UnityEngine;
 
-public static class CollidersVisuals
+namespace Runtime.Core.Physics
 {
-    public static void DrawBoxCollider(ComponentBoxCollider box, Vector3 objectPosition)
+    public static class CollidersVisuals
     {
-        var previousColor = Gizmos.color;
+        public static void DrawBoxCollider(ComponentBoxCollider box, Vector3 objectPosition)
+        {
+            var previousColor = Gizmos.color;
 
             Gizmos.color = Color.green;
 
@@ -49,15 +51,16 @@ public static class CollidersVisuals
                 objectPosition + box.center + new Vector3(-box.halfWidth, box.halfHeight, -box.halfLength));
 
             Gizmos.color = previousColor;
-    }
+        }
 
-    public static void DrawSphereCollider(ComponentSphereCollider sphere, Vector3 objectPosition)
-    {
-        var previousColor = Gizmos.color;
+        public static void DrawSphereCollider(ComponentSphereCollider sphere, Vector3 objectPosition)
+        {
+            var previousColor = Gizmos.color;
 
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(objectPosition + sphere.center, sphere.Radius);
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(objectPosition + sphere.center, sphere.Radius);
         
-        Gizmos.color = previousColor;
+            Gizmos.color = previousColor;
+        }
     }
 }

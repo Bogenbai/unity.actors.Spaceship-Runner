@@ -9,22 +9,6 @@ namespace Runtime.Source.Processors
     sealed class ProcessorRandomRotator : Processor, ITick
     {
         private readonly Group<ComponentRandomRotatable> groupRotatable = default;
-        
-        // public override void HandleEcsEvents()
-        // {
-        //     foreach (var entity in groupRotatable.added)
-        //     {
-        //         var rigidbody = entity.ComponentRigidbody().Rigidbody;
-        //         var tumble = entity.ComponentRandomRotatable().Tumble;
-        //         
-        //         RandomRotate(rigidbody, tumble);
-        //     }
-        // }
-        
-        // private void RandomRotate(Rigidbody rigidbody, float tumble)
-        // {
-        //     rigidbody.angularVelocity = Random.insideUnitSphere * tumble;
-        // }
 
         public void Tick(float dt)
         {

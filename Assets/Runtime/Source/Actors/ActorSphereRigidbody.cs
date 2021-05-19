@@ -1,4 +1,5 @@
-﻿using Pixeye.Actors;
+﻿using System;
+using Pixeye.Actors;
 using Runtime.Core.Physics.Components;
 using UnityEngine;
 
@@ -16,6 +17,18 @@ namespace Runtime.Source.Actors
         {
             entity.Set(componentRigid);
             entity.Set(componentSphereCollider);
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            var previousColor = Gizmos.color;
+
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(
+                transform.position + componentSphereCollider.center,
+                componentSphereCollider.Radius);
+
+            Gizmos.color = previousColor;
         }
     }
 }

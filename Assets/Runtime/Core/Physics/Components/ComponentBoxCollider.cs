@@ -2,6 +2,7 @@
 using System.Runtime.CompilerServices;
 using Pixeye.Actors;
 using Unity.IL2CPP.CompilerServices;
+using UnityEngine;
 
 namespace Runtime.Core.Physics.Components
 {
@@ -11,6 +12,7 @@ namespace Runtime.Core.Physics.Components
         public float halfWidth = 0.5f;
         public float halfHeight = 0.5f;
         public float halfLength = 0.5f;
+        public Vector3 center;
 
         public float Width
         {

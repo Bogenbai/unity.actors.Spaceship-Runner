@@ -225,7 +225,7 @@ MonoBehaviour:
     mass: 0.01
     useGravity: 0
   componentSphereCollider:
-    Center: {x: 0, y: 0, z: 0}
+    center: {x: 0, y: 0, z: 0}
     Radius: 0.5
 --- !u!1 &133039612
 GameObject:
@@ -301,6 +301,7 @@ MonoBehaviour:
     halfWidth: 0.5
     halfHeight: 0.5
     halfLength: 0.5
+    center: {x: 0, y: 0, z: 0}
 --- !u!23 &204695242
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -403,7 +404,7 @@ MonoBehaviour:
     mass: 0.01
     useGravity: 0
   componentSphereCollider:
-    Center: {x: 0, y: 0, z: 0}
+    center: {x: 0, y: 0, z: 0}
     Radius: 0.5
 --- !u!23 &420779554
 MeshRenderer:
@@ -510,6 +511,7 @@ MonoBehaviour:
     halfWidth: 0.5
     halfHeight: 0.5
     halfLength: 0.5
+    center: {x: 0, y: 0, z: 0}
 --- !u!23 &439852050
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -928,6 +930,7 @@ MonoBehaviour:
     halfWidth: 0.5
     halfHeight: 0.5
     halfLength: 0.5
+    center: {x: 0, y: 0, z: 0}
 --- !u!23 &1388212907
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1030,7 +1033,7 @@ MonoBehaviour:
     mass: 0.01
     useGravity: 0
   componentSphereCollider:
-    Center: {x: 0, y: 0, z: 0}
+    center: {x: 0, y: 0, z: 0}
     Radius: 0.5
 --- !u!23 &1492254220
 MeshRenderer:

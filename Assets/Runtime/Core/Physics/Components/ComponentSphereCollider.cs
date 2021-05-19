@@ -9,7 +9,7 @@ namespace Runtime.Core.Physics.Components
     [Serializable]
     public class ComponentSphereCollider
     {
-        public Vector3 Center;
+        public Vector3 center;
         public float Radius = 0.5f;
     }
 

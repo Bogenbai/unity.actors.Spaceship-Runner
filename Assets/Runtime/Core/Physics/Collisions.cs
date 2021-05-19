@@ -10,8 +10,8 @@ namespace Runtime.Core.Physics
             ComponentSphereCollider a, Transform ta,
             ComponentSphereCollider b, Transform tb)
         {
-            var positionA = ta.position;
-            var positionB = tb.position;
+            var positionA = ta.position + a.center;
+            var positionB = tb.position + b.center;
 
             var depth = (float) Math.Sqrt(
                 (positionA.x - positionB.x) * (positionA.x - positionB.x) +
@@ -28,8 +28,8 @@ namespace Runtime.Core.Physics
             ComponentBoxCollider a, Transform ta,
             ComponentBoxCollider b, Transform tb)
         {
-            var positionA = ta.position;
-            var positionB = tb.position;
+            var positionA = ta.position + a.center;
+            var positionB = tb.position + b.center;
 
             var aMinX = positionA.x - a.halfWidth;
             var aMaxX = positionA.x + a.halfWidth;
@@ -63,8 +63,8 @@ namespace Runtime.Core.Physics
             ComponentSphereCollider a, Transform ta,
             ComponentBoxCollider b, Transform tb)
         {
-            var positionA = ta.position;
-            var positionB = tb.position;
+            var positionA = ta.position + a.center;
+            var positionB = tb.position + b.center;
             
             var bMinX = positionB.x - b.halfWidth;
             var bMaxX = positionB.x + b.halfWidth;

@@ -1,41 +1,12 @@
-using Pixeye.Actors;
+﻿using Pixeye.Actors;
 using Runtime.Core.Physics.Components;
 using Runtime.Source.Tools;
-using UnityEngine;
 
 namespace Runtime.Core.Physics
 {
-    public static class PhysicsDynamics
+    public static partial class PhysicsEngine
     {
-        public static Vector3 Gravity = new Vector3(0, -9.81f, 0);
-
-        public static void Step(Group<ComponentRigid> rigidbodies, float delta)
-        {
-            foreach (var entity in rigidbodies)
-            {
-                var cRigid = entity.ComponentRigid();
-                var entityTransform = entity.transform;
-
-                if (cRigid.mass <= 0)
-                {
-                    Debug.LogError(
-                        $"Rigidbody {entityTransform.name} mass cannot be less then zero. GameObject: ",
-                        entityTransform);
-
-                    cRigid.mass = 0.01f;
-                }
-
-                if (cRigid.useGravity)
-                    cRigid.force += cRigid.mass * Gravity;
-
-                cRigid.velocity += cRigid.force / cRigid.mass * delta;
-                entityTransform.position += cRigid.velocity * delta;
-
-                cRigid.force = Vector3.zero;
-            }
-        }
-
-        public static void ResolveCollisions(Layer layer, Group<ComponentSphereCollider> sphereColliders)
+        public static void Resolve(Layer layer, Group<ComponentSphereCollider> sphereColliders)
         {
             for (var i = 0; i < sphereColliders.length; i++)
             {
@@ -55,15 +26,7 @@ namespace Runtime.Core.Physics
 
                     if (collision.HasCollision)
                     {
-                        Debug.Log("Spheres collision");
-
-                        var cColliding = sphereColliderA.Get<ComponentColliding>();
-                        if (cColliding.CollidingEntities.Contains(sphereColliderB) == false)
-                            cColliding.CollidingEntities.Add(sphereColliderB);
-
-                        cColliding = sphereColliderB.Get<ComponentColliding>();
-                        if (cColliding.CollidingEntities.Contains(sphereColliderA) == false)
-                            cColliding.CollidingEntities.Add(sphereColliderA);
+                        SetCollidingComponent(sphereColliderA, sphereColliderB);
 
                         var componentCollision = new ComponentCollision
                         {
@@ -83,7 +46,7 @@ namespace Runtime.Core.Physics
             }
         }
 
-        public static void ResolveCollisions(Layer layer, Group<ComponentBoxCollider> boxColliders)
+        public static void Resolve(Layer layer, Group<ComponentBoxCollider> boxColliders)
         {
             for (var i = 0; i < boxColliders.length; i++)
             {
@@ -103,15 +66,7 @@ namespace Runtime.Core.Physics
 
                     if (collision.HasCollision)
                     {
-                        Debug.Log("Boxes collision");
-
-                        var cColliding = boxColliderA.Get<ComponentColliding>();
-                        if (cColliding.CollidingEntities.Contains(boxColliderB) == false)
-                            cColliding.CollidingEntities.Add(boxColliderB);
-
-                        cColliding = boxColliderB.Get<ComponentColliding>();
-                        if (cColliding.CollidingEntities.Contains(boxColliderA) == false)
-                            cColliding.CollidingEntities.Add(boxColliderA);
+                        SetCollidingComponent(boxColliderA, boxColliderB);
 
                         var componentCollision = new ComponentCollision
                         {
@@ -131,13 +86,13 @@ namespace Runtime.Core.Physics
             }
         }
 
-
-        public static void ResolveCollisions(Layer layer, Group<ComponentBoxCollider> boxColliders,
+        public static void Resolve(Layer layer, Group<ComponentBoxCollider> boxColliders,
             Group<ComponentSphereCollider> sphereColliders)
         {
             for (var i = 0; i < boxColliders.length; i++)
             {
                 var boxCollider = boxColliders[i];
+
                 for (var j = 0; j < sphereColliders.length; j++)
                 {
                     var sphereCollider = sphereColliders[j];
@@ -150,15 +105,7 @@ namespace Runtime.Core.Physics
 
                     if (collision.HasCollision)
                     {
-                        Debug.Log("Box and sphere collision");
-
-                        var cColliding = boxCollider.Get<ComponentColliding>();
-                        if (cColliding.CollidingEntities.Contains(sphereCollider) == false)
-                            cColliding.CollidingEntities.Add(sphereCollider);
-
-                        cColliding = sphereCollider.Get<ComponentColliding>();
-                        if (cColliding.CollidingEntities.Contains(boxCollider) == false)
-                            cColliding.CollidingEntities.Add(boxCollider);
+                        SetCollidingComponent(boxCollider, sphereCollider);
 
                         var componentCollision = new ComponentCollision
                         {
@@ -176,6 +123,17 @@ namespace Runtime.Core.Physics
                     }
                 }
             }
+        }
+
+        private static void SetCollidingComponent(ent entityA, ent entityB)
+        {
+            var cColliding = entityA.Get<ComponentColliding>();
+            if (cColliding.CollidingEntities.Contains(entityB) == false)
+                cColliding.CollidingEntities.Add(entityB);
+
+            cColliding = entityB.Get<ComponentColliding>();
+            if (cColliding.CollidingEntities.Contains(entityA) == false)
+                cColliding.CollidingEntities.Add(entityA);
         }
 
         private static void HandleCollisionStop(ent entity, ent toBeRemoved)

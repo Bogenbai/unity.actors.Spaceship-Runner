@@ -17,5 +17,5 @@
   "Plugins": [
   ],
   "//": "Pause on losing focus",
-  "PauseOnFocusLost": true
+  "PauseOnFocusLost": false
 }

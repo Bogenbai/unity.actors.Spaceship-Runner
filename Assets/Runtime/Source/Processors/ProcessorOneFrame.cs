@@ -12,8 +12,8 @@ namespace Runtime.Source.Processors
     // If you want oneframe to be captured by all processors on the layer then register it using OneFramesCore.Register.
     sealed class ProcessorOneFrame<T> : Processor, ITick
     {
-        private Group<T> groupOneframes = default;
-        private List<T> requests = new List<T>();
+        private readonly Group<T> groupOneframes = default;
+        private readonly List<T> requests = new List<T>();
 
         public void Tick(float delta)
         {

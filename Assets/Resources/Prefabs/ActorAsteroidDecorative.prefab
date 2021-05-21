@@ -822,10 +822,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _entity: 0
   prefabReferenceName: 
-  componentRigidbody:
-    rigidbody: {fileID: 0}
+  componentRigid:
+    velocity: {x: 0, y: 0, z: 0}
+    force: {x: 0, y: 0, z: 0}
+    mass: 1
+    useGravity: 0
   componentRandomRotatable:
-    tumble: 10
+    tumble: 1
   componentMove:
     moveDirection: {x: 0, y: 0, z: -1}
     speed: 3200

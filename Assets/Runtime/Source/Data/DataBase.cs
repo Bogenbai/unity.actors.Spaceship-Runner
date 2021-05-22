@@ -9,7 +9,7 @@ namespace Runtime.Source.Data
         {
             private static string PrefabsPath => "Prefabs/";
 
-            public static GameObject ActorPlayerSpaceship =>
+            public static GameObject PlayerSpaceship =>
                 Box.Load<GameObject>(PrefabsPath + "ActorPlayerSpaceship");
 
             public static GameObject Asteroid =>

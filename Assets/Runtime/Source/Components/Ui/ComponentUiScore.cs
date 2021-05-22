@@ -14,7 +14,7 @@ namespace Runtime.Source.Components.Ui
 
     public static partial class Component
     {
-        public const string UiScore = "a.ComponentUiScore";
+        public const string UiScore = "Runtime.Source.Components.Ui.ComponentUiScore";
 
         internal static ref ComponentUiScore ComponentUiScore(in this ent entity)
             => ref Storage<ComponentUiScore>.components[entity.id];

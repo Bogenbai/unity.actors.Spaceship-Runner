@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using Pixeye.Actors;
-using Runtime.Source.Data;
-using UnityEngine;
 
 namespace Runtime.Source.Processors
 {
@@ -42,7 +40,7 @@ namespace Runtime.Source.Processors
 
         private void Create(T oneframeComponent)
         {
-            var oneframeEntity = Layer.Entity.Create(DataBase.Prefabs.EmptyGameObject, Vector3.zero, true);
+            var oneframeEntity = Layer.Entity.Create();
             oneframeEntity.Set(oneframeComponent);
         }
 

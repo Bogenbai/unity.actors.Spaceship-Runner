@@ -560,7 +560,7 @@ MonoBehaviour:
   prefabReferenceName: 
   componentSpaceship:
     parameters: {fileID: 11400000, guid: 77917388c254d304ba16ed5644deec9c, type: 2}
-    startPosition: {x: 0, y: 0, z: 0}
+    startPosition: {x: 0, y: 0, z: 15}
     input: {x: 0, y: 0, z: 0}
   componentRigid:
     velocity: {x: 0, y: 0, z: 0}

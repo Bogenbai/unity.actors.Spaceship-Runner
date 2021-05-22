@@ -8,13 +8,13 @@ namespace Runtime.Source.Processors
     sealed class ProcessorScore : Processor
     {
         private readonly Group<ComponentSpaceship> groupSpaceships = default;
-        private readonly ent scoreCounterEntity;
         private RoutineCall scoreCountingCoroutine;
+        private readonly ent entityScore;
 
         public ProcessorScore()
         {
-            scoreCounterEntity = Entity.Create();
-            scoreCounterEntity.Set<ComponentScore>();
+            entityScore = Layer.Entity.Create();
+            entityScore.Set<ComponentScore>();
         }
 
         public override void HandleEcsEvents()
@@ -23,7 +23,7 @@ namespace Runtime.Source.Processors
             {
                 if (scoreCountingCoroutine.IsRunning == false)
                 {
-                    scoreCounterEntity.ComponentScore().Score = 0;
+                    entityScore.ComponentScore().Score = 0;
                     scoreCountingCoroutine = Layer.Run(ScoreCounting());
                 }
             }
@@ -42,7 +42,7 @@ namespace Runtime.Source.Processors
             while (true)
             {
                 yield return Layer.Wait(1);
-                scoreCounterEntity.ComponentScore().Score++;
+                entityScore.ComponentScore().Score++;
             }
         }
     }

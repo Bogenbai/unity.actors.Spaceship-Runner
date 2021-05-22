@@ -2,7 +2,7 @@
 using Runtime.Source.Components;
 using Runtime.Source.Components.Ui;
 
-namespace Runtime.Source.Processors
+namespace Runtime.Source.Processors.Ui
 {
     // Class represents a system that updates player's score in the ui
     sealed class ProcessorScoreUi : Processor

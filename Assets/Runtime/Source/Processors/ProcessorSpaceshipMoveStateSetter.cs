@@ -17,27 +17,27 @@ namespace Runtime.Source.Processors
 
                 if (input != Vector3.zero)
                 {
-                    if (entity.Has<ComponentBraking>())
-                    {
+                    // if (entity.Has<ComponentBraking>())
+                    // {
                         entity.Remove<ComponentBraking>();
-                    }
+                    //}
 
-                    if (entity.Has<ComponentThrottling>() == false)
-                    {
+                    // if (entity.Has<ComponentThrottling>() == false)
+                    // {
                         entity.Get<ComponentThrottling>();
-                    }
+                    //}
                 }
                 else
                 {
-                    if (entity.Has<ComponentBraking>() == false)
-                    {
+                    // if (entity.Has<ComponentBraking>() == false)
+                    // {
                         entity.Get<ComponentBraking>();
-                    }
+                    //}
 
-                    if (entity.Has<ComponentThrottling>())
-                    {
+                    // if (entity.Has<ComponentThrottling>())
+                    // {
                         entity.Remove<ComponentThrottling>();
-                    }
+                    //}
                 }
             }
         }

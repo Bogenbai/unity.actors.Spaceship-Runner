@@ -1,4 +1,5 @@
-﻿using Pixeye.Actors;
+﻿using System.Collections;
+using Pixeye.Actors;
 using Runtime.Source.Components;
 
 namespace Runtime.Source.Processors
@@ -7,8 +8,8 @@ namespace Runtime.Source.Processors
     sealed class ProcessorScore : Processor
     {
         private readonly Group<ComponentSpaceship> groupSpaceships = default;
-        private readonly Group<ComponentAsteroid> groupAsteroids = default;
         private readonly ent scoreCounterEntity;
+        private RoutineCall scoreCountingCoroutine;
 
         public ProcessorScore()
         {
@@ -20,15 +21,28 @@ namespace Runtime.Source.Processors
         {
             foreach (var unused in groupSpaceships.added)
             {
-                scoreCounterEntity.ComponentScore().Score = 0;
+                if (scoreCountingCoroutine.IsRunning == false)
+                {
+                    scoreCounterEntity.ComponentScore().Score = 0;
+                    scoreCountingCoroutine = Layer.Run(ScoreCounting());
+                }
             }
 
-            foreach (var unused in groupAsteroids.removed)
+            foreach (var unused in groupSpaceships.removed)
             {
-                if (groupSpaceships.length > 0)
+                if (groupSpaceships.length <= 0)
                 {
-                    scoreCounterEntity.ComponentScore().Score++;
+                    scoreCountingCoroutine.Stop();
                 }
+            }
+        }
+
+        IEnumerator ScoreCounting()
+        {
+            while (true)
+            {
+                yield return Layer.Wait(1);
+                scoreCounterEntity.ComponentScore().Score++;
             }
         }
     }

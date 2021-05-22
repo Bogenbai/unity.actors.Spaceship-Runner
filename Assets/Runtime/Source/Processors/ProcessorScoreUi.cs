@@ -1,6 +1,5 @@
 ﻿using Pixeye.Actors;
 using Runtime.Source.Components;
-using Runtime.Source.Components.Tags.Ui;
 using Runtime.Source.Components.Ui;
 
 namespace Runtime.Source.Processors
@@ -9,16 +8,18 @@ namespace Runtime.Source.Processors
     sealed class ProcessorScoreUi : Processor
     {
         private readonly Group<ComponentScore> groupScores = default;
-        private readonly Group<ComponentScoreText, ComponentText> groupScoreTexts = default;
-        
+        private readonly Group<ComponentUiScore> groupScoreTexts = default;
+
         public override void HandleEcsEvents()
         {
             foreach (var e in groupScoreTexts.added)
             {
-                var cText = e.ComponentText();
+                var cUiScore = e.ComponentUiScore();
                 var cScore = groupScores[0].ComponentScore();
-                Layer.Observer.Add(cScore, x => cScore.Score, 
-                    scoreNext => cText.Text.text = scoreNext.ToString());
+                Layer.Observer.Add(
+                    cScore,
+                    x => cScore.Score,
+                    scoreNext => cUiScore.scoreText.text = scoreNext.ToString());
             }
         }
     }

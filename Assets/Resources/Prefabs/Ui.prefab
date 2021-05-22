@@ -342,7 +342,6 @@ GameObject:
   - component: {fileID: 4928071167215521428}
   - component: {fileID: 4928071167215521433}
   - component: {fileID: 4928071167215521430}
-  - component: {fileID: 4928071167215521431}
   m_Layer: 5
   m_Name: Score Text
   m_TagString: Untagged
@@ -466,22 +465,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &4928071167215521431
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4928071167215521429}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9384cd9b234f3c64d86ac3f63ba85ff1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _entity: 0
-  prefabReferenceName: 
-  componentText:
-    text: {fileID: 4928071167215521430}
 --- !u!1 &4928071167241932385
 GameObject:
   m_ObjectHideFlags: 0
@@ -493,8 +476,9 @@ GameObject:
   - component: {fileID: 4928071167241932384}
   - component: {fileID: 4928071167241932386}
   - component: {fileID: 4928071167241932387}
+  - component: {fileID: 4928071166551634548}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: Gameplay Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -559,6 +543,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4928071166551634548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4928071167241932385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1dd44ccee86a9640984e8b67fbe996a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _entity: 0
+  prefabReferenceName: 
+  componentUiScore:
+    scoreText: {fileID: 4928071167215521430}
 --- !u!1 &4928071167328913803
 GameObject:
   m_ObjectHideFlags: 0
@@ -748,6 +748,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &4928071167364192851
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,14 +1,13 @@
 ﻿using System.Collections;
 using Pixeye.Actors;
 using Runtime.Source.Components;
-using UnityEngine;
 
 namespace Runtime.Source.Processors
 {
     // Class represents a system that controls score points in the game
     sealed class ProcessorScore : Processor
     {
-        private readonly Group<ComponentGame, ComponentScore> groupScore = default;
+        private readonly Group<ComponentGameState, ComponentScore> groupScore = default;
         private RoutineCall scoreCountingCoroutine;
         private ent observer;
 
@@ -21,7 +20,7 @@ namespace Runtime.Source.Processors
 
                 observer = Layer.Observer.Add(
                     cGame,
-                    x => x.state,
+                    x => x.value,
                     x => HandleScoreCounting(x, cScore));
 
                 break;

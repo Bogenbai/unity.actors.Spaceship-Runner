@@ -8,9 +8,9 @@ namespace Runtime.Source.Processors
         public ProcessorGameInitializer()
         {
             var entityGame = Entity.Create();
-            var cGame = entityGame.Set<ComponentGame>();
+            var cGame = entityGame.Set<ComponentGameState>();
             var cScore = entityGame.Set<ComponentScore>();
-            cGame.state = GameStates.StartMenu;
+            cGame.value = GameStates.StartMenu;
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Runtime.Source.Processors
     sealed class ProcessorSpaceshipSpawner : Processor, ITick
     {
         private readonly Group<ComponentSpaceship> groupSpaceships = default;
-        private readonly Group<ComponentGame> groupGameState = default;
+        private readonly Group<ComponentGameState> groupGameState = default;
 
         public void Tick(float delta)
         {
@@ -16,7 +16,7 @@ namespace Runtime.Source.Processors
 
             var cGameState = groupGameState[0].ComponentGame();
 
-            if (cGameState.state == GameStates.Gameplay)
+            if (cGameState.value == GameStates.Gameplay)
             {
                 var entitySpaceship = Layer.Actor.Create(DataBase.Prefabs.PlayerSpaceship).entity;
                 entitySpaceship.transform.position = entitySpaceship.ComponentSpaceship().startPosition;

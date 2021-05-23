@@ -6,7 +6,7 @@ namespace Runtime.Source.Processors
     sealed class ProcessorGameStates : Processor, ITick
     {
         private readonly Group<ComponentSpaceship> groupSpaceships = default;
-        private readonly Group<ComponentGame> groupGame = default;
+        private readonly Group<ComponentGameState> groupGame = default;
 
         public void Tick(float dt)
         {
@@ -14,25 +14,25 @@ namespace Runtime.Source.Processors
 
             var cGame = groupGame[0].ComponentGame();
 
-            if (cGame.state == GameStates.StartMenu)
+            if (cGame.value == GameStates.StartMenu)
             {
                 if (UnityEngine.Input.GetMouseButtonDown(0))
                 {
-                    cGame.state = GameStates.Gameplay;
+                    cGame.value = GameStates.Gameplay;
                 }
             }
-            else if (cGame.state == GameStates.Gameplay)
+            else if (cGame.value == GameStates.Gameplay)
             {
                 if (groupSpaceships.length <= 0)
                 {
-                    cGame.state = GameStates.GameOver;
+                    cGame.value = GameStates.GameOver;
                 }
             }
-            else if (cGame.state == GameStates.GameOver)
+            else if (cGame.value == GameStates.GameOver)
             {
                 if (UnityEngine.Input.GetMouseButtonDown(0))
                 {
-                    cGame.state = GameStates.Gameplay;
+                    cGame.value = GameStates.Gameplay;
                 }
             }
         }

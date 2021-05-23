@@ -9,7 +9,7 @@ namespace Runtime.Source.Processors.Ui
         private readonly Group<ComponentStartMenuUi> groupStartMenuUi = default;
         private readonly Group<ComponentGameplayUi> groupGameplayUi = default;
         private readonly Group<ComponentGameOverMenuUi> groupGameOverMenuUi = default;
-        private readonly Group<ComponentGame> groupGame = default;
+        private readonly Group<ComponentGameState> groupGame = default;
         private ent observer;
 
         public override void HandleEcsEvents()
@@ -20,7 +20,7 @@ namespace Runtime.Source.Processors.Ui
 
                 observer = Layer.Observer.Add(
                     cGameState,
-                    x => x.state,
+                    x => x.value,
                     HandleInUi);
 
                 break;

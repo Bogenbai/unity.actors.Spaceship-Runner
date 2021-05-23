@@ -22,7 +22,7 @@ namespace Runtime.Core.Physics.Components
     [Il2CppSetOption(Option.DivideByZeroChecks, false)]
     static partial class Component
     {
-        public const string Rigid = "Game.Source.ComponentRigid";
+        public const string Rigid = "Runtime.Core.Physics.Components.ComponentRigid";
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ref ComponentRigid ComponentRigid(in this ent entity) =>

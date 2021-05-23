@@ -4,24 +4,24 @@ using Pixeye.Actors;
 namespace Runtime.Source.Components
 {
     [Serializable]
-    public class ComponentGame
+    public class ComponentGameState
     {
-        public GameStates state;
+        public GameStates value;
     }
 
     #region HELPERS
 
     public static partial class Component
     {
-        public const string Game = "Runtime.Source.Components.ComponentGame";
+        public const string GameState = "Runtime.Source.Components.ComponentGameState";
 
-        internal static ref ComponentGame ComponentGame(in this ent entity)
-            => ref Storage<ComponentGame>.components[entity.id];
+        internal static ref ComponentGameState ComponentGame(in this ent entity)
+            => ref Storage<ComponentGameState>.components[entity.id];
     }
 
-    sealed class StorageGame : Storage<ComponentGame>
+    sealed class StorageGame : Storage<ComponentGameState>
     {
-        public override ComponentGame Create() => new ComponentGame();
+        public override ComponentGameState Create() => new ComponentGameState();
 
         public override void Dispose(indexes disposed)
         {

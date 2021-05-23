@@ -4,7 +4,7 @@ using Pixeye.Actors;
 namespace Runtime.Source.Components
 {
     [Serializable]
-    public class ComponentGameState
+    public class ComponentGame
     {
         public GameStates state;
     }
@@ -13,15 +13,15 @@ namespace Runtime.Source.Components
 
     public static partial class Component
     {
-        public const string GameState = "Runtime.Source.Components.ComponentGameState";
+        public const string Game = "Runtime.Source.Components.ComponentGame";
 
-        internal static ref ComponentGameState ComponentGameState(in this ent entity)
-            => ref Storage<ComponentGameState>.components[entity.id];
+        internal static ref ComponentGame ComponentGame(in this ent entity)
+            => ref Storage<ComponentGame>.components[entity.id];
     }
 
-    sealed class StorageGameState : Storage<ComponentGameState>
+    sealed class StorageGame : Storage<ComponentGame>
     {
-        public override ComponentGameState Create() => new ComponentGameState();
+        public override ComponentGame Create() => new ComponentGame();
 
         public override void Dispose(indexes disposed)
         {

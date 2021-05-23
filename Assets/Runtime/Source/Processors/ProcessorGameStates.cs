@@ -7,19 +7,18 @@ namespace Runtime.Source.Processors
     {
         private readonly Group<ComponentSpaceship> groupSpaceships = default;
         private ent entityGame;
-
-
+        
         public void Tick(float dt)
         {
             if (entityGame.exist == false)
             {
                 entityGame = Entity.Create();
-                var componentGameState = entityGame.Set<ComponentGameState>();
+                var componentGameState = entityGame.Set<ComponentGame>();
 
                 componentGameState.state = GameStates.StartMenu;
             }
  
-            var cGameState = entityGame.ComponentGameState();
+            var cGameState = entityGame.ComponentGame();
 
             switch (cGameState.state)
             {

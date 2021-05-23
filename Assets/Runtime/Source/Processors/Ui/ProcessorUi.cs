@@ -10,14 +10,14 @@ namespace Runtime.Source.Processors.Ui
         private readonly Group<ComponentStartMenuUi> groupStartMenuUi = default;
         private readonly Group<ComponentGameplayUi> groupGameplayUi = default;
         private readonly Group<ComponentGameOverMenuUi> groupGameOverMenuUi = default;
-        private readonly Group<ComponentGameState> groupGameStates = default;
+        private readonly Group<ComponentGame> groupGameStates = default;
 
 
         public override void HandleEcsEvents()
         {
             foreach (var entity in groupGameStates.added)
             {
-                var cGameState = entity.ComponentGameState();
+                var cGameState = entity.ComponentGame();
 
                 Layer.Observer.Add(
                     cGameState,

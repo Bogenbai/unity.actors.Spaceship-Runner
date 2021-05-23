@@ -26,8 +26,6 @@ namespace Runtime.Source.Data
 
             public static GameObject VfxBluePlasmaExplosion =>
                 Box.Load<GameObject>(PrefabsPath + "ActorVfx BluePlasmaExplosion");
-
-            public static GameObject EmptyGameObject = new GameObject();
         }
 
         public static class ScriptableObjects

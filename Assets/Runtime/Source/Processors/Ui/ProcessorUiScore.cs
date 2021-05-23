@@ -14,6 +14,8 @@ namespace Runtime.Source.Processors.Ui
         {
             foreach (var entityText in groupScoreTexts.added)
             {
+                if (groupScores.length <= 0) return;
+
                 var cScore = groupScores[0].ComponentScore();
 
                 var cUiScore = entityText.ComponentUiScore();

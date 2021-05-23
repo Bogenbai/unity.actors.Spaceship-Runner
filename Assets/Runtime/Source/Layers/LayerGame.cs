@@ -22,8 +22,8 @@ namespace Runtime.Source.Layers
 #else
             Add<ProcessorUserInput>();
 #endif
+            Add<ProcessorGameInitializer>();
             Add<ProcessorGameStates>();
-            Add<ProcessorUi>();
             Add<ProcessorSpawnTimer>();
             Add<ProcessorSpawner>();
             Add<ProcessorDestroyDestroyable>();
@@ -31,7 +31,8 @@ namespace Runtime.Source.Layers
             Add<ProcessorScaleTo>();
             Add<ProcessorHealth>();
             Add<ProcessorScore>();
-            Add<ProcessorScoreUi>();
+            Add<ProcessorUiToggler>();
+            Add<ProcessorUiScore>();
             Add<ProcessorMove>();
             Add<ProcessorCameraShake>();
             Add<ProcessorSpaceshipMovementDirection>();

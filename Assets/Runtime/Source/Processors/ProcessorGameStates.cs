@@ -6,43 +6,34 @@ namespace Runtime.Source.Processors
     sealed class ProcessorGameStates : Processor, ITick
     {
         private readonly Group<ComponentSpaceship> groupSpaceships = default;
-        private ent entityGame;
-        
+        private readonly Group<ComponentGame> groupGame = default;
+
         public void Tick(float dt)
         {
-            if (entityGame.exist == false)
-            {
-                entityGame = Entity.Create();
-                var componentGameState = entityGame.Set<ComponentGame>();
+            if (groupGame.length <= 0) return;
 
-                componentGameState.state = GameStates.StartMenu;
+            var cGame = groupGame[0].ComponentGame();
+
+            if (cGame.state == GameStates.StartMenu)
+            {
+                if (UnityEngine.Input.GetMouseButtonDown(0))
+                {
+                    cGame.state = GameStates.Gameplay;
+                }
             }
- 
-            var cGameState = entityGame.ComponentGame();
-
-            switch (cGameState.state)
+            else if (cGame.state == GameStates.Gameplay)
             {
-                case GameStates.StartMenu:
-                    if (UnityEngine.Input.GetMouseButtonDown(0))
-                    {
-                        cGameState.state = GameStates.Gameplay;
-                    }
-
-                    break;
-                case GameStates.Gameplay:
-                    if (groupSpaceships.length <= 0)
-                    {
-                        cGameState.state = GameStates.GameOver;
-                    }
-
-                    break;
-                case GameStates.GameOver:
-                    if (UnityEngine.Input.GetMouseButtonDown(0))
-                    {
-                        cGameState.state = GameStates.Gameplay;
-                    }
-
-                    break;
+                if (groupSpaceships.length <= 0)
+                {
+                    cGame.state = GameStates.GameOver;
+                }
+            }
+            else if (cGame.state == GameStates.GameOver)
+            {
+                if (UnityEngine.Input.GetMouseButtonDown(0))
+                {
+                    cGame.state = GameStates.Gameplay;
+                }
             }
         }
     }

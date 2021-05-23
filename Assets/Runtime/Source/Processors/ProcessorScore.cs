@@ -1,46 +1,61 @@
 ﻿using System.Collections;
 using Pixeye.Actors;
 using Runtime.Source.Components;
+using UnityEngine;
 
 namespace Runtime.Source.Processors
 {
     // Class represents a system that controls score points in the game
     sealed class ProcessorScore : Processor
     {
-        private readonly Group<ComponentSpaceship> groupSpaceships = default;
+        private readonly Group<ComponentGame, ComponentScore> groupScore = default;
         private RoutineCall scoreCountingCoroutine;
-        private readonly ent entityScore;
-
-        public ProcessorScore()
-        {
-            entityScore = Layer.Entity.Create();
-            entityScore.Set<ComponentScore>();
-        }
+        private ent observer;
 
         public override void HandleEcsEvents()
         {
-            foreach (var unused in groupSpaceships.added)
+            foreach (var entity in groupScore.added)
             {
-                if (scoreCountingCoroutine.IsRunning == false)
-                {
-                    entityScore.ComponentScore().Score = 0;
-                    scoreCountingCoroutine = Layer.Run(ScoreCounting());
-                }
+                var cScore = entity.ComponentScore();
+                var cGame = entity.ComponentGame();
+
+                observer = Layer.Observer.Add(
+                    cGame,
+                    x => x.state,
+                    x => HandleScoreCounting(x, cScore));
+
+                break;
             }
 
-            foreach (var unused in groupSpaceships.removed)
+            foreach (var unused in groupScore.removed)
             {
-                if (groupSpaceships.length <= 0)
-                {
+                observer.Release();
+            }
+        }
+
+        private void HandleScoreCounting(GameStates state, ComponentScore componentScore)
+        {
+            switch (state)
+            {
+                case GameStates.Gameplay:
+                    if (scoreCountingCoroutine.IsRunning == false)
+                    {
+                        componentScore.Score = 0;
+                        scoreCountingCoroutine = Layer.Run(ScoreCounting());
+                    }
+
+                    break;
+                default:
                     scoreCountingCoroutine.Stop();
-                }
+                    break;
             }
         }
 
         IEnumerator ScoreCounting()
         {
-            while (true)
+            while (groupScore.length > 0)
             {
+                var entityScore = groupScore[0];
                 yield return Layer.Wait(1);
                 entityScore.ComponentScore().Score++;
             }

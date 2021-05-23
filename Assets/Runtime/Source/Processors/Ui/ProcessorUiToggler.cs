@@ -1,49 +1,52 @@
 ﻿using Pixeye.Actors;
 using Runtime.Source.Components;
 using Runtime.Source.Components.Ui;
-using UnityEngine;
 
 namespace Runtime.Source.Processors.Ui
 {
-    sealed class ProcessorUi : Processor
+    sealed class ProcessorUiToggler : Processor
     {
         private readonly Group<ComponentStartMenuUi> groupStartMenuUi = default;
         private readonly Group<ComponentGameplayUi> groupGameplayUi = default;
         private readonly Group<ComponentGameOverMenuUi> groupGameOverMenuUi = default;
-        private readonly Group<ComponentGame> groupGameStates = default;
-
+        private readonly Group<ComponentGame> groupGame = default;
+        private ent observer;
 
         public override void HandleEcsEvents()
         {
-            foreach (var entity in groupGameStates.added)
+            foreach (var entity in groupGame.added)
             {
                 var cGameState = entity.ComponentGame();
 
-                Layer.Observer.Add(
+                observer = Layer.Observer.Add(
                     cGameState,
                     x => x.state,
-                    OpenUi);
+                    HandleInUi);
+
+                break;
+            }
+
+            foreach (var unused in groupGame.removed)
+            {
+                observer.Release();
             }
         }
 
-        private void OpenUi(GameStates state)
+        private void HandleInUi(GameStates state)
         {
             switch (state)
             {
                 case GameStates.StartMenu:
-                    Debug.Log("StartMenu");
                     SetActive(groupStartMenuUi, true);
                     SetActive(groupGameplayUi, false);
                     SetActive(groupGameOverMenuUi, false);
                     break;
                 case GameStates.Gameplay:
-                    Debug.Log("Gameplay");
                     SetActive(groupStartMenuUi, false);
                     SetActive(groupGameplayUi, true);
                     SetActive(groupGameOverMenuUi, false);
                     break;
                 case GameStates.GameOver:
-                    Debug.Log("GameOver");
                     SetActive(groupStartMenuUi, false);
                     SetActive(groupGameplayUi, false);
                     SetActive(groupGameOverMenuUi, true);
@@ -51,7 +54,7 @@ namespace Runtime.Source.Processors.Ui
             }
         }
 
-        private void SetActive<T>(Group<T> @group, bool state)
+        private static void SetActive<T>(Group<T> group, bool state)
         {
             foreach (var entity in group)
             {

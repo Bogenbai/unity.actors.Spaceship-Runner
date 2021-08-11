@@ -9,7 +9,7 @@
         "com.unity.modules.ai": "1.0.0",
         "com.unity.modules.physics2d": "1.0.0"
       },
-      "hash": "2edf5166a5e989584b1728c165338c0c6680710e"
+      "hash": "53e235175a46bf3b7e8da259612144ee6967bbfb"
     },
     "com.pixeye.ecs": {
       "version": "https://github.com/PixeyeHQ/actors.unity.git",

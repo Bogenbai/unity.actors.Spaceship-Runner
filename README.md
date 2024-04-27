@@ -6,6 +6,6 @@ This project was created with [Actors Framework](https://github.com/PixeyeHQ/act
 
 ## Screenshots
 
-![1 screenshot](https://cdn.discordapp.com/attachments/428973249502642208/770997380379836416/unknown.png)
-![2 screenshot](https://cdn.discordapp.com/attachments/428973249502642208/770997633963130880/unknown.png)
+![1 screenshot](https://cdn.discordapp.com/attachments/428973249502642208/770997380379836416/unknown.png?ex=662da183&is=662c5003&hm=66b367c3426399dfe42a91706ff6c42d2f37f99fd2d12114b1d9b473d4a22dec&)
+![2 screenshot](https://cdn.discordapp.com/attachments/428973249502642208/770997633963130880/unknown.png?ex=662da1c0&is=662c5040&hm=af8dc91d17b0c121ed8be0ee3fb2f65448567a334817a9f59ed09198e4b806c0&)
 
